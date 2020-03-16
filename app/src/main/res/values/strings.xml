@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">RegisterTest</string>
+    <string name="track_list">Lista</string>
+
+    <!-- DEFAULT TRACK -->
+    <string name="default_track_title">Título canción</string>
+    <string name="default_track_author">Autor/a</string>
+
+    <!-- ACTION -->
+    <string name="action_login">Iniciar sesión</string>
+    <string name="action_logout">Cerrar sesión</string>
+    <string name="action_register">Registrarse</string>
+    <string name="action_advance_list">Mostrar Tracks (avanzado)</string>
+    <string name="action_list">Mostrar Tracks</string>
+
+    <!-- INFO STATE -->
+    <string name="state_wait">Porfavor espere..</string>
+    <string name="state_task_in_progress">Tarea en proceso</string>
+    <string name="state_error_connexion">Error de conexión!</string>
+    <string name="state_success_title">Éxito</string>
+    <string name="state_task_completed">Tarea completada con éxito!</string>
+    <string name="state_error_title">Error</string>
+    <string name="state_error_default">Algo salió mal!</string>
+
+
+    <!-- ACTIVITY [ Login ] -->
+    <string name="login_username">Nombre usuario</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_email">Correo electrónico</string>
+    <string name="login_yetIdentified">Todavía no estás registrad@ ?</string>
+    <string name="login_register_here">Regístrate aquí</string>
+
+    <!-- ACTIVITY [ Mostrar Playlist ] -->
+    <string name="show_playlist">Mostrar Playlist</string>
+    <string name="show_all_playlist">Crear Playlist</string>
+    <string name="boto_mostrar">Mostrar Tracks de Playlist</string>
+
+
+    <!-- ACTIVITY [ Nova Playlist ] -->
+    <string name="new_playlist_id">New Playlist</string>
+    <string name="create_playlist">Crear Playlist</string>
+    <string name="new_playlist_here">Crea una nova Playlist aquí</string>
+
+    <!-- ACTIVITY [Crear Cançons ] -->
+    <string name="songs">Afegir cançó a Playlist</string>
+    <string name="boto_song">Afegir</string>
+    <string name="playlist_name">Nom Playlist: </string>
+    <string name="track_name">Nom Cançó: </string>
+
+    <!-- ACTIVITY [Crear Cançons ] -->
+    <string name="text_nom_playlist">Nom Playlist: </string>
+    <string name="boto_mostrar_tracks">Mostra les seves Tracks</string>
+
+</resources>
