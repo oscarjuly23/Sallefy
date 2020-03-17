@@ -53,4 +53,10 @@
     <string name="text_nom_playlist">Nom Playlist: </string>
     <string name="boto_mostrar_tracks">Mostra les seves Tracks</string>
 
+    <!-- ACTIVITY [ HOME ] -->
+    <string name="homeListaExitos">Lista de éxitos: </string>
+    <string name="homeListaGeneros">Lista de géneros: </string>
+
+
+
 </resources>
