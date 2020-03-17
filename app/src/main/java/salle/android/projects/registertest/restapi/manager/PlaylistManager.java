@@ -77,17 +77,13 @@ public class PlaylistManager {
         UserToken userToken = Session.getInstance(mContext).getUserToken();
         Call<Playlist> call = mService.createPlaylist(playlist, "Bearer " +  userToken.getIdToken());
         call.enqueue(new Callback<Playlist>() {
-
             @Override
             public void onResponse(Call<Playlist> call, Response<Playlist> response) {
+                int code = response.code();
                 if (response.isSuccessful()) {
                     callback.onCreateSuccess(response.body());
                 } else {
-                    try {
-                        callback.onFailure(new Throwable(response.errorBody().string()));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    callback.onCreateFailed(new Throwable(response.errorBody().toString()));
                 }
             }
 
@@ -108,7 +104,7 @@ public class PlaylistManager {
             @Override
             public void onResponse(Call<Playlist> call, Response<Playlist> response) {
                 if (response.isSuccessful()) {
-                    playlistCallback.onCreateSuccess(response.body());
+                    playlistCallback.onUpdateSucces(response.body());
                 } else {
                     try {
                         playlistCallback.onFailure(new Throwable(response.errorBody().string()));
