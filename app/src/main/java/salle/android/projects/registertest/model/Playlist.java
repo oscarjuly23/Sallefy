@@ -32,6 +32,11 @@ public class Playlist implements Serializable {
     @SerializedName("tracks")
     private List<Track> tracks = null;
 
+    public Playlist(String name) {
+        this.name = name;
+        this.publicAccessible = true;
+    }
+
     private boolean followed;
 
     public String getCover() {

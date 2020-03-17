@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,35 +17,73 @@
         app:mwhCloseColor="@color/colorSecondary"
         app:mwhStartColor="@color/colorPrimary" />
 
-    <LinearLayout
+    <com.scwang.wave.MultiWaveHeader
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:orientation="vertical">
+        android:layout_height="200dp"
+        android:scaleX="2"
+        android:rotation="-20"
+        android:scaleY="-1.7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:mwhCloseColor="@color/colorSecondary"
+        app:mwhStartColor="@color/colorPrimary" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.402">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
-            style="@style/settings_title"
-            android:text="@string/create_playlist"/>
-
-        <EditText
-            android:id="@+id/etNewPl"
+            style="@style/TitlesTheme"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/new_pl_text"/>
+            android:layout_height="wrap_content"
+            android:text="@string/title_create" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/settings_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name_playlist" />
+
+            <EditText
+                android:id="@+id/name_playlist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/login_edit_text"
+                android:hint="Mi playlist #5" />
+
+            <TextView
+                style="@style/settings_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/desc_playlist" />
+
+            <EditText
+                android:id="@+id/desc_playlist"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginTop="10dp"
+                android:gravity="top|left"
+                android:background="@drawable/login_edit_text"
+                android:hint="Ponle a tu playlist una descripción pegadiza." />
+
+        </LinearLayout>
 
         <Button
-            android:id="@+id/createPl_btn_action"
+            android:id="@+id/create_playlist_action"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
@@ -53,11 +91,11 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/login_btn"
             android:textColor="@color/colorWhite"
-            android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:fontFamily="@font/gotham_bold"
-            android:text="@string/create_playlist" />
+            android:text="@string/action_create"/>
+
 
     </LinearLayout>
-    </LinearLayout>
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

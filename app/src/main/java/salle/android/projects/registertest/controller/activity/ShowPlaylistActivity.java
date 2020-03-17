@@ -55,7 +55,7 @@ public class ShowPlaylistActivity extends AppCompatActivity implements FailureCa
     }
 
     @Override
-    public void OnCreateFailed(Throwable throwable) {
+    public void onCreateFailed(Throwable throwable) {
 
     }
 

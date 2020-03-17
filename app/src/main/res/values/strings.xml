@@ -37,9 +37,11 @@
 
 
     <!-- ACTIVITY [ Nova Playlist ] -->
-    <string name="new_playlist_id">New Playlist</string>
-    <string name="create_playlist">Crear Playlist</string>
-    <string name="new_playlist_here">Crea una nova Playlist aquí</string>
+    <string name="title_create">Crear playlist</string>
+    <string name="name_playlist">Nombre</string>
+    <string name="desc_playlist">Descripción</string>
+    <string name="action_create">Crear</string>
+    <string name="create_playlist">Crear nueva playlist</string>
 
     <!-- ACTIVITY [Crear Cançons ] -->
     <string name="songs">Afegir cançó a Playlist</string>

@@ -126,7 +126,7 @@ public class SongActivity extends AppCompatActivity implements TrackCallback, Pl
     }
 
     @Override
-    public void OnCreateFailed(Throwable throwable) {
+    public void onCreateFailed(Throwable throwable) {
 
     }
 

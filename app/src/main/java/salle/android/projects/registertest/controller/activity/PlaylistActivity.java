@@ -17,9 +17,11 @@ import salle.android.projects.registertest.restapi.callback.FailureCallback;
 import salle.android.projects.registertest.restapi.callback.PlaylistCallback;
 import salle.android.projects.registertest.restapi.manager.PlaylistManager;
 
-public class PlaylistActivity extends AppCompatActivity implements FailureCallback, PlaylistCallback {
-    private EditText etCrear;
-    private Button btnNewPlaylist;
+public class PlaylistActivity extends AppCompatActivity implements PlaylistCallback {
+
+    private EditText edNamePlaylist;
+    private EditText edDescPlaylist;
+    private Button btnCreate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,18 +31,18 @@ public class PlaylistActivity extends AppCompatActivity implements FailureCallba
     }
 
     private void initViews() {
-        etCrear = (EditText) findViewById(R.id.etNewPl);
-        btnNewPlaylist = (Button) findViewById(R.id.createPl_btn_action);
-        btnNewPlaylist.setOnClickListener(new View.OnClickListener() {
+        edNamePlaylist = (EditText) findViewById(R.id.name_playlist);
+        edDescPlaylist = (EditText) findViewById(R.id.desc_playlist) ;
+        btnCreate = (Button) findViewById(R.id.create_playlist_action);
+        btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                String nameCreatePlaylist = etCrear.getText().toString();
-                Playlist playlist = new Playlist();
-                playlist.setPublicAccessible(true);
-                playlist.setName(nameCreatePlaylist);
-
-                PlaylistManager manager = new PlaylistManager(getApplicationContext());
-                manager.createPlaylist(playlist, PlaylistActivity.this);
+            public void onClick(View view) {
+                String name = edNamePlaylist.getText().toString();
+                String desc = edDescPlaylist.getText().toString();
+                Playlist playlist = new Playlist(name);
+                playlist.setDescription(desc);
+                PlaylistManager manager = new PlaylistManager(PlaylistActivity.this);
+                manager.createPlaylist(playlist,PlaylistActivity.this);
             }
         });
     }
@@ -57,11 +59,16 @@ public class PlaylistActivity extends AppCompatActivity implements FailureCallba
 
     @Override
     public void onCreateSuccess(Playlist playlist) {
-        Toast.makeText(this, "PlaylistCallback here!\n Playlist name:" + playlist.getName(), Toast.LENGTH_LONG).show(); }
+        Toast.makeText(this, "Created " + playlist.getName() + " playlist", Toast.LENGTH_LONG).show();
+        edNamePlaylist.setText("");
+        edDescPlaylist.setText("");
+    }
 
     @Override
-    public void OnCreateFailed(Throwable throwable) {
-        Toast.makeText(getApplicationContext(), "Call failed ", Toast.LENGTH_LONG).show(); }
+    public void onCreateFailed(Throwable throwable) {
+        Toast.makeText(getApplicationContext(), "Failed to create", Toast.LENGTH_LONG).show();
+
+    }
 
     @Override
     public void onUpdateSucces(Playlist playlist) {
@@ -69,6 +76,8 @@ public class PlaylistActivity extends AppCompatActivity implements FailureCallba
     }
 
     @Override
-    public void onFailure(Throwable throwable) {
-        Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG).show(); }
+    public void onFailure (Throwable throwable) {
+        Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG);
+    }
+
 }
