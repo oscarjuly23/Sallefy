@@ -6,6 +6,10 @@
     <string name="default_track_title">Título canción</string>
     <string name="default_track_author">Autor/a</string>
 
+    <!-- DEFAULT PLAYLIST -->
+    <string name="default_playlist_name">Título playlist</string>
+    <string name="default_playlist_owner">Autor/a</string>
+
     <!-- ACTION -->
     <string name="action_login">Iniciar sesión</string>
     <string name="action_logout">Cerrar sesión</string>
@@ -56,7 +60,6 @@
     <!-- ACTIVITY [ HOME ] -->
     <string name="homeListaExitos">Lista de éxitos: </string>
     <string name="homeListaGeneros">Lista de géneros: </string>
-
 
 
 </resources>

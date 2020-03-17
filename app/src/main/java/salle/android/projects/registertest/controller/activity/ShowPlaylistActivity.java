@@ -6,17 +6,26 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import salle.android.projects.registertest.R;
+import salle.android.projects.registertest.controller.adapters.PlaylistListAdapter;
+import salle.android.projects.registertest.controller.adapters.TrackListAdapter;
 import salle.android.projects.registertest.model.Playlist;
+import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.restapi.callback.FailureCallback;
 import salle.android.projects.registertest.restapi.callback.PlaylistCallback;
 import salle.android.projects.registertest.restapi.manager.PlaylistManager;
+import salle.android.projects.registertest.restapi.manager.TrackManager;
 
 public class ShowPlaylistActivity extends AppCompatActivity implements FailureCallback, PlaylistCallback {
-    private TextView tvList;
+
+    private RecyclerView mRecyclerView;
+    private ArrayList<Playlist> mPlaylists;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,22 +36,23 @@ public class ShowPlaylistActivity extends AppCompatActivity implements FailureCa
     }
 
     private void initViews() {
-        tvList = (TextView) findViewById(R.id.playlist_string_list);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        PlaylistListAdapter adapter = new PlaylistListAdapter(this, null);
+        mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.setAdapter(adapter);
     }
+
     private void getData() {
         PlaylistManager.getInstance(this).getAllPlaylist(this);
-    }
-    private void updateList(String list) {
-        tvList.setText(list);
+        mPlaylists = new ArrayList<>();
     }
 
     @Override
     public void onShowPlaylist(List<Playlist> playlists) {
-        StringBuilder res = new StringBuilder();
-        for (Playlist p: playlists) {
-            res.append(p.getName() + " - " + p.getUser().getLogin() + "\n");
-        }
-        updateList(res.toString());
+        mPlaylists = (ArrayList) playlists;
+        PlaylistListAdapter adapter = new PlaylistListAdapter(this, mPlaylists);
+        mRecyclerView.setAdapter(adapter);
     }
 
     @Override
