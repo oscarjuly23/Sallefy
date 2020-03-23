@@ -16,6 +16,9 @@
     <string name="action_register">Registrarse</string>
     <string name="action_advance_list">Mostrar Tracks (avanzado)</string>
     <string name="action_list">Mostrar Tracks</string>
+    <string name="action_accept">Aceptar</string>
+    <string name="action_decline">Cancelar</string>
+    <string name="action_cloudinary">Subir canción</string>
 
     <!-- INFO STATE -->
     <string name="state_wait">Porfavor espere..</string>
@@ -48,12 +51,16 @@
     <string name="create_playlist">Crear nueva playlist</string>
 
     <!-- ACTIVITY [Crear Cançons ] -->
+    <string name="create_song_titulo">Título</string>
+    <string name="create_song_genre">Género</string>
+    <string name="create_song_artist">Autor/a</string>
+    <string name="create_song_file">Buscar fichero</string>
     <string name="songs">Afegir cançó a Playlist</string>
     <string name="boto_song">Afegir</string>
     <string name="playlist_name">Nom Playlist: </string>
     <string name="track_name">Nom Cançó: </string>
 
-    <!-- ACTIVITY [Crear Cançons ] -->
+    <!-- ACTIVITY [Mostrar canciones playlist ] -->
     <string name="text_nom_playlist">Nom Playlist: </string>
     <string name="boto_mostrar_tracks">Mostra les seves Tracks</string>
 
