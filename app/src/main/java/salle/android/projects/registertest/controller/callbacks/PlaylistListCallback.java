@@ -1,4 +1,4 @@
-package salle.android.projects.registertest.restapi.callback;
+package salle.android.projects.registertest.controller.callbacks;
 
 import salle.android.projects.registertest.model.Playlist;
 
