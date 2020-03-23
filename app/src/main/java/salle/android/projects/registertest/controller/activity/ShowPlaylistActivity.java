@@ -1,6 +1,8 @@
 package salle.android.projects.registertest.controller.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +43,14 @@ public class ShowPlaylistActivity extends AppCompatActivity implements FailureCa
         PlaylistListAdapter adapter = new PlaylistListAdapter(this, null);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
+
+        mRecyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MostrarTracksDePlaylistActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getData() {

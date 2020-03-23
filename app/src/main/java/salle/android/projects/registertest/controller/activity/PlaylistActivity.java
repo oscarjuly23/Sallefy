@@ -13,7 +13,6 @@ import java.util.List;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.model.Playlist;
-import salle.android.projects.registertest.restapi.callback.FailureCallback;
 import salle.android.projects.registertest.restapi.callback.PlaylistCallback;
 import salle.android.projects.registertest.restapi.manager.PlaylistManager;
 
