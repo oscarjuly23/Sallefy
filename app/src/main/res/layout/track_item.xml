@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
     android:layout_height="@dimen/item_max_height2"
     android:layout_margin="5dp"
     android:gravity="center_vertical">
@@ -35,6 +38,7 @@
                 android:text="@string/default_track_title"/>
 
             <TextView
+
                 android:id="@+id/track_author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,6 +46,20 @@
                 android:text="@string/default_track_author"/>
 
         </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.like.LikeButton
+            android:id="@+id/heart_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon_size="10dp"
+            app:anim_scale_factor="7"
+            app:icon_type="heart" />
+
     </LinearLayout>
 
 </LinearLayout>
