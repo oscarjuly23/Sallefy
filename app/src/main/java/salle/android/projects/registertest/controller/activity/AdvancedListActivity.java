@@ -50,7 +50,7 @@ public class AdvancedListActivity extends Activity implements TrackCallback, Tra
     private Handler mHandler;
     private Runnable mRunnable;
 
-    private BarVisualizer mVisualizer;
+    //private BarVisualizer mVisualizer;
     private int mDuration;
 
     private RecyclerView mRecyclerView;
@@ -75,7 +75,7 @@ public class AdvancedListActivity extends Activity implements TrackCallback, Tra
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
 
-        mVisualizer = findViewById(R.id.dynamic_barVisualizer);
+      //  mVisualizer = findViewById(R.id.dynamic_barVisualizer);
 
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -87,8 +87,8 @@ public class AdvancedListActivity extends Activity implements TrackCallback, Tra
                 playAudio();
 
                 int audioSessionId = mediaPlayer.getAudioSessionId();
-                if (audioSessionId != -1)
-                    mVisualizer.setAudioSessionId(audioSessionId);
+               // if (audioSessionId != -1)
+        //            mVisualizer.setAudioSessionId(audioSessionId);
             }
         });
 
