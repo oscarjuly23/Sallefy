@@ -17,17 +17,20 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import salle.android.projects.registertest.R;
+import salle.android.projects.registertest.controller.callbacks.TrackListCallback;
 import salle.android.projects.registertest.model.Track;
 
 public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.ViewHolder> {
-
     private static final String TAG = "TrackListAdapter";
     private ArrayList<Track> mTracks;
     private Context mContext;
+    private TrackListCallback mCallback;
 
-    public TrackListAdapter(Context context, ArrayList<Track> tracks) {
-        mContext = context;
+
+    public TrackListAdapter(TrackListCallback callback, Context context, ArrayList<Track> tracks ) {
         mTracks = tracks;
+        mContext = context;
+        mCallback = callback;
     }
 
     @NonNull
@@ -39,6 +42,12 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
     }
 
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        holder.mLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.onTrackSelected(position);
+            }
+        });
         holder.tvTitle.setText(mTracks.get(position).getName());
         holder.tvAuthor.setText(mTracks.get(position).getUserLogin());
         if (mTracks.get(position).getThumbnail() != null) {
@@ -62,12 +71,14 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        LinearLayout mLayout;
         TextView tvTitle;
         TextView tvAuthor;
         ImageView ivPicture;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            mLayout = itemView.findViewById(R.id.track_item_layout);
             tvTitle = (TextView) itemView.findViewById(R.id.track_title);
             tvAuthor = (TextView) itemView.findViewById(R.id.track_author);
             ivPicture = (ImageView) itemView.findViewById(R.id.track_img);
