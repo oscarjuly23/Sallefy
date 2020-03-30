@@ -8,7 +8,7 @@
     android:layout_margin="5dp"
     android:gravity="center_vertical">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
@@ -20,46 +20,52 @@
             android:id="@+id/track_img"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            />
+            android:layout_weight="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/linearLayout4"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="15dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:paddingStart="15dp"
-            android:orientation="vertical">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/track_img"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/track_title"
+                style="@style/SongTitleTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="textStart"
-                style="@style/SongTitleTheme"
-                android:text="@string/default_track_title"/>
+                android:text="@string/default_track_title"
+                android:textAlignment="textStart" />
 
             <TextView
 
                 android:id="@+id/track_author"
+                style="@style/SongArtistTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/SongArtistTheme"
-                android:text="@string/default_track_author"/>
+                android:text="@string/default_track_author" />
 
         </LinearLayout>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
         <com.like.LikeButton
             android:id="@+id/heart_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:icon_size="10dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             app:anim_scale_factor="7"
-            app:icon_type="heart" />
+            app:icon_size="10dp"
+            app:icon_type="heart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout4"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
