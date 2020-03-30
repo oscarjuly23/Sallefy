@@ -31,6 +31,7 @@
         <activity android:name=".controller.activity.ShowPlaylistActivity"/>
         <activity android:name=".controller.activity.SongActivity"/>
         <activity android:name=".controller.activity.MostrarTracksDePlaylistActivity"/>
+        <activity android:name=".controller.activity.UploadActivity"/>
 
     </application>
 

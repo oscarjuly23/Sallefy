@@ -97,6 +97,11 @@ public class SongActivity extends AppCompatActivity implements TrackCallback, Pl
     }
 
     @Override
+    public void onCreateTrack() {
+
+    }
+
+    @Override
     public void onFailure(Throwable throwable) {
         Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG); }
 

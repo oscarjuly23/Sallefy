@@ -71,6 +71,11 @@ public class AdvancedListActivity extends AppCompatActivity implements TrackCall
     }
 
     @Override
+    public void onCreateTrack() {
+
+    }
+
+    @Override
     public void onFailure(Throwable throwable) {
 
     }

@@ -122,4 +122,9 @@ public class MostrarTracksDePlaylistActivity extends AppCompatActivity implement
     public void onUserTracksReceived(List<Track> tracks) {
 
     }
+
+    @Override
+    public void onCreateTrack() {
+
+    }
 }

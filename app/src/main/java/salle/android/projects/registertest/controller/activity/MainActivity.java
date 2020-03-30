@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SongActivity.class);
+                Intent intent = new Intent(getApplicationContext(), UploadActivity.class);
                 startActivity(intent);
             }
         });
