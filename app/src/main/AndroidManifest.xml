@@ -32,6 +32,7 @@
         <activity android:name=".controller.activity.SongActivity"/>
         <activity android:name=".controller.activity.MostrarTracksDePlaylistActivity"/>
         <activity android:name=".controller.activity.UploadActivity"/>
+        <activity android:name=".controller.activity.HomeActivity"/>
 
     </application>
 

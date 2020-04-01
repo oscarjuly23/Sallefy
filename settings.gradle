@@ -1,2 +1,2 @@
-include ':app', ':likebutton'
+include ':app', ':likebutton', ':bottomnavigationbar'
 rootProject.name='RegisterTest'
