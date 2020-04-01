@@ -1,6 +1,7 @@
 package salle.android.projects.registertest.controller.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
@@ -51,6 +52,13 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onSelect(int position) {
                 showContent(position, textView);
+                if (position == 0){
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent);
+                } else if (position == 1){
+                    Intent intent = new Intent(getApplicationContext(), AdvancedListActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
