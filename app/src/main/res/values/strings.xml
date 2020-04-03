@@ -68,5 +68,14 @@
     <string name="homeListaExitos">Lista de éxitos: </string>
     <string name="homeListaGeneros">Lista de géneros: </string>
 
+    <!-- MENU -->
+    <string name="Home">Inicio</string>
+    <string name="Search">Buscar</string>
+    <string name="Library">Biblioteca</string>
+    <string name="Profile">Perfil</string>
+
+    <!-- FRAGMENTS (LABELS) -->
+    <string name="fragment_playlists">Playlists</string>
+    <string name="fragment_songs">Songs</string>
 
 </resources>

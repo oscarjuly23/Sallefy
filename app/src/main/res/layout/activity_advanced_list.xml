@@ -24,19 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:maxHeight="570dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/dynamic_barVisualizer" />
-
-
-    <com.gauravk.audiovisualizer.visualizer.BarVisualizer
-        android:id="@+id/dynamic_barVisualizer"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:avColor="@color/colorSecondary"
-        app:avDensity="0.75"
-        app:avSpeed="normal"
-        app:avType="outline"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout" />
+        android:orientation="vertical" />
 
 
     <LinearLayout

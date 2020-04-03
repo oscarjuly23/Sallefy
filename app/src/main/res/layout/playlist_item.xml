@@ -1,48 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:id="@+id/item_playlist_layout"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/item_max_height2"
-    android:layout_margin="5dp"
-    android:gravity="center_vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/mtrl_card_spacing"
+    android:layout_centerInParent="true"
+    android:layout_centerHorizontal="true">
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:background="@drawable/back_round_dark"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/playlist_img"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            />
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingStart="15dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/playlist_name"
+            <ImageView
+                android:id="@+id/item_playlist_photo"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:background="@drawable/ic_playlist_add"/>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="textStart"
-                style="@style/SongTitleTheme"
-                android:text="@string/default_playlist_name"/>
+                android:layout_margin="@dimen/mtrl_card_spacing"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/playlist_owner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/SongArtistTheme"
-                android:text="@string/default_playlist_owner"/>
+                <TextView
+                    android:id="@+id/item_playlist_title"
+                    style="@style/ItemTitleTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/fragment_playlists"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:id="@+id/item_playlist_author"
+                    style="@style/ItemAuthorTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/default_track_author"
+                    android:textColor="@color/colorPrimaryDark" />
+
+            </LinearLayout>
 
         </LinearLayout>
-    </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,13 +20,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gauravk.audiovisualizer.visualizer.BarVisualizer;
-
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.adapters.TrackListAdapter;
-import salle.android.projects.registertest.controller.callbacks.PlaylistListCallback;
 import salle.android.projects.registertest.controller.callbacks.TrackListCallback;
-import salle.android.projects.registertest.model.Playlist;
 import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.restapi.callback.TrackCallback;
 import salle.android.projects.registertest.restapi.manager.TrackManager;

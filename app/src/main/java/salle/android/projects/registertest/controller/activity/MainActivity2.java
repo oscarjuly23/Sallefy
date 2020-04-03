@@ -1,8 +1,6 @@
 package salle.android.projects.registertest.controller.activity;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +9,7 @@ import android.widget.Button;
 
 import salle.android.projects.registertest.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity {
 
     private Button mList;
     private Button mAdvancedList;
@@ -23,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
         initViews();
     }
 
@@ -50,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         showPl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ShowPlaylistActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(getApplicationContext(), ShowPlaylistActivity.class);
+                //startActivity(intent);
             }
         });
 

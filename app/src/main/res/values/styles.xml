@@ -77,6 +77,27 @@
         <item name="android:padding">5dp</item>
     </style>
 
+    <style name="fragmentTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">35sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/gotham_book</item>
+    </style>
+
+
+    <style name="ItemTitleTheme" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/gotham_book</item>
+    </style>
+
+    <style name="ItemAuthorTheme" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/gotham_book</item>
+    </style>
+
 
 
 </resources>

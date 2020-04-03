@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,38 +15,54 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import salle.android.projects.registertest.R;
+import salle.android.projects.registertest.controller.callbacks.PlaylistAdapterCallback;
 import salle.android.projects.registertest.model.Playlist;
 
 public class PlaylistListAdapter extends RecyclerView.Adapter<PlaylistListAdapter.ViewHolder> {
 
-    private static final String TAG = "PlaylistListAdapter";
-    private ArrayList<Playlist> mPlaylists;
+    public static final String TAG = PlaylistListAdapter.class.getName();
+    private List<Playlist> mPlaylists;
     private Context mContext;
+    private PlaylistAdapterCallback mCallback;
+    private int layoutId;
 
-    public PlaylistListAdapter(Context context, ArrayList<Playlist> playlists) {
-        mContext = context;
+    public PlaylistListAdapter(List<Playlist> playlists, Context context, PlaylistAdapterCallback callback, int layoutId) {
         mPlaylists = playlists;
+        mContext = context;
+        mCallback = callback;
+        this.layoutId = layoutId;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder: called.");
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.playlist_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
         return new PlaylistListAdapter.ViewHolder(itemView);
     }
 
+    @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.tvName.setText(mPlaylists.get(position).getName());
-        holder.tvOwner.setText(mPlaylists.get(position).getUserLogin());
-        if (mPlaylists.get(position).getThumbnail() != null) {
-            Glide.with(mContext)
-                    .asBitmap()
-                    .placeholder(R.drawable.ic_audiotrack)
-                    .load(mPlaylists.get(position).getThumbnail())
-                    .into(holder.ivPicture);
+        if (mPlaylists != null && mPlaylists.size() > 0) {
+            holder.mLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mCallback != null)
+                        mCallback.onPlaylistClick(mPlaylists.get(position));
+                }
+            });
+            holder.mTitle.setText(mPlaylists.get(position).getName());
+            holder.mAuthor.setText(mPlaylists.get(position).getUser().getLogin());
+            if (mPlaylists.get(position).getThumbnail() != null) {
+                Glide.with(mContext)
+                        .asBitmap()
+                        .placeholder(R.drawable.ic_audiotrack)
+                        .load(mPlaylists.get(position).getThumbnail())
+                        .into(holder.mPhoto);
+            }
         }
     }
 
@@ -55,16 +72,17 @@ public class PlaylistListAdapter extends RecyclerView.Adapter<PlaylistListAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView tvName;
-        TextView tvOwner;
-        ImageView ivPicture;
+        LinearLayout mLayout;
+        ImageView mPhoto;
+        TextView mTitle;
+        TextView mAuthor;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvName = (TextView) itemView.findViewById(R.id.playlist_name);
-            tvOwner = (TextView) itemView.findViewById(R.id.playlist_owner);
-            ivPicture = (ImageView) itemView.findViewById(R.id.playlist_img);
+            mLayout = (LinearLayout) itemView.findViewById(R.id.item_playlist_layout);
+            mPhoto = (ImageView) itemView.findViewById(R.id.item_playlist_photo);
+            mTitle = (TextView) itemView.findViewById(R.id.item_playlist_title);
+            mAuthor = (TextView) itemView.findViewById(R.id.item_playlist_author);
         }
     }
 }
