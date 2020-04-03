@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/colorPrimary"
+        app:labelVisibilityMode="labeled"
         app:itemIconTint="@color/colorWhite"
         app:itemTextColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
