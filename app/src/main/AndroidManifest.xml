@@ -31,6 +31,11 @@
         <activity android:name=".controller.activity.SongActivity"/>
         <activity android:name=".controller.activity.MostrarTracksDePlaylistActivity"/>
         <activity android:name=".controller.activity.UploadActivity"/>
+        <service
+            android:name="salle.android.projects.registertest.controller.music.MusicService"
+            android:enabled="true"
+            android:exported="true">
+        </service>/>
 
     </application>
 
