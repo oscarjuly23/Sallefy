@@ -21,12 +21,12 @@ import salle.android.projects.registertest.controller.callbacks.TrackListCallbac
 import salle.android.projects.registertest.model.Track;
 
 public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.ViewHolder> {
+
     private static final String TAG = "TrackListAdapter";
     private ArrayList<Track> mTracks;
     private Context mContext;
     private TrackListCallback mCallback;
     private int NUM_VIEWHOLDERS = 0;
-
 
 
     public TrackListAdapter(TrackListCallback callback, Context context, ArrayList<Track> tracks ) {
@@ -38,12 +38,19 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.d(TAG, "onCreateViewHolder: called.");
+        Log.d(TAG, "onCreateViewHolder: called. Num viewHolders: " + NUM_VIEWHOLDERS++);
+
+
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.track_item, parent, false);
-        return new TrackListAdapter.ViewHolder(itemView);
+        ViewHolder vh = new TrackListAdapter.ViewHolder(itemView);
+        Log.d(TAG, "onCreateViewHolder: called. viewHolder hashCode: " + vh.hashCode());
+        return vh;
     }
 
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        Log.d(TAG, "onBindViewHolder: called. viewHolder hashcode: " + holder.hashCode());
+
+
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

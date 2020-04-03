@@ -21,7 +21,6 @@ public class MusicService extends Service {
     private AudioManager audioManager;
     private boolean playingBeforeInterruption = false;
 
-
     private ArrayList<Track> mTracks = new ArrayList<>();
     private int currentTrack = 0;
 
@@ -85,8 +84,10 @@ public class MusicService extends Service {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
                     mediaPlayer.start();
+                    System.out.println("Entra en el prepared");
 
                     if (mCallback != null) {
+                        System.out.println("Entra en el callback");
                         mCallback.onMusicPlayerPrepared();
                     }
                 }
@@ -144,7 +145,6 @@ public class MusicService extends Service {
         return mTracks.size() > 0 ? mTracks.get(currentTrack):null;
     }
 
-
     public void updateTrack(int offset) {
         currentTrack = ((currentTrack+offset)%(mTracks.size()));
         currentTrack = currentTrack >= mTracks.size() ? 0:currentTrack;
@@ -159,11 +159,10 @@ public class MusicService extends Service {
         }
     }
 
-
-    private void pausePlayer() {
+    public void pausePlayer() {
         try {
             mediaPlayer.pause();
-           // showNotification();
+            // showNotification();
         } catch (Exception e) {
             Log.d(" EXCEPTION", "failed to ic_pause media player.");
         }
@@ -193,6 +192,7 @@ public class MusicService extends Service {
     public boolean isPlaying() {
         return mediaPlayer != null && mediaPlayer.isPlaying();
     }
+
     // audio focus section
     public void getAudioFocusAndPlay () {
         audioManager = (AudioManager) this.getBaseContext().getSystemService(Context.AUDIO_SERVICE);
@@ -206,7 +206,6 @@ public class MusicService extends Service {
     public void setCallback(MusicCallback callback) {
         mCallback = callback;
     }
-
 
     public void setCurrentDuration(int time) {
         try {
