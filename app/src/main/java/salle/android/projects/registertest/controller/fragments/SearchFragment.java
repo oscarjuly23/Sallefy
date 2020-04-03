@@ -1,4 +1,6 @@
 package salle.android.projects.registertest.controller.fragments;
 
-public class SearchFragment {
+import androidx.fragment.app.Fragment;
+
+public class SearchFragment extends Fragment {
 }

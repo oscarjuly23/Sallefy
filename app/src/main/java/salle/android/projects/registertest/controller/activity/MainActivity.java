@@ -20,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
 import salle.android.projects.registertest.controller.fragments.HomeFragment;
+import salle.android.projects.registertest.controller.fragments.SongsFragment;
 import salle.android.projects.registertest.utils.Constants;
 import salle.android.projects.registertest.utils.Session;
 
@@ -53,7 +54,7 @@ public class MainActivity extends FragmentActivity implements FragmentCallback {
                         fragment = HomeFragment.getInstance();
                         break;
                     case R.id.action_search:
-                        //fragment = SongsFragment.getInstance();
+                        fragment = SongsFragment.getInstance();
                         break;
                     case R.id.action_library:
                         //fragment = SearchFragment.getInstance();
@@ -110,20 +111,21 @@ public class MainActivity extends FragmentActivity implements FragmentCallback {
     }
 
     private String getFragmentTag(Fragment fragment) {
+        String TAG = null;
         if (fragment instanceof HomeFragment) {
-            return HomeFragment.TAG;
+             TAG = HomeFragment.TAG;
         } else {
-            /*if (fragment instanceof SongsFragment) {
-                return SongsFragment.TAG;
+            if (fragment instanceof SongsFragment) {
+                 TAG = SongsFragment.TAG;
             } else {
-                if (fragment instanceof SearchFragment) {
-                    return SearchFragment.TAG;
-                } else {
-                    return ContentFragment.TAG;
-                }
-            }*/
+                //if (fragment instanceof SearchFragment) {
+                   // return SearchFragment.TAG;
+                //} else {
+                  //  return ContentFragment.TAG;
+                //}
+            }
         }
-        return HomeFragment.TAG;
+        return TAG;
     }
 
     @Override

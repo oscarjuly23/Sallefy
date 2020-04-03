@@ -29,13 +29,12 @@ import salle.android.projects.registertest.restapi.manager.TrackManager;
 
 public class AdvancedListActivity extends Activity implements TrackCallback, TrackListCallback {
 
-    private static final String TAG = "AdvancedListActivity";
+    public static final String TAG = AdvancedListActivity.class.getName();
     private static final String PLAY_VIEW = "PlayIcon";
     private static final String STOP_VIEW = "StopIcon";
 
     private TextView tvTitle;
     private TextView tvAuthor;
-    private ImageView ivPhoto;
 
     private ImageButton btnBackward;
     private ImageButton btnPlayStop;
