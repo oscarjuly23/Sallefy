@@ -1,32 +1,48 @@
 package salle.android.projects.registertest.controller.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import salle.android.projects.registertest.R;
+import salle.android.projects.registertest.controller.adapters.GenresAdapter;
 import salle.android.projects.registertest.controller.adapters.PlaylistListAdapter;
 import salle.android.projects.registertest.controller.callbacks.PlaylistAdapterCallback;
+import salle.android.projects.registertest.model.Genre;
 import salle.android.projects.registertest.model.Playlist;
+import salle.android.projects.registertest.model.Track;
+import salle.android.projects.registertest.restapi.callback.GenreCallback;
 import salle.android.projects.registertest.restapi.callback.PlaylistCallback;
+import salle.android.projects.registertest.restapi.manager.GenreManager;
 import salle.android.projects.registertest.restapi.manager.PlaylistManager;
 
-public class HomeFragment extends Fragment implements PlaylistCallback, PlaylistAdapterCallback {
-
+public class HomeFragment extends Fragment implements PlaylistCallback, PlaylistAdapterCallback, GenreCallback {
 
     public static final String TAG = HomeFragment.class.getName();
-    private RecyclerView mRecyclerView;
-    private PlaylistListAdapter mAdapter;
+
+    private RecyclerView mPlaylistsView;
+    private PlaylistListAdapter mPlaylistAdapter;
+
+    private RecyclerView mGenresView;
+    private GenresAdapter mGenresAdapter;
+
 
     public static HomeFragment getInstance() {
         return new HomeFragment();
@@ -53,15 +69,23 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
     }
 
     private void initViews(View v) {
-        GridLayoutManager mGridLayoutManager = new GridLayoutManager(getActivity(), 2);
-        mAdapter = new PlaylistListAdapter(null, getContext(), this, R.layout.playlist_item);
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.home_recyclerview);
-        mRecyclerView.setLayoutManager(mGridLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+        LinearLayoutManager managerPlaylists = new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false);
+        mPlaylistAdapter = new PlaylistListAdapter(null, getContext(), null, R.layout.item_playlist_short);
+        mPlaylistsView = (RecyclerView) v.findViewById(R.id.home_playlists_recyclerview);
+        mPlaylistsView.setLayoutManager(managerPlaylists);
+        mPlaylistsView.setAdapter(mPlaylistAdapter);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3, RecyclerView.HORIZONTAL, false);
+        mGenresAdapter = new GenresAdapter(null);
+        mGenresView = (RecyclerView) v.findViewById(R.id.home_genres_recyclerview);
+        mGenresView.setLayoutManager(gridLayoutManager);
+        mGenresView.setAdapter(mGenresAdapter);
     }
 
     private void getData() {
         PlaylistManager.getInstance(getContext()).getAllPlaylist(this);
+        GenreManager.getInstance(getContext())
+                .getAllGenres(this);
     }
 
     @Override
@@ -80,8 +104,8 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
 
     @Override
     public void onShowPlaylist(List<Playlist> playlists) {
-        mAdapter = new PlaylistListAdapter(playlists, getContext(), this, R.layout.playlist_item);
-        mRecyclerView.setAdapter(mAdapter);
+        mPlaylistAdapter = new PlaylistListAdapter(playlists, getContext(), this, R.layout.item_playlist_short);
+        mPlaylistsView.setAdapter(mPlaylistAdapter);
     }
 
     @Override
@@ -107,5 +131,21 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
     @Override
     public void onFailure(Throwable throwable) {
         Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
+    }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   GenreCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void onGenresReceive(ArrayList<Genre> genres) {
+        ArrayList<String> genresString = (ArrayList<String>) genres.stream().map(Genre::getName).collect(Collectors.toList());
+        mGenresAdapter = new GenresAdapter(genresString);
+        mGenresView.setAdapter(mGenresAdapter);
+    }
+
+    @Override
+    public void onTracksByGenre(ArrayList<Track> tracks) {
+
     }
 }
