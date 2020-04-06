@@ -81,6 +81,7 @@ public class PlaylistFragment extends Fragment implements TrackListCallback {
         btnFollow = v.findViewById(R.id.follow_playlist);
         btnFollow.setTag(UNFOLLOW_VIEW);
         btnFollow.setOnClickListener(new View.OnClickListener(){
+
         @Override
         public void onClick(View v) {
             if (btnFollow.getTag().equals(UNFOLLOW_VIEW)) {

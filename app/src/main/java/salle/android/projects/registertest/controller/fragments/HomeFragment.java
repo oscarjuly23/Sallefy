@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.adapters.GenresAdapter;
 import salle.android.projects.registertest.controller.adapters.PlaylistListAdapter;
+import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
 import salle.android.projects.registertest.controller.callbacks.PlaylistAdapterCallback;
 import salle.android.projects.registertest.model.Genre;
 import salle.android.projects.registertest.model.Playlist;
@@ -34,7 +35,7 @@ import salle.android.projects.registertest.restapi.callback.PlaylistCallback;
 import salle.android.projects.registertest.restapi.manager.GenreManager;
 import salle.android.projects.registertest.restapi.manager.PlaylistManager;
 
-public class HomeFragment extends Fragment implements PlaylistCallback, PlaylistAdapterCallback, GenreCallback {
+public class HomeFragment extends Fragment implements PlaylistCallback, PlaylistAdapterCallback, GenreCallback, FragmentCallback {
 
     public static final String TAG = HomeFragment.class.getName();
 
@@ -102,10 +103,7 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
     public void onPlaylistClick(Playlist playlist) {
         Fragment fragment = null;
         fragment = PlaylistFragment.getInstance(playlist);
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        onChangeFragment(fragment);
     }
 
     @Override
@@ -162,5 +160,17 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
     @Override
     public void onTracksByGenre(ArrayList<Track> tracks) {
 
+    }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   FragmentCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void onChangeFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
