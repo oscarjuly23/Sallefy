@@ -26,6 +26,7 @@ import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.adapters.GenresAdapter;
 import salle.android.projects.registertest.controller.adapters.PlaylistListAdapter;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
+import salle.android.projects.registertest.controller.callbacks.GenreAdapterCallback;
 import salle.android.projects.registertest.controller.callbacks.PlaylistAdapterCallback;
 import salle.android.projects.registertest.model.Genre;
 import salle.android.projects.registertest.model.Playlist;
@@ -35,7 +36,7 @@ import salle.android.projects.registertest.restapi.callback.PlaylistCallback;
 import salle.android.projects.registertest.restapi.manager.GenreManager;
 import salle.android.projects.registertest.restapi.manager.PlaylistManager;
 
-public class HomeFragment extends Fragment implements PlaylistCallback, PlaylistAdapterCallback, GenreCallback, FragmentCallback {
+public class HomeFragment extends Fragment implements PlaylistCallback, PlaylistAdapterCallback, GenreCallback, FragmentCallback, GenreAdapterCallback {
 
     public static final String TAG = HomeFragment.class.getName();
 
@@ -78,7 +79,7 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
         mPlaylistsView.setAdapter(mPlaylistAdapter);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3, RecyclerView.HORIZONTAL, false);
-        mGenresAdapter = new GenresAdapter(null);
+        mGenresAdapter = new GenresAdapter(null, getContext(), null, R.layout.item_genre);
         mGenresView = (RecyclerView) v.findViewById(R.id.home_genres_recyclerview);
         mGenresView.setLayoutManager(gridLayoutManager);
         mGenresView.setAdapter(mGenresAdapter);
@@ -152,8 +153,7 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
 
     @Override
     public void onGenresReceive(ArrayList<Genre> genres) {
-        ArrayList<String> genresString = (ArrayList<String>) genres.stream().map(Genre::getName).collect(Collectors.toList());
-        mGenresAdapter = new GenresAdapter(genresString);
+        mGenresAdapter = new GenresAdapter(genres, getContext(), this, R.id.item_genre_btn);
         mGenresView.setAdapter(mGenresAdapter);
     }
 
@@ -173,4 +173,18 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
+
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   GenreAdapterCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void onClickGenre(Genre genre) {
+        System.out.println(genre);
+        Fragment fragment = null;
+        fragment = GenreFragment.getInstance(genre);
+        onChangeFragment(fragment);
+    }
+
 }
