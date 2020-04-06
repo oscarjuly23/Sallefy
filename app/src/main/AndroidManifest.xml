@@ -35,7 +35,7 @@
             android:name="salle.android.projects.registertest.controller.music.MusicService"
             android:enabled="true"
             android:exported="true">
-        </service>/>
+        </service>
 
     </application>
 

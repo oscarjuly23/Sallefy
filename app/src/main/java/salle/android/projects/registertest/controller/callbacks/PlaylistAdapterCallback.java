@@ -5,5 +5,6 @@ import salle.android.projects.registertest.model.Playlist;
 public interface PlaylistAdapterCallback {
 
     void onPlaylistClick(Playlist playlist);
+    void onPlaylistClick(int index);
 
 }

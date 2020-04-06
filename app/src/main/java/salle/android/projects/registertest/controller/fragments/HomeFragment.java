@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +25,8 @@ import java.util.stream.Collectors;
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.adapters.GenresAdapter;
 import salle.android.projects.registertest.controller.adapters.PlaylistListAdapter;
+import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
+import salle.android.projects.registertest.controller.callbacks.GenreAdapterCallback;
 import salle.android.projects.registertest.controller.callbacks.PlaylistAdapterCallback;
 import salle.android.projects.registertest.model.Genre;
 import salle.android.projects.registertest.model.Playlist;
@@ -33,7 +36,7 @@ import salle.android.projects.registertest.restapi.callback.PlaylistCallback;
 import salle.android.projects.registertest.restapi.manager.GenreManager;
 import salle.android.projects.registertest.restapi.manager.PlaylistManager;
 
-public class HomeFragment extends Fragment implements PlaylistCallback, PlaylistAdapterCallback, GenreCallback {
+public class HomeFragment extends Fragment implements PlaylistCallback, PlaylistAdapterCallback, GenreCallback, FragmentCallback, GenreAdapterCallback {
 
     public static final String TAG = HomeFragment.class.getName();
 
@@ -76,7 +79,7 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
         mPlaylistsView.setAdapter(mPlaylistAdapter);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3, RecyclerView.HORIZONTAL, false);
-        mGenresAdapter = new GenresAdapter(null);
+        mGenresAdapter = new GenresAdapter(null, getContext(), null, R.layout.item_genre);
         mGenresView = (RecyclerView) v.findViewById(R.id.home_genres_recyclerview);
         mGenresView.setLayoutManager(gridLayoutManager);
         mGenresView.setAdapter(mGenresAdapter);
@@ -93,8 +96,19 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
         super.onPause();
     }
 
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   PlaylistAdapterCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
     @Override
     public void onPlaylistClick(Playlist playlist) {
+        Fragment fragment = null;
+        fragment = PlaylistFragment.getInstance(playlist);
+        onChangeFragment(fragment);
+    }
+
+    @Override
+    public void onPlaylistClick(int index) {
 
     }
 
@@ -139,8 +153,7 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
 
     @Override
     public void onGenresReceive(ArrayList<Genre> genres) {
-        ArrayList<String> genresString = (ArrayList<String>) genres.stream().map(Genre::getName).collect(Collectors.toList());
-        mGenresAdapter = new GenresAdapter(genresString);
+        mGenresAdapter = new GenresAdapter(genres, getContext(), this, R.id.item_genre_btn);
         mGenresView.setAdapter(mGenresAdapter);
     }
 
@@ -148,4 +161,30 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
     public void onTracksByGenre(ArrayList<Track> tracks) {
 
     }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   FragmentCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void onChangeFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   GenreAdapterCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void onClickGenre(Genre genre) {
+        System.out.println(genre);
+        Fragment fragment = null;
+        fragment = GenreFragment.getInstance(genre);
+        onChangeFragment(fragment);
+    }
+
 }
