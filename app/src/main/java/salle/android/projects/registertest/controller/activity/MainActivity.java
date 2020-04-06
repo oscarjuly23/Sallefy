@@ -383,4 +383,36 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
     public void setCurrentTrack(int currentTrack) {
         this.currentTrack = currentTrack;
     }
+
+    public TextView getTvTitle() {
+        return tvTitle;
+    }
+
+    public void setTvTitle(TextView tvTitle) {
+        this.tvTitle = tvTitle;
+    }
+
+    public TextView getTvAuthor() {
+        return tvAuthor;
+    }
+
+    public void setTvAuthor(TextView tvAuthor) {
+        this.tvAuthor = tvAuthor;
+    }
+
+    public ImageButton getBtnPlayStop() {
+        return btnPlayStop;
+    }
+
+    public void setBtnPlayStop(ImageButton btnPlayStop) {
+        this.btnPlayStop = btnPlayStop;
+    }
+
+    public MusicService getmBoundService() {
+        return mBoundService;
+    }
+
+    public void setmBoundService(MusicService mBoundService) {
+        this.mBoundService = mBoundService;
+    }
 }

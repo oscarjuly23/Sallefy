@@ -59,7 +59,6 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
 
     @Override
     public void onCreate(Bundle savedInstanceState){
-
         super.onCreate(savedInstanceState);
     }
 
@@ -78,13 +77,11 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     }
 
     private void initViews(View v) {
-
         mRecyclerView = (RecyclerView) v.findViewById(R.id.dynamic_recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), null);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
-
     }
 
     private void getData() {
@@ -148,7 +145,6 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
         System.out.println("Index song: " + index);
         mainActivity.updateTrack(index);
     }
-
 
     /**********************************************************************************************
      *   *   *   *   *   *   *   *   OnClickListener   *   *   *   *   *   *   *   *   *

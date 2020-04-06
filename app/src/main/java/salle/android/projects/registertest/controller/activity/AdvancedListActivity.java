@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.like.LikeButton;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,7 @@ public class AdvancedListActivity extends Activity implements TrackCallback, Tra
     private ImageButton btnBackward;
     private ImageButton btnPlayStop;
     private ImageButton btnForward;
+
     private SeekBar mSeekBar;
 
     private Handler mHandler;
@@ -70,6 +73,8 @@ public class AdvancedListActivity extends Activity implements TrackCallback, Tra
         mRecyclerView.setAdapter(adapter);
 
       //  mVisualizer = findViewById(R.id.dynamic_barVisualizer);
+
+
 
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);

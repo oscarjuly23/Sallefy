@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -93,8 +94,22 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
         super.onPause();
     }
 
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   PlaylistAdapterCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
     @Override
     public void onPlaylistClick(Playlist playlist) {
+        Fragment fragment = null;
+        fragment = PlaylistFragment.getInstance(playlist);
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onPlaylistClick(int index) {
 
     }
 
