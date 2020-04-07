@@ -138,4 +138,14 @@ public class SongActivity extends AppCompatActivity implements TrackCallback, Pl
     @Override
     public void onUpdateSucces(Playlist playlist) {
         Toast.makeText(this, "Song " + etNameTrack.getText().toString()+ " Added to  Playlist" + etNamePl.getText().toString(), Toast.LENGTH_LONG).show(); }
+
+    @Override
+    public void onFollowSucces(Playlist playlist) {
+
+    }
+
+    @Override
+    public void getIsFollowed(Playlist playlist) {
+
+    }
 }

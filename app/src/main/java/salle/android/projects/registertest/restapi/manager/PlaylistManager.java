@@ -120,4 +120,57 @@ public class PlaylistManager {
             }
         });
     }
+
+    /********************   CHECK IF PLAYLIST IS FOLLOWED    ********************/
+    public synchronized void isFollowingPlaylist (int playlistID, final PlaylistCallback playlistCallback) {
+        UserToken userToken = Session.getInstance(mContext).getUserToken();
+        Call<Playlist> call = mService.IsFollowed(playlistID, "Bearer " +  userToken.getIdToken());
+        call.enqueue(new Callback<Playlist>() {
+
+            @Override
+            public void onResponse(Call<Playlist> call, Response<Playlist> response) {
+                if (response.isSuccessful()) {
+                    playlistCallback.getIsFollowed(response.body());
+                } else {
+                    try {
+                        playlistCallback.onFailure(new Throwable(response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Playlist> call, Throwable t) {
+                playlistCallback.onFailure(t);
+            }
+        });
+    }
+
+
+    /********************   FOLLOW PLAYLIST    ********************/
+    public synchronized void followPlaylist (int playlistID, final PlaylistCallback playlistCallback) {
+        UserToken userToken = Session.getInstance(mContext).getUserToken();
+        Call<Playlist> call = mService.followPlaylist(playlistID, "Bearer " +  userToken.getIdToken());
+        call.enqueue(new Callback<Playlist>() {
+
+            @Override
+            public void onResponse(Call<Playlist> call, Response<Playlist> response) {
+                if (response.isSuccessful()) {
+                    playlistCallback.onFollowSucces(response.body());
+                } else {
+                    try {
+                        playlistCallback.onFailure(new Throwable(response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Playlist> call, Throwable t) {
+                playlistCallback.onFailure(t);
+            }
+        });
+    }
 }

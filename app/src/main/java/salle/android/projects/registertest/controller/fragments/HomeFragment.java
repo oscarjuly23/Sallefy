@@ -87,8 +87,7 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
 
     private void getData() {
         PlaylistManager.getInstance(getContext()).getAllPlaylist(this);
-        GenreManager.getInstance(getContext())
-                .getAllGenres(this);
+        GenreManager.getInstance(getContext()).getAllGenres(this);
     }
 
     @Override
@@ -143,6 +142,16 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
     }
 
     @Override
+    public void onFollowSucces(Playlist playlist) {
+
+    }
+
+    @Override
+    public void getIsFollowed(Playlist playlist) {
+
+    }
+
+    @Override
     public void onFailure(Throwable throwable) {
         Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
     }
@@ -181,7 +190,6 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
 
     @Override
     public void onClickGenre(Genre genre) {
-        System.out.println(genre);
         Fragment fragment = null;
         fragment = GenreFragment.getInstance(genre);
         onChangeFragment(fragment);

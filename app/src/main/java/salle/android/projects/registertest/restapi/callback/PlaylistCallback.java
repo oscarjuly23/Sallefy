@@ -10,4 +10,6 @@ public interface PlaylistCallback extends FailureCallback {
     void onCreateSuccess(Playlist playlist);
     void onCreateFailed(Throwable throwable);
     void onUpdateSucces(Playlist playlist);
+    void onFollowSucces(Playlist playlist);
+    void getIsFollowed(Playlist playlist);
 }

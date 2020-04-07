@@ -8,7 +8,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import salle.android.projects.registertest.model.Playlist;
+import salle.android.projects.registertest.model.Track;
 
 public interface PlaylistService {
     @GET("playlists")
@@ -20,4 +22,10 @@ public interface PlaylistService {
 
     @PUT("playlists")
     Call<Playlist> addTrackToPlaylist(@Body Playlist playlist, @Header("Authorization") String token);
+
+    @GET("playlists/{id}/follow")
+    Call<Playlist> IsFollowed(@Path("id") Integer id, @Header("Authorization") String token);
+
+    @PUT("playlists/{id}/follow")
+    Call<Playlist> followPlaylist(@Path("id") Integer id, @Header("Authorization") String token);
 }
