@@ -33,6 +33,7 @@ import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
 import salle.android.projects.registertest.controller.fragments.HomeFragment;
 import salle.android.projects.registertest.controller.fragments.LibraryFragment;
+import salle.android.projects.registertest.controller.fragments.PerfilFragment;
 import salle.android.projects.registertest.controller.fragments.SongsFragment;
 import salle.android.projects.registertest.controller.music.MusicCallback;
 import salle.android.projects.registertest.controller.music.MusicService;
@@ -214,7 +215,7 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
                         fragment = LibraryFragment.getInstance();
                         break;
                     case R.id.action_profile:
-                        //fragment = ContentFragment.getInstance();
+                        fragment = PerfilFragment.getInstance();
                         break;
                 }
                 replaceFragment(fragment);
@@ -333,7 +334,7 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
                 if (fragment instanceof LibraryFragment) {
                     return LibraryFragment.TAG;
                 } else {
-                  //  return ContentFragment.TAG;
+                    return PerfilFragment.TAG;
                 }
             }
         }

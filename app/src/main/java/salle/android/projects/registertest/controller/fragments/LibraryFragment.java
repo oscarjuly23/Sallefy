@@ -22,10 +22,10 @@ public class LibraryFragment extends Fragment {
 
     public static final String TAG = LibraryFragment.class.getName();
 
-    View myFragment;
+    private View myFragment;
 
-    ViewPager viewPager;
-    TabLayout tabLayout;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     public LibraryFragment(){
 
