@@ -61,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity
     public void onLoginSuccess(UserToken userToken) {
         Session.getInstance(getApplicationContext())
                 .setUserToken(userToken);
-        Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent); }
 
     @Override
