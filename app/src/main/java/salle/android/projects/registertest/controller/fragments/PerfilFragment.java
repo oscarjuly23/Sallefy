@@ -86,8 +86,8 @@ public class PerfilFragment extends Fragment {
         SpannableString CacnionesTitle = new SpannableString(ctitle);;
         PlaylistsTitle.setSpan(new ForegroundColorSpan(Color.WHITE),0, PlaylistsTitle.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         CacnionesTitle.setSpan(new ForegroundColorSpan(Color.WHITE),0, CacnionesTitle.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        adapter.addFragment(new MyPlaylist(), PlaylistsTitle);
-        adapter.addFragment(new MyTrack(), CacnionesTitle);
+        adapter.addFragment(new MyPlaylistFragment(), PlaylistsTitle);
+        adapter.addFragment(new MyTrackFragment(), CacnionesTitle);
 
         viewPager.setAdapter(adapter);
     }

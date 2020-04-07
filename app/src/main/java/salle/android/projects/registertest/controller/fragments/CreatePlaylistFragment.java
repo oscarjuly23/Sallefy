@@ -1,13 +1,17 @@
-package salle.android.projects.registertest.controller.activity;
+package salle.android.projects.registertest.controller.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import java.util.List;
 
@@ -16,23 +20,39 @@ import salle.android.projects.registertest.model.Playlist;
 import salle.android.projects.registertest.restapi.callback.PlaylistCallback;
 import salle.android.projects.registertest.restapi.manager.PlaylistManager;
 
-public class PlaylistActivity extends AppCompatActivity implements PlaylistCallback {
+public class CreatePlaylistFragment extends Fragment implements PlaylistCallback {
+
+    public static final String TAG = CreatePlaylistFragment.class.getName();
 
     private EditText edNamePlaylist;
     private EditText edDescPlaylist;
     private Button btnCreate;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_playlist);
-        initViews();
+    public CreatePlaylistFragment() {
     }
 
-    private void initViews() {
-        edNamePlaylist = (EditText) findViewById(R.id.name_playlist);
-        edDescPlaylist = (EditText) findViewById(R.id.desc_playlist) ;
-        btnCreate = (Button) findViewById(R.id.create_playlist_action);
+    public static CreatePlaylistFragment getInstance(){
+        return new CreatePlaylistFragment();
+    }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v =inflater.inflate(R.layout.fragment_new_playlist, container, false);
+        initViews(v);
+        return v;
+    }
+
+    private void initViews(View v) {
+        edNamePlaylist = (EditText) v.findViewById(R.id.name_playlist);
+        edDescPlaylist = (EditText) v.findViewById(R.id.desc_playlist) ;
+        btnCreate = (Button) v.findViewById(R.id.create_playlist_action);
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,8 +60,8 @@ public class PlaylistActivity extends AppCompatActivity implements PlaylistCallb
                 String desc = edDescPlaylist.getText().toString();
                 Playlist playlist = new Playlist(name);
                 playlist.setDescription(desc);
-                PlaylistManager manager = new PlaylistManager(PlaylistActivity.this);
-                manager.createPlaylist(playlist,PlaylistActivity.this);
+                PlaylistManager manager = new PlaylistManager(getActivity());
+                manager.createPlaylist(playlist, CreatePlaylistFragment.this);
             }
         });
     }
@@ -58,14 +78,14 @@ public class PlaylistActivity extends AppCompatActivity implements PlaylistCallb
 
     @Override
     public void onCreateSuccess(Playlist playlist) {
-        Toast.makeText(this, "Created " + playlist.getName() + " playlist", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Created " + playlist.getName() + " playlist", Toast.LENGTH_LONG).show();
         edNamePlaylist.setText("");
         edDescPlaylist.setText("");
     }
 
     @Override
     public void onCreateFailed(Throwable throwable) {
-        Toast.makeText(getApplicationContext(), "Failed to create", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Failed to create", Toast.LENGTH_LONG).show();
 
     }
 
@@ -86,7 +106,7 @@ public class PlaylistActivity extends AppCompatActivity implements PlaylistCallb
 
     @Override
     public void onFailure (Throwable throwable) {
-        Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG);
+        Toast.makeText(getContext(), "Failure", Toast.LENGTH_LONG);
     }
 
 }

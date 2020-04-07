@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context=".controller.activity.MainActivity2">
+    tools:context=".controller.activity.MainActivity">
 
     <com.scwang.wave.MultiWaveHeader
         android:layout_width="match_parent"
@@ -14,16 +14,6 @@
         android:scaleX="2"
         android:scaleY="1.7"
         app:layout_constraintTop_toTopOf="parent"
-        app:mwhCloseColor="@color/colorSecondary"
-        app:mwhStartColor="@color/colorPrimary" />
-
-    <com.scwang.wave.MultiWaveHeader
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleX="2"
-        android:rotation="-20"
-        android:scaleY="-1.7"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:mwhCloseColor="@color/colorSecondary"
         app:mwhStartColor="@color/colorPrimary" />
 

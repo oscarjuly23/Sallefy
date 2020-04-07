@@ -27,7 +27,7 @@
         <activity android:name=".controller.activity.ListActivity"/>
         <activity android:name=".controller.activity.AdvancedListActivity"/>
         <activity android:name=".controller.activity.RegisterActivity"/>
-        <activity android:name=".controller.activity.PlaylistActivity"/>
+        <activity android:name=".controller.fragments.CreatePlaylistFragment"/>
         <activity android:name=".controller.activity.SongActivity"/>
         <activity android:name=".controller.activity.MostrarTracksDePlaylistActivity"/>
         <activity android:name=".controller.activity.UploadActivity"/>

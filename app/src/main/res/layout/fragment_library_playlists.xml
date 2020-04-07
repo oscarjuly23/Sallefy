@@ -7,31 +7,39 @@
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
     android:orientation="vertical"
-    tools:context=".controller.fragments.MyTrack">
+    tools:context=".controller.fragments.MyTrackFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/dynamic_recyclerView"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/dynamic_recyclerView">
 
         <Button
             android:id="@+id/create_playlist_action"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:background="@android:color/transparent"
-            android:text="@string/subir_cancion"
+            android:textSize="22sp"
             android:textAllCaps="false"
-            android:textColor="@color/colorWhite"
-            android:textSize="22sp" />
+            android:text="@string/create_playlist_button"
+            android:textColor="@color/colorWhite" />
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dynamic_recyclerView_tracks"
+        android:id="@+id/dynamic_recyclerView_playlists"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dynamic_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"

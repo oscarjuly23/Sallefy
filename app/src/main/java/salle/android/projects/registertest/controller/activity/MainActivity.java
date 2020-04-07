@@ -87,7 +87,6 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
     };
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +96,6 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
         setInitialFragment();
         requestPermissions();
     }
-
 
     @Override
     public void onResume() {
@@ -111,7 +109,6 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
             }
         }
     }
-
 
     @Override
     public void onPause() {

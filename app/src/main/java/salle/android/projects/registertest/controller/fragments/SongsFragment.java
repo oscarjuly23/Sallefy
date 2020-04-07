@@ -48,8 +48,6 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     public static final String TAG = SongsFragment.class.getName();
 
     private RecyclerView mRecyclerView;
-    private MainActivity mainActivity;
-
     private ArrayList<Track> mTracks;
     private int currentTrack = 0;
 
@@ -143,7 +141,7 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     @Override
     public void onTrackSelected(int index) {
         System.out.println("Index song: " + index);
-        mainActivity.updateTrack(index);
+       // mainActivity.updateTrack(index);
     }
 
     /**********************************************************************************************
