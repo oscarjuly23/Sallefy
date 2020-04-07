@@ -1,6 +1,10 @@
 package salle.android.projects.registertest.controller.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,13 +72,18 @@ public class LibraryFragment extends Fragment {
         });
     }
 
-    private void setUpViewPager(ViewPager viewPager) {
-        SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
+        private void setUpViewPager(ViewPager viewPager) {
+            SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
+            String pltitle = "Playlist";
+            String ctitle = "Canciones";
+            SpannableString PlaylistsTitle = new SpannableString(pltitle);
+            SpannableString CacnionesTitle = new SpannableString(ctitle);;
+            PlaylistsTitle.setSpan(new ForegroundColorSpan(Color.WHITE),0, PlaylistsTitle.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            CacnionesTitle.setSpan(new ForegroundColorSpan(Color.WHITE),0, CacnionesTitle.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            adapter.addFragment(new MyPlaylist(), PlaylistsTitle);
+            adapter.addFragment(new MyTrack(), CacnionesTitle);
 
-        adapter.addFragment(new MyPlaylist(), "Playlists");
-        adapter.addFragment(new MyTrack(), "Canciones");
-
-        viewPager.setAdapter(adapter);
+            viewPager.setAdapter(adapter);
     }
 
 }
