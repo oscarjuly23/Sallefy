@@ -44,11 +44,9 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     private int circleEndColor;
     private int iconSize;
 
-
     private float animationScaleFactor;
 
     private boolean isChecked;
-
 
     private boolean isEnabled;
     private AnimatorSet animatorSet;

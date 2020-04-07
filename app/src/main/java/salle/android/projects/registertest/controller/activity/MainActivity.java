@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
 import salle.android.projects.registertest.controller.fragments.HomeFragment;
+import salle.android.projects.registertest.controller.fragments.SearchFragment;
 import salle.android.projects.registertest.controller.fragments.SongsFragment;
 import salle.android.projects.registertest.controller.music.MusicCallback;
 import salle.android.projects.registertest.controller.music.MusicService;
@@ -210,7 +211,7 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
                         fragment = SongsFragment.getInstance();
                         break;
                     case R.id.action_library:
-                        //fragment = SearchFragment.getInstance();
+                        fragment = SearchFragment.getInstance();
                         break;
                     case R.id.action_profile:
                         //fragment = ContentFragment.getInstance();
@@ -329,11 +330,11 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
             if (fragment instanceof SongsFragment) {
                  TAG = SongsFragment.TAG;
             } else {
-                //if (fragment instanceof SearchFragment) {
-                   // return SearchFragment.TAG;
-                //} else {
+                if (fragment instanceof SearchFragment) {
+                    return SearchFragment.TAG;
+                } else {
                   //  return ContentFragment.TAG;
-                //}
+                }
             }
         }
         return TAG;
