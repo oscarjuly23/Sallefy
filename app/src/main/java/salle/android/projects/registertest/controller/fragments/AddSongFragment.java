@@ -1,31 +1,28 @@
-package salle.android.projects.registertest.controller.activity;
+package salle.android.projects.registertest.controller.fragments;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-import com.cloudinary.android.MediaManager;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import salle.android.projects.registertest.R;
-import salle.android.projects.registertest.controller.callbacks.CloudinaryCallback;
 import salle.android.projects.registertest.controller.dialogs.StateDialog;
 import salle.android.projects.registertest.restapi.callback.GenreCallback;
 import salle.android.projects.registertest.restapi.callback.TrackCallback;
@@ -35,7 +32,9 @@ import salle.android.projects.registertest.model.Genre;
 import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.utils.Constants;
 
-public class UploadActivity extends AppCompatActivity implements GenreCallback, TrackCallback {
+public class AddSongFragment extends Fragment implements GenreCallback, TrackCallback {
+
+    public static final String TAG = AddSongFragment.class.getName();
 
     private EditText etTitle;
     private Spinner mSpinner;
@@ -48,23 +47,36 @@ public class UploadActivity extends AppCompatActivity implements GenreCallback, 
 
     private Context mContext;
 
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_song);
-        mContext = getApplicationContext();
-        initViews();
-        getData();
+    public AddSongFragment() {
     }
 
-    private void initViews() {
-        etTitle = (EditText) findViewById(R.id.create_song_title);
-        mFilename = (TextView) findViewById(R.id.create_song_file_name);
+    public static AddSongFragment getInstance(){
+        return new AddSongFragment();
+    }
 
-        mSpinner = (Spinner) findViewById(R.id.create_song_genre);
 
-        btnFind = (Button) findViewById(R.id.create_song_file);
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v =inflater.inflate(R.layout.fragment_create_song, container, false);
+        mContext = getContext();
+        initViews(v);
+        getData();
+        return v;
+    }
+
+    private void initViews(View v) {
+        etTitle = (EditText) v.findViewById(R.id.create_song_title);
+        mFilename = (TextView) v.findViewById(R.id.create_song_file_name);
+
+        mSpinner = (Spinner) v.findViewById(R.id.create_song_genre);
+
+        btnFind = (Button) v.findViewById(R.id.create_song_file);
         btnFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +84,7 @@ public class UploadActivity extends AppCompatActivity implements GenreCallback, 
             }
         });
 
-        btnAccept = (Button) findViewById(R.id.create_song_accept);
+        btnAccept = (Button) v.findViewById(R.id.create_song_accept);
         btnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +99,7 @@ public class UploadActivity extends AppCompatActivity implements GenreCallback, 
     }
 
     private void getData() {
-        GenreManager.getInstance(this).getAllGenres(this);
+        GenreManager.getInstance(getContext()).getAllGenres(this);
     }
 
     private boolean checkParameters() {
@@ -100,7 +112,7 @@ public class UploadActivity extends AppCompatActivity implements GenreCallback, 
     }
 
     private void showStateDialog(boolean completed) {
-        StateDialog.getInstance(this).showStateDialog(completed);
+        StateDialog.getInstance(getContext()).showStateDialog(completed);
     }
 
     private void getAudioFromStorage() {
@@ -117,25 +129,25 @@ public class UploadActivity extends AppCompatActivity implements GenreCallback, 
                 genre = g;
             }
         }
-        CloudinaryManager.getInstance(this, this).uploadAudioFile(mFileUri, etTitle.getText().toString(), genre);
+        CloudinaryManager.getInstance(getContext(), this).uploadAudioFile(mFileUri, etTitle.getText().toString(), genre);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Constants.STORAGE.SONG_SELECTED && resultCode == RESULT_OK) {
+        if (requestCode == Constants.STORAGE.SONG_SELECTED && resultCode == getActivity().RESULT_OK) {
             mFileUri = data.getData();
             mFilename.setText(mFileUri.toString());
         }
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
     }
 
@@ -147,7 +159,7 @@ public class UploadActivity extends AppCompatActivity implements GenreCallback, 
     public void onGenresReceive(ArrayList<Genre> genres) {
         mGenresObjs = genres;
         mGenres = (ArrayList<String>) genres.stream().map(Genre -> Genre.getName()).collect(Collectors.toList());
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, mGenres);
+        ArrayAdapter<String> adapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, mGenres);
         mSpinner.setAdapter(adapter);
     }
 
@@ -187,13 +199,13 @@ public class UploadActivity extends AppCompatActivity implements GenreCallback, 
 
     @Override
     public void onCreateTrack() {
-        StateDialog.getInstance(this).showStateDialog(true);
+        StateDialog.getInstance(getContext()).showStateDialog(true);
         Thread watchDialog = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     while (StateDialog.getInstance(mContext).isDialogShown()){}
-                    finish();
+                    //getActivity().finish();
                 } catch (Exception e) {
                 }
             }

@@ -14,11 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/dynamic_recyclerView"
+        app:layout_constraintBottom_toTopOf="@id/dynamic_recyclerView_tracks"
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/create_playlist_action"
+            android:id="@+id/add_song_action"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"

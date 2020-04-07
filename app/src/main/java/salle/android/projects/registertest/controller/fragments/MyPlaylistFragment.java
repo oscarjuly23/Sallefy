@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
+import salle.android.projects.registertest.model.Playlist;
 import salle.android.projects.registertest.model.Track;
 
 public class MyPlaylistFragment extends Fragment implements FragmentCallback {
@@ -24,8 +25,7 @@ public class MyPlaylistFragment extends Fragment implements FragmentCallback {
 
     private Button btnCreatePlaylist;
     private RecyclerView mRecyclerView;
-    private ArrayList<Track> mTracks;
-    private int currentTrack = 0;
+    private ArrayList<Playlist> mPlaylist;
 
     public MyPlaylistFragment() {
 

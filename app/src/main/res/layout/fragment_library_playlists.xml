@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/dynamic_recyclerView">
+        app:layout_constraintBottom_toTopOf="@id/dynamic_recyclerView_playlists">
 
         <Button
             android:id="@+id/create_playlist_action"
@@ -37,13 +37,5 @@
         android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dynamic_recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
