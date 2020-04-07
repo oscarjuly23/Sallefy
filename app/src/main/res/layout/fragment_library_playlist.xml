@@ -23,18 +23,16 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/dynamic_recyclerView">
 
         <Button
             android:id="@+id/create_playlist_action"
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:padding="7dp"
+            android:background="@android:color/transparent"
             android:textSize="22sp"
             android:textAllCaps="false"
             android:text="@string/create_playlist_button"

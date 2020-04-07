@@ -8,17 +8,6 @@
     android:gravity="center"
     android:background="@color/colorPrimary">
 
-    <com.scwang.wave.MultiWaveHeader
-        android:id="@+id/home_multiWaveHeader"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:rotation="-20"
-        android:scaleX="2"
-        android:scaleY="1.7"
-        app:layout_constraintTop_toTopOf="parent"
-        app:mwhCloseColor="@color/colorSecondary"
-        app:mwhStartColor="@color/colorPrimary" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -34,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
+            android:background="@android:color/transparent"
             android:padding="7dp"
             android:textSize="22sp"
             android:textAllCaps="false"

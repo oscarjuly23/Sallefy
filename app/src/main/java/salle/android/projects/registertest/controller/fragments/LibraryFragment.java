@@ -14,21 +14,21 @@ import com.google.android.material.tabs.TabLayout;
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.adapters.SectionPagerAdapter;
 
-public class SearchFragment extends Fragment {
+public class LibraryFragment extends Fragment {
 
-    public static final String TAG = SearchFragment.class.getName();
+    public static final String TAG = LibraryFragment.class.getName();
 
     View myFragment;
 
     ViewPager viewPager;
     TabLayout tabLayout;
 
-    public SearchFragment(){
+    public LibraryFragment(){
 
     }
 
-    public static SearchFragment getInstance(){
-        return new SearchFragment();
+    public static LibraryFragment getInstance(){
+        return new LibraryFragment();
     }
 
     @Override

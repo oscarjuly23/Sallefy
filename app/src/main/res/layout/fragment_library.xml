@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context=".controller.fragments.SearchFragment">
+    tools:context=".controller.fragments.LibraryFragment">
 
     <com.scwang.wave.MultiWaveHeader
         android:id="@+id/multiWaveHeader"
@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textStyle="bold"
+            android:textColor="@color/colorWhite"
             android:text="@string/fragment_Library"
             android:textSize="30sp" />
 
