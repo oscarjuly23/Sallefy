@@ -50,13 +50,14 @@
     <string name="desc_playlist">Descripción</string>
     <string name="action_create">Crear</string>
     <string name="create_playlist">Crear nueva playlist</string>
+    <string name="create_playlist_button">+ Crear playlist</string>
 
     <!-- ACTIVITY [Crear Cançons ] -->
     <string name="create_song_titulo">Título</string>
     <string name="create_song_genre">Género</string>
     <string name="create_song_artist">Autor/a</string>
     <string name="create_song_file">Buscar fichero</string>
-    <string name="songs">Afegir cançó a Playlist</string>
+    <string name="subir_cancion">+ Subir Canción</string>
     <string name="boto_song">Afegir</string>
     <string name="playlist_name">Nom Playlist: </string>
     <string name="track_name">Nom Cançó: </string>

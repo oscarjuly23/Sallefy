@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/colorPrimary">
+
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/home_multiWaveHeader"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:rotation="-20"
+        android:scaleX="2"
+        android:scaleY="1.7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:mwhCloseColor="@color/colorSecondary"
+        app:mwhStartColor="@color/colorPrimary" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/dynamic_recyclerView">
+
+        <Button
+            android:id="@+id/create_playlist_action"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:background=""
+            android:padding="7dp"
+            android:textSize="22sp"
+            android:textAllCaps="false"
+            android:text="@string/create_playlist_button"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dynamic_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
