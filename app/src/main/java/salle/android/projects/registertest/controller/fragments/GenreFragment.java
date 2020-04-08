@@ -103,4 +103,10 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
     public void onTrackSelected(int index) {
 
     }
+
+    @Override
+    public void onTrackLike(int index) {
+
+    }
+
 }

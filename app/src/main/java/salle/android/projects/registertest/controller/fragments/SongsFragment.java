@@ -110,6 +110,12 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     public void onCreateTrack() {
 
     }
+
+    @Override
+    public void onLikeSuccess(Track track) {
+
+    }
+
     @Override
     public void onFailure(Throwable throwable) {
 
@@ -126,6 +132,12 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
 
         // mainActivity.updateTrack(index);
     }
+
+    @Override
+    public void onTrackLike(int index) {
+        TrackManager.getInstance(getContext()).likeTrack(mTracks.get(index).getId(),this);
+    }
+
 
     /**********************************************************************************************
      *   *   *   *   *   *   *   *   OnClickListener   *   *   *   *   *   *   *   *   *

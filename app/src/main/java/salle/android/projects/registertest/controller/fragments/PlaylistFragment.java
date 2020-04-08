@@ -121,6 +121,11 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
 
     }
 
+    @Override
+    public void onTrackLike(int index) {
+
+    }
+
     /**********************************************************************************************
      *   *   *   *   *   *   *   *   PlaylistCallback   *   *   *   *   *   *   *   *   *
      **********************************************************************************************/

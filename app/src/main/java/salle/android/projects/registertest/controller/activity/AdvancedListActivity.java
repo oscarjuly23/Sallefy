@@ -232,6 +232,12 @@ public class AdvancedListActivity extends Activity implements TrackCallback, Tra
     public void onCreateTrack() {
 
     }
+
+    @Override
+    public void onLikeSuccess(Track track) {
+
+    }
+
     @Override
     public void onFailure(Throwable throwable) {
 
@@ -245,4 +251,10 @@ public class AdvancedListActivity extends Activity implements TrackCallback, Tra
         actualTrack = index;
         updateTrack(mTracks.get(actualTrack));
     }
+
+    @Override
+    public void onTrackLike(int index) {
+
+    }
+
 }

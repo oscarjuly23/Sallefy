@@ -27,7 +27,9 @@ public class Track implements Serializable {
     private String url;
 
     private boolean selected = false;
+    @SerializedName("liked")
     private boolean liked;
+
     public String getColor() {
         return color;
     }

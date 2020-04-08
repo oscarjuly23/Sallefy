@@ -207,4 +207,9 @@ public class AddSongFragment extends Fragment implements GenreCallback, TrackCal
         });
         watchDialog.start();
     }
+
+    @Override
+    public void onLikeSuccess(Track track) {
+
+    }
 }

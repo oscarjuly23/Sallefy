@@ -3,6 +3,7 @@ package salle.android.projects.registertest.restapi.manager;
 import android.content.Context;
 import android.util.Log;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import salle.android.projects.registertest.model.Playlist;
 import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.model.UserToken;
+import salle.android.projects.registertest.restapi.callback.PlaylistCallback;
 import salle.android.projects.registertest.restapi.callback.TrackCallback;
 import salle.android.projects.registertest.restapi.service.TrackService;
 import salle.android.projects.registertest.utils.Constants;
@@ -141,6 +144,31 @@ public class TrackManager {
             public void onFailure(Call<List<Track>> call, Throwable t) {
                 Log.d(TAG, "Error Failure: " + t.getStackTrace());
                 trackCallback.onFailure(new Throwable("ERROR " + t.getStackTrace()));
+            }
+        });
+    }
+
+    public synchronized void likeTrack (int trackID, final TrackCallback trackCallback) {
+        UserToken userToken = Session.getInstance(mContext).getUserToken();
+        Call<Track> call = mTrackService.setTrackLike(trackID, "Bearer " + userToken.getIdToken());
+        call.enqueue(new Callback<Track>() {
+
+            @Override
+            public void onResponse(Call<Track> call, Response<Track> response) {
+                if (response.isSuccessful()) {
+                    trackCallback.onLikeSuccess(response.body());
+                } else {
+                    try {
+                        trackCallback.onFailure(new Throwable(response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Track> call, Throwable t) {
+                trackCallback.onFailure(t);
             }
         });
     }

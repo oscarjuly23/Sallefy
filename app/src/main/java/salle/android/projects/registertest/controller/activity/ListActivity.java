@@ -62,6 +62,12 @@ public class ListActivity extends AppCompatActivity implements TrackCallback {
     public void onCreateTrack() {
 
     }
+
+    @Override
+    public void onLikeSuccess(Track track) {
+
+    }
+
     @Override
     public void onFailure(Throwable throwable) {
         Toast.makeText(getApplicationContext(), "Failure" + throwable.getMessage(), Toast.LENGTH_LONG).show();

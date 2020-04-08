@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.like.LikeButton;
 
 import java.util.ArrayList;
 
@@ -49,6 +50,17 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called. viewHolder hashcode: " + holder.hashCode());
 
+        if (mTracks.get(position).isLiked()){
+            holder.likeButton.onClickAnimation(holder.itemView);
+        }
+
+        holder.likeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.onTrackLike(position);
+                holder.likeButton.onClickAnimation(v);
+            }
+        });
 
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +95,7 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
         TextView tvTitle;
         TextView tvAuthor;
         ImageView ivPicture;
+        LikeButton likeButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,6 +103,7 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
             tvTitle = (TextView) itemView.findViewById(R.id.track_title);
             tvAuthor = (TextView) itemView.findViewById(R.id.track_author);
             ivPicture = (ImageView) itemView.findViewById(R.id.track_img);
+            likeButton = (LikeButton) itemView.findViewById(R.id.heart_button);
         }
     }
 }

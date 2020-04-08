@@ -29,7 +29,7 @@ import com.like.view.R;
 import java.util.List;
 
 
-public class LikeButton extends FrameLayout implements View.OnClickListener {
+public class LikeButton extends FrameLayout {
     private static final DecelerateInterpolator DECCELERATE_INTERPOLATOR = new DecelerateInterpolator();
     private static final AccelerateDecelerateInterpolator ACCELERATE_DECELERATE_INTERPOLATOR = new AccelerateDecelerateInterpolator();
     private static final OvershootInterpolator OVERSHOOT_INTERPOLATOR = new OvershootInterpolator(4);
@@ -140,7 +140,6 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         Boolean status = array.getBoolean(R.styleable.LikeButton_liked, false);
         setAnimationScaleFactor(array.getFloat(R.styleable.LikeButton_anim_scale_factor, 3));
         setLiked(status);
-        setOnClickListener(this);
         array.recycle();
     }
 
@@ -156,8 +155,8 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      *
      * @param v
      */
-    @Override
-    public void onClick(View v) {
+
+    public void onClickAnimation(View v) {
 
         if (!isEnabled)
             return;
