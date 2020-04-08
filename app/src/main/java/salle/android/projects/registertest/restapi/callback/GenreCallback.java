@@ -9,4 +9,3 @@ public interface GenreCallback extends FailureCallback {
     void onGenresReceive(ArrayList<Genre> genres);
     void onTracksByGenre(ArrayList<Track> tracks);
 }
-

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
     android:orientation="vertical"
-    tools:context=".controller.fragments.MyTrackFragment">
+    tools:context=".controller.fragments.LibraryTrackFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"

@@ -10,11 +10,9 @@ public class UserToken {
     public UserToken(String idToken) {
         this.idToken = idToken;
     }
-
     public String getIdToken() {
         return idToken;
     }
-
     public void setIdToken(String idToken) {
         this.idToken = idToken;
     }

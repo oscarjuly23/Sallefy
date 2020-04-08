@@ -8,14 +8,10 @@ public class Constants {
         public static int LOGIN_OK = 1;
         public static int LOGIN_KO = 2;
     }
-
     public interface PERMISSIONS {
         public static int MICROPHONE = 7;
     }
-
     public interface STORAGE {
         public static int SONG_SELECTED = 4;
     }
-
-
 }

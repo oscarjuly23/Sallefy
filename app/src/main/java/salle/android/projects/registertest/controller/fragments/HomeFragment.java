@@ -41,11 +41,9 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
     private RecyclerView mGenresView;
     private GenresAdapter mGenresAdapter;
 
-
     public static HomeFragment getInstance() {
         return new HomeFragment();
     }
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -178,7 +176,6 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
         fragmentTransaction.commit();
     }
 
-
     /**********************************************************************************************
      *   *   *   *   *   *   *   *   GenreAdapterCallback   *   *   *   *   *   *   *   *   *
      **********************************************************************************************/
@@ -189,5 +186,4 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
         fragment = GenreFragment.getInstance(genre);
         onChangeFragment(fragment);
     }
-
 }

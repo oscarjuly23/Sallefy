@@ -1,6 +1,5 @@
 package salle.android.projects.registertest.controller.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -117,7 +116,6 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
     public void onTrackSelected(Track track) {
 
     }
-
     @Override
     public void onTrackSelected(int index) {
 
@@ -131,27 +129,22 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
     public void onShowPlaylist(List<Playlist> playlists) {
 
     }
-
     @Override
     public void onShowPlaylistFailure(Throwable throwable) {
 
     }
-
     @Override
     public void onCreateSuccess(Playlist playlist) {
 
     }
-
     @Override
     public void onCreateFailed(Throwable throwable) {
 
     }
-
     @Override
     public void onUpdateSucces(Playlist playlist) {
 
     }
-
     @Override
     public void onFollowSucces(Playlist playlist) {
 

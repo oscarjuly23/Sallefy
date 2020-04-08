@@ -35,8 +35,7 @@ public class LibraryFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         myFragment = inflater.inflate(R.layout.fragment_library, container, false);
 
@@ -58,12 +57,10 @@ public class LibraryFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
 
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
 
             }
-
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
@@ -79,10 +76,8 @@ public class LibraryFragment extends Fragment {
             SpannableString CacnionesTitle = new SpannableString(ctitle);;
             PlaylistsTitle.setSpan(new ForegroundColorSpan(Color.WHITE),0, PlaylistsTitle.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             CacnionesTitle.setSpan(new ForegroundColorSpan(Color.WHITE),0, CacnionesTitle.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            adapter.addFragment(new MyPlaylistFragment(), PlaylistsTitle);
-            adapter.addFragment(new MyTrackFragment(), CacnionesTitle);
-
+            adapter.addFragment(new LibraryPlaylistFragment(), PlaylistsTitle);
+            adapter.addFragment(new LibraryTrackFragment(), CacnionesTitle);
             viewPager.setAdapter(adapter);
     }
-
 }

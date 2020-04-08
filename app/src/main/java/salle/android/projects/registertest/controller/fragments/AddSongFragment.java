@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -167,7 +166,6 @@ public class AddSongFragment extends Fragment implements GenreCallback, TrackCal
     public void onTracksByGenre(ArrayList<Track> tracks) {
 
     }
-
     @Override
     public void onFailure(Throwable throwable) {
 
@@ -181,17 +179,14 @@ public class AddSongFragment extends Fragment implements GenreCallback, TrackCal
     public void onTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onNoTracks(Throwable throwable) {
 
     }
-
     @Override
     public void onPersonalTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onUserTracksReceived(List<Track> tracks) {
 

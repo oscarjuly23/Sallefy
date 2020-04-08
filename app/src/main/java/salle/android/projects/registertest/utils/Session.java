@@ -57,48 +57,36 @@ public class Session {
     public UserRegister getUserRegister() {
         return mUserRegister;
     }
-
     public void setUserRegister(UserRegister userRegister) {
         mUserRegister = userRegister;
     }
-
     public User getUser() {
         return mUser;
     }
-
     public void setUser(User user) {
         mUser = user;
     }
-
     public void setAudioEnabled(boolean audioEnabled) {
         this.audioEnabled = audioEnabled;
     }
-
-
     public UserToken getUserToken() {
         return mUserToken;
     }
-
     public void setUserToken(UserToken userToken) {
         this.mUserToken = userToken;
     }
-
     public boolean isAudioEnabled() {
         return audioEnabled;
     }
-
     public Track getTrack() {
         return mTrack;
     }
-
     public void setTrack(Track track) {
         mTrack = track;
     }
-
     public int getIndex() {
         return mIndex;
     }
-
     public void setIndex(int index) {
         mIndex = index;
     }
@@ -118,23 +106,18 @@ public class Session {
     public Playlist getPlaylist() {
         return mPlaylist;
     }
-
     public void setPlaylist(Playlist playlist) {
         mPlaylist = playlist;
     }
-
     public ArrayList<Track> getTracks() {
         return mTracks;
     }
-
     public void setTracks(ArrayList<Track> tracks) {
         mTracks = tracks;
     }
-
     public boolean isPlaying() {
         return isPlaying;
     }
-
     public void setPlaying(boolean playing) {
         isPlaying = playing;
     }

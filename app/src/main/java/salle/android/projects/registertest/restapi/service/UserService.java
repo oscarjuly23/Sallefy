@@ -15,10 +15,8 @@ import salle.android.projects.registertest.model.UserRegister;
 public interface UserService {
     @GET("users/{login}")
     Call<User> getUserById(@Path("login") String login, @Header("Authorization") String token);
-
     @GET("users")
     Call<List<User>> getAllUsers(@Header("Authorization") String token);
-
     @POST("register")
     Call<ResponseBody> registerUser(@Body UserRegister user);
 }

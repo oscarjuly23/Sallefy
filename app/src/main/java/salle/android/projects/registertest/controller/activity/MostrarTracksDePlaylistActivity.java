@@ -88,22 +88,18 @@ public class MostrarTracksDePlaylistActivity extends AppCompatActivity implement
     public void onCreateSuccess(Playlist playlist) {
 
     }
-
     @Override
     public void onCreateFailed(Throwable throwable) {
 
     }
-
     @Override
     public void onUpdateSucces(Playlist playlist) {
 
     }
-
     @Override
     public void onFollowSucces(Playlist playlist) {
 
     }
-
     @Override
     public void getIsFollowed(Playlist playlist) {
 
@@ -117,22 +113,18 @@ public class MostrarTracksDePlaylistActivity extends AppCompatActivity implement
     public void onTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onNoTracks(Throwable throwable) {
 
     }
-
     @Override
     public void onPersonalTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onUserTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onCreateTrack() {
 

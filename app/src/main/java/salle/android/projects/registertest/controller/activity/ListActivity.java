@@ -7,9 +7,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import salle.android.projects.registertest.R;
@@ -32,11 +29,9 @@ public class ListActivity extends AppCompatActivity implements TrackCallback {
     private void initViews() {
         tvList = (TextView) findViewById(R.id.tracks_string_list);
     }
-
     private void getData() {
         TrackManager.getInstance(this).getAllTracks(this);
     }
-
     private void updateList(String list) {
         tvList.setText(list);
     }
@@ -53,27 +48,22 @@ public class ListActivity extends AppCompatActivity implements TrackCallback {
     @Override
     public void onNoTracks(Throwable throwable) {
         Toast.makeText(getApplicationContext(), "Call failed! " + throwable.getMessage(), Toast.LENGTH_LONG).show();
-
     }
 
     @Override
     public void onPersonalTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onUserTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onCreateTrack() {
 
     }
-
     @Override
     public void onFailure(Throwable throwable) {
         Toast.makeText(getApplicationContext(), "Failure" + throwable.getMessage(), Toast.LENGTH_LONG).show();
-
     }
 }

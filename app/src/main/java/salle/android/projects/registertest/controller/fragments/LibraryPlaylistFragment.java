@@ -16,27 +16,26 @@ import java.util.ArrayList;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
-import salle.android.projects.registertest.model.Track;
+import salle.android.projects.registertest.model.Playlist;
 
-public class MyTrackFragment extends Fragment implements FragmentCallback {
+public class LibraryPlaylistFragment extends Fragment implements FragmentCallback {
 
-    public static final String TAG = MyTrackFragment.class.getName();
+    public static final String TAG = LibraryPlaylistFragment.class.getName();
 
-    private Button btnAddSong;
+    private Button btnCreatePlaylist;
     private RecyclerView mRecyclerView;
-    private ArrayList<Track> mTracks;
-    private int currentTrack = 0;
+    private ArrayList<Playlist> mPlaylist;
 
-    public MyTrackFragment() {
+    public LibraryPlaylistFragment() {
 
     }
 
-    public static MyTrackFragment getInstance() {
-        return new MyTrackFragment();
+    public static LibraryPlaylistFragment getInstance() {
+        return new LibraryPlaylistFragment();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
     }
 
@@ -44,7 +43,7 @@ public class MyTrackFragment extends Fragment implements FragmentCallback {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_library_canciones, container, false);
+        View v = inflater.inflate(R.layout.fragment_library_playlists, container, false);
         initViews(v);
         return v;
     }
@@ -55,12 +54,12 @@ public class MyTrackFragment extends Fragment implements FragmentCallback {
     }
 
     private void initViews(View v) {
-        btnAddSong = (Button) v.findViewById(R.id.add_song_action);
-        btnAddSong.setOnClickListener(new View.OnClickListener() {
+        btnCreatePlaylist = (Button) v.findViewById(R.id.create_playlist_action);
+        btnCreatePlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = null;
-                fragment = AddSongFragment.getInstance();
+                fragment = CreatePlaylistFragment.getInstance();
                 onChangeFragment(fragment);
             }
 

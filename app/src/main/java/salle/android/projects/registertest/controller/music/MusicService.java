@@ -95,7 +95,6 @@ public class MusicService extends Service {
         } catch(Exception e) {
 
         }
-
     }
 
     public void playStream(ArrayList<Track> tracks, int currentTrack) {
@@ -134,7 +133,6 @@ public class MusicService extends Service {
             });
         } catch(Exception e) {
         }
-
     }
 
     public int getAudioSession() {

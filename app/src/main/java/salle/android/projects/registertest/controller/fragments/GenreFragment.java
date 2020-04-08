@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.adapters.TrackListAdapter;
@@ -21,9 +20,7 @@ import salle.android.projects.registertest.controller.callbacks.TrackListCallbac
 import salle.android.projects.registertest.model.Genre;
 import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.restapi.callback.GenreCallback;
-import salle.android.projects.registertest.restapi.callback.TrackCallback;
 import salle.android.projects.registertest.restapi.manager.GenreManager;
-import salle.android.projects.registertest.restapi.manager.TrackManager;
 
 public class GenreFragment extends Fragment implements GenreCallback, TrackListCallback {
     public static final String TAG = GenreFragment.class.getName();
@@ -73,7 +70,6 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
         mTracks = new ArrayList<>();
     }
 
-
     /**********************************************************************************************
      *   *   *   *   *   *   *   *   GenreCallback   *   *   *   *   *   *   *   *   *
      **********************************************************************************************/
@@ -103,7 +99,6 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
     public void onTrackSelected(Track track) {
 
     }
-
     @Override
     public void onTrackSelected(int index) {
 

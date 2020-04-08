@@ -28,7 +28,6 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
     private TrackListCallback mCallback;
     private int NUM_VIEWHOLDERS = 0;
 
-
     public TrackListAdapter(TrackListCallback callback, Context context, ArrayList<Track> tracks ) {
         mTracks = tracks;
         mContext = context;

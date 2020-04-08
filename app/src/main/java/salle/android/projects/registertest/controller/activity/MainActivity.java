@@ -86,7 +86,6 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,7 +115,6 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
         if (mServiceBound) {
             //pauseAudio();
         }
-
     }
 
     @Override
@@ -181,7 +179,6 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
                     mBoundService.setCurrentDuration(progress);
                 }
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
@@ -219,7 +216,6 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
                 return true;
             }
         });
-
     }
 
         private void startStreamingService(){
@@ -277,7 +273,6 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
             tvTitle.setText(track.getName());
         }
     }
-
 
     private void setInitialFragment() {
         mTransaction.add(R.id.fragment_container, HomeFragment.getInstance());
@@ -370,47 +365,36 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
     public ArrayList<Track> getmTracks() {
         return mTracks;
     }
-
     public void setmTracks(ArrayList<Track> mTracks) {
         this.mTracks = mTracks;
     }
-
     public int getCurrentTrack() {
         return currentTrack;
     }
-
     public void setCurrentTrack(int currentTrack) {
         this.currentTrack = currentTrack;
     }
-
     public TextView getTvTitle() {
         return tvTitle;
     }
-
     public void setTvTitle(TextView tvTitle) {
         this.tvTitle = tvTitle;
     }
-
     public TextView getTvAuthor() {
         return tvAuthor;
     }
-
     public void setTvAuthor(TextView tvAuthor) {
         this.tvAuthor = tvAuthor;
     }
-
     public ImageButton getBtnPlayStop() {
         return btnPlayStop;
     }
-
     public void setBtnPlayStop(ImageButton btnPlayStop) {
         this.btnPlayStop = btnPlayStop;
     }
-
     public MusicService getmBoundService() {
         return mBoundService;
     }
-
     public void setmBoundService(MusicService mBoundService) {
         this.mBoundService = mBoundService;
     }

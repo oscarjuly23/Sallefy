@@ -58,13 +58,11 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         Button btnGenre;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             btnGenre = (Button) itemView.findViewById(R.id.item_genre_btn);
-
         }
     }
 }

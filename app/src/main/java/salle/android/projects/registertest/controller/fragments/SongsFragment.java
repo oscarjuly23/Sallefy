@@ -1,21 +1,10 @@
 package salle.android.projects.registertest.controller.fragments;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,18 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import salle.android.projects.registertest.R;
-import salle.android.projects.registertest.controller.activity.AdvancedListActivity;
-import salle.android.projects.registertest.controller.activity.MainActivity;
 import salle.android.projects.registertest.controller.adapters.TrackListAdapter;
 import salle.android.projects.registertest.controller.callbacks.TrackListCallback;
-import salle.android.projects.registertest.controller.music.MusicCallback;
-import salle.android.projects.registertest.controller.music.MusicService;
 import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.restapi.callback.TrackCallback;
 import salle.android.projects.registertest.restapi.manager.TrackManager;
@@ -111,32 +94,26 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     public void onNoTracks(Throwable throwable) {
 
     }
-
     @Override
     public void onPersonalTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onUserTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onCreateTrack() {
 
     }
-
     @Override
     public void onFailure(Throwable throwable) {
 
     }
-
     @Override
     public void onTrackSelected(Track track) {
 
     }
-
 
     @Override
     public void onTrackSelected(int index) {
@@ -157,5 +134,4 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     public void unLiked(LikeButton likeButton) {
         Toast.makeText(getActivity(), "Disliked!", Toast.LENGTH_SHORT).show();
     }
-
 }

@@ -85,17 +85,14 @@ public class SongActivity extends AppCompatActivity implements TrackCallback, Pl
     public void onNoTracks(Throwable throwable) {
 
     }
-
     @Override
     public void onPersonalTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onUserTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onCreateTrack() {
 
@@ -124,12 +121,10 @@ public class SongActivity extends AppCompatActivity implements TrackCallback, Pl
     public void onShowPlaylistFailure(Throwable throwable) {
 
     }
-
     @Override
     public void onCreateSuccess(Playlist playlist) {
 
     }
-
     @Override
     public void onCreateFailed(Throwable throwable) {
 
@@ -143,7 +138,6 @@ public class SongActivity extends AppCompatActivity implements TrackCallback, Pl
     public void onFollowSucces(Playlist playlist) {
 
     }
-
     @Override
     public void getIsFollowed(Playlist playlist) {
 

@@ -18,8 +18,7 @@ import salle.android.projects.registertest.restapi.callback.UserCallback;
 import salle.android.projects.registertest.restapi.manager.UserManager;
 import salle.android.projects.registertest.utils.Session;
 
-public class RegisterActivity extends AppCompatActivity
-        implements UserCallback {
+public class RegisterActivity extends AppCompatActivity implements UserCallback {
 
     private EditText etEmail;
     private EditText etLogin;
@@ -84,8 +83,6 @@ public class RegisterActivity extends AppCompatActivity
     public void onUserInfoReceived(User userData) {
 
     }
-
-
     @Override
     public void onFailure(Throwable throwable) {
 

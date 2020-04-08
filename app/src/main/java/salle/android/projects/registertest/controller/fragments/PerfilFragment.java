@@ -8,7 +8,6 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -24,11 +23,9 @@ public class PerfilFragment extends Fragment {
     public static final String TAG = PerfilFragment.class.getName();
 
     private View myFragment;
-
     private ViewPager viewPager;
     private TabLayout tabLayout;
-
-    private TextView tvUser;
+    //private TextView tvUser;
 
     public PerfilFragment(){
 
@@ -39,13 +36,12 @@ public class PerfilFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        myFragment = inflater.inflate(R.layout.fragment_library, container, false);
+        myFragment = inflater.inflate(R.layout.fragment_perfil, container, false);
 
-        tvUser = myFragment.findViewById(R.id.textViewFragment);
-        tvUser.setText("hola");
+        //tvUser = myFragment.findViewById(R.id.textViewFragment);
+        //tvUser.setText("hola");
 
         viewPager = myFragment.findViewById(R.id.viewPager);
         tabLayout = myFragment.findViewById(R.id.tabLayout);
@@ -65,15 +61,12 @@ public class PerfilFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
 
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
 
             }
-
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
     }
@@ -86,8 +79,8 @@ public class PerfilFragment extends Fragment {
         SpannableString CacnionesTitle = new SpannableString(ctitle);;
         PlaylistsTitle.setSpan(new ForegroundColorSpan(Color.WHITE),0, PlaylistsTitle.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         CacnionesTitle.setSpan(new ForegroundColorSpan(Color.WHITE),0, CacnionesTitle.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        adapter.addFragment(new MyPlaylistFragment(), PlaylistsTitle);
-        adapter.addFragment(new MyTrackFragment(), CacnionesTitle);
+        adapter.addFragment(new PerfilPlaylistFragment(), PlaylistsTitle);
+        adapter.addFragment(new PerfilTrackFragment(), CacnionesTitle);
 
         viewPager.setAdapter(adapter);
     }

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,8 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.like.LikeButton;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -73,9 +70,6 @@ public class AdvancedListActivity extends Activity implements TrackCallback, Tra
         mRecyclerView.setAdapter(adapter);
 
       //  mVisualizer = findViewById(R.id.dynamic_barVisualizer);
-
-
-
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -142,12 +136,10 @@ public class AdvancedListActivity extends Activity implements TrackCallback, Tra
                     System.out.println("New progress: " + newProgress);
                 }
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
@@ -169,7 +161,6 @@ public class AdvancedListActivity extends Activity implements TrackCallback, Tra
         btnPlayStop.setTag(PLAY_VIEW);
         //Toast.makeText(getApplicationContext(), "Pausing Audio", Toast.LENGTH_SHORT).show();
     }
-
 
     private void prepareMediaPlayer(final String url) {
         Thread connection = new Thread(new Runnable() {
@@ -213,7 +204,6 @@ public class AdvancedListActivity extends Activity implements TrackCallback, Tra
         }
     }
 
-
     private void getData() {
         TrackManager.getInstance(this).getAllTracks(this);
         mTracks = new ArrayList<>();
@@ -230,32 +220,26 @@ public class AdvancedListActivity extends Activity implements TrackCallback, Tra
     public void onNoTracks(Throwable throwable) {
 
     }
-
     @Override
     public void onPersonalTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onUserTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onCreateTrack() {
 
     }
-
     @Override
     public void onFailure(Throwable throwable) {
 
     }
-
     @Override
     public void onTrackSelected(Track track) {
 
     }
-
     @Override
     public void onTrackSelected(int index) {
         actualTrack = index;

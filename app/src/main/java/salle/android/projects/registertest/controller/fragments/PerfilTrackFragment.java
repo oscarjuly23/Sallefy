@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,28 +16,26 @@ import java.util.ArrayList;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
-import salle.android.projects.registertest.model.Playlist;
 import salle.android.projects.registertest.model.Track;
 
-public class MyPlaylistFragment extends Fragment implements FragmentCallback {
+public class PerfilTrackFragment extends Fragment implements FragmentCallback {
 
-    public static final String TAG = MyPlaylistFragment.class.getName();
+    public static final String TAG = PerfilTrackFragment.class.getName();
 
-    private Button btnCreatePlaylist;
+    private TextView tvTitle;
     private RecyclerView mRecyclerView;
-    private ArrayList<Playlist> mPlaylist;
+    private ArrayList<Track> mTracks;
+    private int currentTrack = 0;
 
-    public MyPlaylistFragment() {
-
+    public PerfilTrackFragment() {
     }
 
-    public static MyPlaylistFragment getInstance() {
-        return new MyPlaylistFragment();
+    public static PerfilTrackFragment getInstance() {
+        return new PerfilTrackFragment();
     }
-
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
@@ -45,7 +43,7 @@ public class MyPlaylistFragment extends Fragment implements FragmentCallback {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_library_playlists, container, false);
+        View v = inflater.inflate(R.layout.fragment_perfil_canciones, container, false);
         initViews(v);
         return v;
     }
@@ -56,23 +54,12 @@ public class MyPlaylistFragment extends Fragment implements FragmentCallback {
     }
 
     private void initViews(View v) {
-        btnCreatePlaylist = (Button) v.findViewById(R.id.create_playlist_action);
-        btnCreatePlaylist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment fragment = null;
-                fragment = CreatePlaylistFragment.getInstance();
-                onChangeFragment(fragment);
-            }
-
         /*mRecyclerView = (RecyclerView) v.findViewById(R.id.dynamic_recyclerView_playlists);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), null);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);*/
-        });
     }
-
 
     /**********************************************************************************************
      *   *   *   *   *   *   *   *   FragmentCallback   *   *   *   *   *   *   *   *   *

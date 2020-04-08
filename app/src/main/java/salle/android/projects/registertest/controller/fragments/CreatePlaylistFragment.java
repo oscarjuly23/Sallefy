@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import java.util.List;
@@ -70,7 +69,6 @@ public class CreatePlaylistFragment extends Fragment implements PlaylistCallback
     public void onShowPlaylist(List<Playlist> playlists) {
 
     }
-
     @Override
     public void onShowPlaylistFailure(Throwable throwable) {
 
@@ -86,19 +84,16 @@ public class CreatePlaylistFragment extends Fragment implements PlaylistCallback
     @Override
     public void onCreateFailed(Throwable throwable) {
         Toast.makeText(getContext(), "Failed to create", Toast.LENGTH_LONG).show();
-
     }
 
     @Override
     public void onUpdateSucces(Playlist playlist) {
 
     }
-
     @Override
     public void onFollowSucces(Playlist playlist) {
 
     }
-
     @Override
     public void getIsFollowed(Playlist playlist) {
 
@@ -108,5 +103,4 @@ public class CreatePlaylistFragment extends Fragment implements PlaylistCallback
     public void onFailure (Throwable throwable) {
         Toast.makeText(getContext(), "Failure", Toast.LENGTH_LONG);
     }
-
 }

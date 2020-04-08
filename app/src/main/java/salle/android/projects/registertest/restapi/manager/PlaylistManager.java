@@ -29,7 +29,6 @@ public class PlaylistManager {
         if (sPlaylistManager == null) {
             sPlaylistManager = new PlaylistManager(context);
         }
-
         return sPlaylistManager;
     }
 

@@ -97,7 +97,5 @@ public class GenreManager {
                 genreCallback.onFailure(new Throwable("ERROR " + t.getMessage() ));
             }
         });
-
     }
-
 }
