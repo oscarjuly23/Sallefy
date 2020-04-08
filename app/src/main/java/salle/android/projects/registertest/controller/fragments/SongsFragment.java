@@ -21,6 +21,7 @@ import java.util.List;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.adapters.TrackListAdapter;
+import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
 import salle.android.projects.registertest.controller.callbacks.TrackListCallback;
 import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.restapi.callback.TrackCallback;
@@ -33,6 +34,8 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     private RecyclerView mRecyclerView;
     private ArrayList<Track> mTracks;
     private int currentTrack = 0;
+    private FragmentCallback callback;
+
 
     public static SongsFragment getInstance() {
         return new SongsFragment();
@@ -41,6 +44,7 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        this.callback = (FragmentCallback) getActivity();
     }
 
     @Nullable
@@ -118,7 +122,9 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     @Override
     public void onTrackSelected(int index) {
         System.out.println("Index song: " + index);
-       // mainActivity.updateTrack(index);
+        callback.updateTrack(mTracks, index);
+
+        // mainActivity.updateTrack(index);
     }
 
     /**********************************************************************************************

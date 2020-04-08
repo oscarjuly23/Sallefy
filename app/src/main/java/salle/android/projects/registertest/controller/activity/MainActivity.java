@@ -144,7 +144,7 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
             public void onClick(View v) {
                 currentTrack = ((currentTrack-1)%(mTracks.size()));
                 currentTrack = currentTrack < 0 ? (mTracks.size()-1):currentTrack;
-                updateTrack(currentTrack);
+                updateSong(currentTrack);
             }
         });
         btnForward = (ImageButton)findViewById(R.id.dynamic_forward_btn);
@@ -153,7 +153,7 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
             public void onClick(View v) {
                 currentTrack = ((currentTrack+1)%(mTracks.size()));
                 currentTrack = currentTrack >= mTracks.size() ? 0:currentTrack;
-                updateTrack(currentTrack);
+                updateSong(currentTrack);
             }
         });
 
@@ -183,7 +183,6 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
@@ -255,7 +254,7 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
             }
         }
 
-    public void updateTrack(int index) {
+    public void updateSong(int index) {
         Track track = mTracks.get(index);
         currentTrack = index;
         tvAuthor.setText(track.getUserLogin());
@@ -353,6 +352,11 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
         replaceFragment(fragment);
     }
 
+    @Override
+    public void updateTrack(ArrayList<Track> mTracks, int index) {
+        this.mTracks = mTracks;
+        updateSong(index);
+    }
 
     @Override
     public void onMusicPlayerPrepared() {

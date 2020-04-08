@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
 import salle.android.projects.registertest.model.Playlist;
+import salle.android.projects.registertest.model.Track;
 
 public class LibraryPlaylistFragment extends Fragment implements FragmentCallback {
 
@@ -81,5 +82,10 @@ public class LibraryPlaylistFragment extends Fragment implements FragmentCallbac
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void updateTrack(ArrayList<Track> mTracks, int index) {
+
     }
 }

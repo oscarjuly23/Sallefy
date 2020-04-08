@@ -37,6 +37,7 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
 
     private RecyclerView mPlaylistsView;
     private PlaylistListAdapter mPlaylistAdapter;
+    private FragmentCallback callback;
 
     private RecyclerView mGenresView;
     private GenresAdapter mGenresAdapter;
@@ -48,6 +49,7 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        callback = (FragmentCallback) getActivity();
     }
 
     @Nullable
@@ -118,27 +120,22 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
     public void onShowPlaylistFailure(Throwable throwable) {
 
     }
-
     @Override
     public void onCreateSuccess(Playlist playlist) {
 
     }
-
     @Override
     public void onCreateFailed(Throwable throwable) {
 
     }
-
     @Override
     public void onUpdateSucces(Playlist playlist) {
 
     }
-
     @Override
     public void onFollowSucces(Playlist playlist) {
 
     }
-
     @Override
     public void getIsFollowed(Playlist playlist) {
 
@@ -174,6 +171,11 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void updateTrack(ArrayList<Track> mTracks, int index) {
+        callback.updateTrack(mTracks, index);
     }
 
     /**********************************************************************************************
