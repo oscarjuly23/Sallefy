@@ -81,10 +81,10 @@
     <string name="fragment_songs">Songs</string>
 
     <!-- FRAGMENTS (LIBRARY) -->
-    <string name="fragment_Library">Mis subidas</string>
+    <string name="fragment_Library">Biblioteca</string>
 
     <!-- FRAGMENTS (PERFIL) -->
-    <string name="fragment_Perfil">Mis favoritas</string>
+    <string name="fragment_Perfil">Perfil</string>
     <string name="fragment_Perfil_canciones">Canciones favoritas</string>
     <string name="fragment_Perfil_playlist">Playlist seguidas</string>
 
