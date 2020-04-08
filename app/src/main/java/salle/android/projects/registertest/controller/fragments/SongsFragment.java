@@ -120,6 +120,7 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     public void onFailure(Throwable throwable) {
 
     }
+
     @Override
     public void onTrackSelected(Track track) {
 
@@ -129,8 +130,6 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     public void onTrackSelected(int index) {
         System.out.println("Index song: " + index);
         callback.updateTrack(mTracks, index);
-
-        // mainActivity.updateTrack(index);
     }
 
     @Override
