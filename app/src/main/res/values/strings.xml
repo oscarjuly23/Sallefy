@@ -43,7 +43,6 @@
     <string name="boto_mostrar">Mostrar Tracks de Playlist</string>
     <string name="follow_playlist">Seguir</string>
 
-
     <!-- ACTIVITY [ Nova Playlist ] -->
     <string name="title_create">Crear playlist</string>
     <string name="name_playlist">Nombre</string>
@@ -82,6 +81,7 @@
 
     <!-- FRAGMENTS (LIBRARY) -->
     <string name="fragment_Library">Biblioteca</string>
+
 
     <!-- FRAGMENTS (PERFIL) -->
     <string name="fragment_Perfil">Perfil</string>

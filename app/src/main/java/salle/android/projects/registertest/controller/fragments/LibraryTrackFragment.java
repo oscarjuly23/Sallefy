@@ -121,7 +121,6 @@ public class LibraryTrackFragment extends Fragment implements FragmentCallback, 
     public void myPlaylistsReceived(List<Playlist> playlists) {
 
     }
-
     @Override
     public void playlistsFollowingReceived(List<Playlist> playlists) {
 
@@ -138,17 +137,14 @@ public class LibraryTrackFragment extends Fragment implements FragmentCallback, 
     public void tracksLikedReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void noPlaylistsReceived(Throwable throwable) {
 
     }
-
     @Override
     public void noTracksReceived(Throwable throwable) {
 
     }
-
     @Override
     public void onFailure(Throwable throwable) {
 
@@ -162,12 +158,10 @@ public class LibraryTrackFragment extends Fragment implements FragmentCallback, 
     public void onTrackSelected(Track track) {
 
     }
-
     @Override
     public void onTrackSelected(int index) {
         callback.updateTrack(mTracks, index);
     }
-
     @Override
     public void onTrackLike(int index) {
         TrackManager.getInstance(getContext()).likeTrack(mTracks.get(index).getId(),this);
@@ -181,27 +175,22 @@ public class LibraryTrackFragment extends Fragment implements FragmentCallback, 
     public void onTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onNoTracks(Throwable throwable) {
 
     }
-
     @Override
     public void onPersonalTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onUserTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onCreateTrack() {
 
     }
-
     @Override
     public void onLikeSuccess(Track track) {
 

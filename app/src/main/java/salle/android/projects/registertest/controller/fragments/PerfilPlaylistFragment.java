@@ -14,13 +14,15 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
 import salle.android.projects.registertest.model.Playlist;
 import salle.android.projects.registertest.model.Track;
+import salle.android.projects.registertest.restapi.callback.MeCallback;
 
-public class PerfilPlaylistFragment extends Fragment implements FragmentCallback {
+public class PerfilPlaylistFragment extends Fragment implements FragmentCallback, MeCallback {
 
     public static final String TAG = LibraryPlaylistFragment.class.getName();
 
@@ -76,6 +78,34 @@ public class PerfilPlaylistFragment extends Fragment implements FragmentCallback
 
     @Override
     public void updateTrack(ArrayList<Track> mTracks, int index) {
+
+    }
+    @Override
+    public void myPlaylistsReceived(List<Playlist> playlists) {
+
+    }
+    @Override
+    public void playlistsFollowingReceived(List<Playlist> playlists) {
+
+    }
+    @Override
+    public void myTracksReceived(List<Track> tracks) {
+
+    }
+    @Override
+    public void tracksLikedReceived(List<Track> tracks) {
+
+    }
+    @Override
+    public void noPlaylistsReceived(Throwable throwable) {
+
+    }
+    @Override
+    public void noTracksReceived(Throwable throwable) {
+
+    }
+    @Override
+    public void onFailure(Throwable throwable) {
 
     }
 }

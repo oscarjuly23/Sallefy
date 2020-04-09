@@ -109,17 +109,14 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
     public void myPlaylistsReceived(List<Playlist> playlists) {
 
     }
-
     @Override
     public void playlistsFollowingReceived(List<Playlist> playlists) {
 
     }
-
     @Override
     public void myTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void tracksLikedReceived(List<Track> tracks) {
         mTracks = (ArrayList) tracks;
@@ -131,12 +128,10 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
     public void noPlaylistsReceived(Throwable throwable) {
 
     }
-
     @Override
     public void noTracksReceived(Throwable throwable) {
 
     }
-
     @Override
     public void onFailure(Throwable throwable) {
 
@@ -150,12 +145,10 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
     public void onTrackSelected(Track track) {
 
     }
-
     @Override
     public void onTrackSelected(int index) {
         callback.updateTrack(mTracks, index);
     }
-
     @Override
     public void onTrackLike(int index) {
 
