@@ -11,22 +11,27 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import salle.android.projects.registertest.R;
+import salle.android.projects.registertest.controller.adapters.PlaylistListAdapter;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
+import salle.android.projects.registertest.controller.callbacks.PlaylistAdapterCallback;
 import salle.android.projects.registertest.model.Playlist;
 import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.restapi.callback.MeCallback;
+import salle.android.projects.registertest.restapi.manager.MeManager;
 
-public class PerfilPlaylistFragment extends Fragment implements FragmentCallback, MeCallback {
+public class PerfilPlaylistFragment extends Fragment implements FragmentCallback, MeCallback, PlaylistAdapterCallback {
 
     public static final String TAG = LibraryPlaylistFragment.class.getName();
 
     private TextView tvTitle;
+    private PlaylistListAdapter mPlaylistAdapter;
     private RecyclerView mRecyclerView;
     private ArrayList<Playlist> mPlaylist;
 
@@ -47,6 +52,7 @@ public class PerfilPlaylistFragment extends Fragment implements FragmentCallback
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_perfil_playlist, container, false);
         initViews(v);
+        getData();
         return v;
     }
 
@@ -56,11 +62,16 @@ public class PerfilPlaylistFragment extends Fragment implements FragmentCallback
     }
 
     private void initViews(View v) {
-        /*mRecyclerView = (RecyclerView) v.findViewById(R.id.dynamic_recyclerView_playlists);
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), null);
-        mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.setAdapter(adapter);*/
+        LinearLayoutManager managerPlaylists = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+        mPlaylistAdapter = new PlaylistListAdapter(null, getContext(), null, R.layout.playlist_item);
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.dynamic_recyclerView_playlists);
+        mRecyclerView.setLayoutManager(managerPlaylists);
+        mRecyclerView.setAdapter(mPlaylistAdapter);
+    }
+
+    private void getData() {
+        MeManager.getInstance(getActivity()).getMyPlaylistsFollowed(this);
+        mPlaylist = new ArrayList<>();
     }
 
 
@@ -80,13 +91,20 @@ public class PerfilPlaylistFragment extends Fragment implements FragmentCallback
     public void updateTrack(ArrayList<Track> mTracks, int index) {
 
     }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   MeCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
     @Override
     public void myPlaylistsReceived(List<Playlist> playlists) {
 
     }
     @Override
     public void playlistsFollowingReceived(List<Playlist> playlists) {
-
+        mPlaylist = (ArrayList) playlists;
+        PlaylistListAdapter adapter = new PlaylistListAdapter(mPlaylist, getContext(), this, R.layout.playlist_item);
+        mRecyclerView.setAdapter(adapter);
     }
     @Override
     public void myTracksReceived(List<Track> tracks) {
@@ -106,6 +124,22 @@ public class PerfilPlaylistFragment extends Fragment implements FragmentCallback
     }
     @Override
     public void onFailure(Throwable throwable) {
+
+    }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   PlaylistAdapterCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void onPlaylistClick(Playlist playlist) {
+        Fragment fragment = null;
+        fragment = PlaylistFragment.getInstance(playlist);
+        onChangeFragment(fragment);
+    }
+
+    @Override
+    public void onPlaylistClick(int index) {
 
     }
 }
