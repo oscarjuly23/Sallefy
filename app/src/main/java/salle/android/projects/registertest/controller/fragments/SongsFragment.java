@@ -27,7 +27,7 @@ import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.restapi.callback.TrackCallback;
 import salle.android.projects.registertest.restapi.manager.TrackManager;
 
-public class SongsFragment extends Fragment implements TrackListCallback, TrackCallback, OnLikeListener {
+public class SongsFragment extends Fragment implements TrackListCallback, TrackCallback {
 
     public static final String TAG = SongsFragment.class.getName();
 
@@ -135,20 +135,5 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     @Override
     public void onTrackLike(int index) {
         TrackManager.getInstance(getContext()).likeTrack(mTracks.get(index).getId(),this);
-    }
-
-
-    /**********************************************************************************************
-     *   *   *   *   *   *   *   *   OnClickListener   *   *   *   *   *   *   *   *   *
-     **********************************************************************************************/
-
-    @Override
-    public void liked(LikeButton likeButton) {
-        Toast.makeText(getActivity(), "Liked!", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void unLiked(LikeButton likeButton) {
-        Toast.makeText(getActivity(), "Disliked!", Toast.LENGTH_SHORT).show();
     }
 }
