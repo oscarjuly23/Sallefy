@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.adapters.TrackListAdapter;
+import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
 import salle.android.projects.registertest.controller.callbacks.TrackListCallback;
 import salle.android.projects.registertest.model.Genre;
 import salle.android.projects.registertest.model.Track;
@@ -30,6 +31,7 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
     private Genre genre;
 
     private ArrayList<Track> mTracks;
+    private FragmentCallback callback;
 
     public GenreFragment(Genre genre){
         this.genre=genre;
@@ -42,6 +44,7 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        callback = (FragmentCallback) getActivity();
     }
 
     @Nullable
@@ -101,7 +104,7 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
     }
     @Override
     public void onTrackSelected(int index) {
-
+        callback.updateTrack(mTracks, index);
     }
 
     @Override
