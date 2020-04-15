@@ -100,7 +100,6 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
         fragment = PlaylistFragment.getInstance(playlist);
         onChangeFragment(fragment);
     }
-
     @Override
     public void onPlaylistClick(int index) {
 
@@ -115,7 +114,6 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
         mPlaylistAdapter = new PlaylistListAdapter(playlists, getContext(), this, R.layout.item_playlist_short);
         mPlaylistsView.setAdapter(mPlaylistAdapter);
     }
-
     @Override
     public void onShowPlaylistFailure(Throwable throwable) {
 
@@ -140,7 +138,6 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
     public void getIsFollowed(Playlist playlist) {
 
     }
-
     @Override
     public void onFailure(Throwable throwable) {
         Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
@@ -155,7 +152,6 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
         mGenresAdapter = new GenresAdapter(genres, getContext(), this, R.id.item_genre_btn);
         mGenresView.setAdapter(mGenresAdapter);
     }
-
     @Override
     public void onTracksByGenre(ArrayList<Track> tracks) {
 
@@ -172,7 +168,6 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-
     @Override
     public void updateTrack(ArrayList<Track> mTracks, int index) {
         callback.updateTrack(mTracks, index);

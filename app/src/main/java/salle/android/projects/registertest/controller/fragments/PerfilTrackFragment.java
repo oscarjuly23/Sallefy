@@ -95,7 +95,6 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-
     @Override
     public void updateTrack(ArrayList<Track> mTracks, int index) {
         

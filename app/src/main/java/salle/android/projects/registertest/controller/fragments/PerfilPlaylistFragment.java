@@ -86,7 +86,6 @@ public class PerfilPlaylistFragment extends Fragment implements FragmentCallback
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-
     @Override
     public void updateTrack(ArrayList<Track> mTracks, int index) {
 
@@ -137,7 +136,6 @@ public class PerfilPlaylistFragment extends Fragment implements FragmentCallback
         fragment = PlaylistFragment.getInstance(playlist);
         onChangeFragment(fragment);
     }
-
     @Override
     public void onPlaylistClick(int index) {
 

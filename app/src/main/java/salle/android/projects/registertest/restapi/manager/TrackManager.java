@@ -165,7 +165,6 @@ public class TrackManager {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<Track> call, Throwable t) {
                 trackCallback.onFailure(t);

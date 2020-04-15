@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.adapters.TrackListAdapter;
@@ -21,9 +22,11 @@ import salle.android.projects.registertest.controller.callbacks.TrackListCallbac
 import salle.android.projects.registertest.model.Genre;
 import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.restapi.callback.GenreCallback;
+import salle.android.projects.registertest.restapi.callback.TrackCallback;
 import salle.android.projects.registertest.restapi.manager.GenreManager;
+import salle.android.projects.registertest.restapi.manager.TrackManager;
 
-public class GenreFragment extends Fragment implements GenreCallback, TrackListCallback {
+public class GenreFragment extends Fragment implements GenreCallback, TrackListCallback, TrackCallback {
     public static final String TAG = GenreFragment.class.getName();
 
     private TextView tvGenre;
@@ -65,7 +68,6 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
 
         tvGenre = v.findViewById(R.id.textView);
         tvGenre.setText(genre.getName());
-
     }
 
     private void getData() {
@@ -81,14 +83,12 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
     public void onGenresReceive(ArrayList<Genre> genres) {
 
     }
-
     @Override
     public void onTracksByGenre(ArrayList<Track> tracks) {
         mTracks = (ArrayList) tracks;
         TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks);
         mTracksView.setAdapter(adapter);
     }
-
     @Override
     public void onFailure(Throwable throwable) {
 
@@ -106,10 +106,37 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
     public void onTrackSelected(int index) {
         callback.updateTrack(mTracks, index);
     }
-
     @Override
     public void onTrackLike(int index) {
-
+        TrackManager.getInstance(getContext()).likeTrack(mTracks.get(index).getId(), this);
     }
 
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   TrackCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void onTracksReceived(List<Track> tracks) {
+
+    }
+    @Override
+    public void onNoTracks(Throwable throwable) {
+
+    }
+    @Override
+    public void onPersonalTracksReceived(List<Track> tracks) {
+
+    }
+    @Override
+    public void onUserTracksReceived(List<Track> tracks) {
+
+    }
+    @Override
+    public void onCreateTrack() {
+
+    }
+    @Override
+    public void onLikeSuccess(Track track) {
+
+    }
 }

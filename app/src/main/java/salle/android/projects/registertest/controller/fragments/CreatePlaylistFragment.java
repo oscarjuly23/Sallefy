@@ -65,6 +65,10 @@ public class CreatePlaylistFragment extends Fragment implements PlaylistCallback
         });
     }
 
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   PlaylistCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
     @Override
     public void onShowPlaylist(List<Playlist> playlists) {
 
@@ -73,19 +77,16 @@ public class CreatePlaylistFragment extends Fragment implements PlaylistCallback
     public void onShowPlaylistFailure(Throwable throwable) {
 
     }
-
     @Override
     public void onCreateSuccess(Playlist playlist) {
         Toast.makeText(getContext(), "Created " + playlist.getName() + " playlist", Toast.LENGTH_LONG).show();
         edNamePlaylist.setText("");
         edDescPlaylist.setText("");
     }
-
     @Override
     public void onCreateFailed(Throwable throwable) {
         Toast.makeText(getContext(), "Failed to create", Toast.LENGTH_LONG).show();
     }
-
     @Override
     public void onUpdateSucces(Playlist playlist) {
 

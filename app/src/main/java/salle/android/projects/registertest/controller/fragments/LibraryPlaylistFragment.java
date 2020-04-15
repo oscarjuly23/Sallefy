@@ -100,15 +100,15 @@ public class LibraryPlaylistFragment extends Fragment implements FragmentCallbac
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-
-    /**********************************************************************************************
-     *   *   *   *   *   *   *   *   FragmentCallback   *   *   *   *   *   *   *   *   *
-     **********************************************************************************************/
-
     @Override
     public void updateTrack(ArrayList<Track> mTracks, int index) {
 
     }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   MeCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
     @Override
     public void myPlaylistsReceived(List<Playlist> playlists) {
         mPlaylist = (ArrayList) playlists;
@@ -150,7 +150,6 @@ public class LibraryPlaylistFragment extends Fragment implements FragmentCallbac
         fragment = PlaylistFragment.getInstance(playlist);
         onChangeFragment(fragment);
     }
-
     @Override
     public void onPlaylistClick(int index) {
 

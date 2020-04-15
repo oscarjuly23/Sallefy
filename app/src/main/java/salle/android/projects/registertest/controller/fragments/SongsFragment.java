@@ -93,7 +93,6 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
         TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks);
         mRecyclerView.setAdapter(adapter);
     }
-
     @Override
     public void onNoTracks(Throwable throwable) {
 
@@ -110,28 +109,27 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     public void onCreateTrack() {
 
     }
-
     @Override
     public void onLikeSuccess(Track track) {
 
     }
-
     @Override
     public void onFailure(Throwable throwable) {
 
     }
 
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   TrackListCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
     @Override
     public void onTrackSelected(Track track) {
 
     }
-
     @Override
     public void onTrackSelected(int index) {
-        System.out.println("Index song: " + index);
         callback.updateTrack(mTracks, index);
     }
-
     @Override
     public void onTrackLike(int index) {
         TrackManager.getInstance(getContext()).likeTrack(mTracks.get(index).getId(),this);

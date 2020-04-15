@@ -139,12 +139,10 @@ public class AddSongFragment extends Fragment implements GenreCallback, TrackCal
             mFilename.setText(mFileUri.toString());
         }
     }
-
     @Override
     public void onPause() {
         super.onPause();
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -161,7 +159,6 @@ public class AddSongFragment extends Fragment implements GenreCallback, TrackCal
         ArrayAdapter<String> adapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, mGenres);
         mSpinner.setAdapter(adapter);
     }
-
     @Override
     public void onTracksByGenre(ArrayList<Track> tracks) {
 
@@ -191,7 +188,6 @@ public class AddSongFragment extends Fragment implements GenreCallback, TrackCal
     public void onUserTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void onCreateTrack() {
         StateDialog.getInstance(getContext()).showStateDialog(true);
@@ -207,7 +203,6 @@ public class AddSongFragment extends Fragment implements GenreCallback, TrackCal
         });
         watchDialog.start();
     }
-
     @Override
     public void onLikeSuccess(Track track) {
 

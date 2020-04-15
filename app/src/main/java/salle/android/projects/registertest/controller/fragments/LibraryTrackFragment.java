@@ -107,7 +107,6 @@ public class LibraryTrackFragment extends Fragment implements FragmentCallback, 
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-
     @Override
     public void updateTrack(ArrayList<Track> mTracks, int index) {
 
@@ -125,14 +124,12 @@ public class LibraryTrackFragment extends Fragment implements FragmentCallback, 
     public void playlistsFollowingReceived(List<Playlist> playlists) {
 
     }
-
     @Override
     public void myTracksReceived(List<Track> tracks) {
         mTracks = (ArrayList) tracks;
         TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks);
         mRecyclerView.setAdapter(adapter);
     }
-
     @Override
     public void tracksLikedReceived(List<Track> tracks) {
 
