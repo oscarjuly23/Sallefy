@@ -60,10 +60,8 @@ public class UserManager {
         call.enqueue(new Callback<UserToken>() {
             @Override
             public void onResponse(Call<UserToken> call, Response<UserToken> response) {
-
                 int code = response.code();
                 UserToken userToken = response.body();
-
                 if (response.isSuccessful()) {
                     userCallback.onLoginSuccess(userToken);
                 } else {

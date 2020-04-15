@@ -97,16 +97,13 @@ public class SongActivity extends AppCompatActivity implements TrackCallback, Pl
     public void onCreateTrack() {
 
     }
-
     @Override
     public void onLikeSuccess(Track track) {
 
     }
-
     @Override
     public void onFailure(Throwable throwable) {
         Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG); }
-
     @Override
     public void onShowPlaylist(List<Playlist> playlists) {
         String Name_Playlist = etNamePl.getText().toString();
@@ -121,7 +118,6 @@ public class SongActivity extends AppCompatActivity implements TrackCallback, Pl
         }
         geTrackData();
     }
-
     @Override
     public void onShowPlaylistFailure(Throwable throwable) {
 
@@ -134,11 +130,9 @@ public class SongActivity extends AppCompatActivity implements TrackCallback, Pl
     public void onCreateFailed(Throwable throwable) {
 
     }
-
     @Override
     public void onUpdateSucces(Playlist playlist) {
         Toast.makeText(this, "Song " + etNameTrack.getText().toString()+ " Added to  Playlist" + etNamePl.getText().toString(), Toast.LENGTH_LONG).show(); }
-
     @Override
     public void onFollowSucces(Playlist playlist) {
 

@@ -62,23 +62,19 @@ public class RegisterActivity extends AppCompatActivity implements UserCallback 
                 .setUserToken(userToken);
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent); }
-
     @Override
     public void onLoginFailure(Throwable throwable) {
         Session.getInstance(getApplicationContext())
                 .setUserRegister(null); }
-
     @Override
     public void onRegisterSuccess() {
         UserRegister userData = Session.getInstance(getApplicationContext()).getUserRegister();
         doLogin(userData.getLogin(), userData.getPassword()); }
-
     @Override
     public void onRegisterFailure(Throwable throwable) {
         Session.getInstance(getApplicationContext())
                 .setUserRegister(null);
         Toast.makeText(getApplicationContext(), "Register failed " + throwable.getMessage(), Toast.LENGTH_LONG).show(); }
-
     @Override
     public void onUserInfoReceived(User userData) {
 

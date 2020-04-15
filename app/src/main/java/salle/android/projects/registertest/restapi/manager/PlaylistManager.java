@@ -74,7 +74,7 @@ public class PlaylistManager {
 
     public synchronized void createPlaylist (Playlist playlist, final PlaylistCallback callback) {
         UserToken userToken = Session.getInstance(mContext).getUserToken();
-        Call<Playlist> call = mService.createPlaylist(playlist, "Bearer " +  userToken.getIdToken());
+        Call<Playlist> call = mService.createPlaylist(playlist, "Bearer " + userToken.getIdToken());
         call.enqueue(new Callback<Playlist>() {
             @Override
             public void onResponse(Call<Playlist> call, Response<Playlist> response) {
@@ -82,7 +82,8 @@ public class PlaylistManager {
                 if (response.isSuccessful()) {
                     callback.onCreateSuccess(response.body());
                 } else {
-                    callback.onCreateFailed(new Throwable(response.errorBody().toString()));
+                    Log.d(TAG, "Error " + code);
+                    callback.onCreateFailed(new Throwable("ERROR " + code +", " + response.errorBody().toString()));
                 }
             }
 

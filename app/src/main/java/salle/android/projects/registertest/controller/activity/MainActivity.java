@@ -367,7 +367,6 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
     public void onChangeFragment(Fragment fragment) {
         replaceFragment(fragment);
     }
-
     @Override
     public void updateTrack(ArrayList<Track> mTracks, int index) {
         this.mTracks = mTracks;

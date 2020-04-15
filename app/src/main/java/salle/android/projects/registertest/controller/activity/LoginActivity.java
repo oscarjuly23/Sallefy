@@ -48,7 +48,6 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
 
             @Override
             public void onClick(View v) {
-                System.out.println("Click de Login");
                 doLogin(etLogin.getText().toString(), etPassword.getText().toString());
             }
         });
@@ -65,12 +64,10 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
     @Override
     public void onLoginFailure(Throwable throwable) {
         Toast.makeText(getApplicationContext(), "Login failed " + throwable.getMessage(), Toast.LENGTH_LONG).show();
     }
-
     @Override
     public void onRegisterSuccess() {
 

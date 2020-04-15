@@ -83,7 +83,6 @@ public class MostrarTracksDePlaylistActivity extends AppCompatActivity implement
     @Override
     public void onShowPlaylistFailure(Throwable throwable) {
         Toast.makeText(getApplicationContext(), "Call failed!", Toast.LENGTH_LONG); }
-
     @Override
     public void onCreateSuccess(Playlist playlist) {
 
@@ -104,11 +103,9 @@ public class MostrarTracksDePlaylistActivity extends AppCompatActivity implement
     public void getIsFollowed(Playlist playlist) {
 
     }
-
     @Override
     public void onFailure(Throwable throwable) {
         Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_LONG); }
-
     @Override
     public void onTracksReceived(List<Track> tracks) {
 
@@ -129,7 +126,6 @@ public class MostrarTracksDePlaylistActivity extends AppCompatActivity implement
     public void onCreateTrack() {
 
     }
-
     @Override
     public void onLikeSuccess(Track track) {
 

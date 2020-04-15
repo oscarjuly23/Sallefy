@@ -44,15 +44,12 @@ public class ListActivity extends AppCompatActivity implements TrackCallback {
         }
         updateList(res.toString());
     }
-
     @Override
     public void onNoTracks(Throwable throwable) {
         Toast.makeText(getApplicationContext(), "Call failed! " + throwable.getMessage(), Toast.LENGTH_LONG).show();
     }
-
     @Override
     public void onPersonalTracksReceived(List<Track> tracks) {
-
     }
     @Override
     public void onUserTracksReceived(List<Track> tracks) {
@@ -62,12 +59,10 @@ public class ListActivity extends AppCompatActivity implements TrackCallback {
     public void onCreateTrack() {
 
     }
-
     @Override
     public void onLikeSuccess(Track track) {
 
     }
-
     @Override
     public void onFailure(Throwable throwable) {
         Toast.makeText(getApplicationContext(), "Failure" + throwable.getMessage(), Toast.LENGTH_LONG).show();

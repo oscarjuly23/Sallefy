@@ -57,10 +57,14 @@ public class CreatePlaylistFragment extends Fragment implements PlaylistCallback
             public void onClick(View view) {
                 String name = edNamePlaylist.getText().toString();
                 String desc = edDescPlaylist.getText().toString();
-                Playlist playlist = new Playlist(name);
-                playlist.setDescription(desc);
                 PlaylistManager manager = new PlaylistManager(getActivity());
-                manager.createPlaylist(playlist, CreatePlaylistFragment.this);
+                if  (!name.isEmpty() && !desc.isEmpty()) {
+                    Playlist playlist = new Playlist(name);
+                    playlist.setDescription(desc);
+                    manager.createPlaylist(playlist, CreatePlaylistFragment.this);
+                } else {
+                    Toast.makeText(getContext(), "Failed to create. Name and Description can't be NULL", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
