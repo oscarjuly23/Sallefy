@@ -23,9 +23,11 @@ import salle.android.projects.registertest.controller.callbacks.TrackListCallbac
 import salle.android.projects.registertest.model.Playlist;
 import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.restapi.callback.MeCallback;
+import salle.android.projects.registertest.restapi.callback.TrackCallback;
 import salle.android.projects.registertest.restapi.manager.MeManager;
+import salle.android.projects.registertest.restapi.manager.TrackManager;
 
-public class PerfilTrackFragment extends Fragment implements FragmentCallback, MeCallback, TrackListCallback {
+public class PerfilTrackFragment extends Fragment implements FragmentCallback, MeCallback, TrackListCallback, TrackCallback {
 
     public static final String TAG = PerfilTrackFragment.class.getName();
 
@@ -150,6 +152,35 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
     }
     @Override
     public void onTrackLike(int index) {
+        TrackManager.getInstance(getContext()).likeTrack(mTracks.get(index).getId(),this);
+    }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   TrackCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void onTracksReceived(List<Track> tracks) {
+
+    }
+    @Override
+    public void onNoTracks(Throwable throwable) {
+
+    }
+    @Override
+    public void onPersonalTracksReceived(List<Track> tracks) {
+
+    }
+    @Override
+    public void onUserTracksReceived(List<Track> tracks) {
+
+    }
+    @Override
+    public void onCreateTrack() {
+
+    }
+    @Override
+    public void onLikeSuccess(Track track) {
 
     }
 }
