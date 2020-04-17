@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.activity.MainActivity"/>
+        <activity android:name=".controller.activity.MainActivity" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".controller.activity.RegisterActivity"/>
         <activity android:name=".controller.fragments.CreatePlaylistFragment"/>
         <activity android:name=".controller.activity.SongActivity"/>
