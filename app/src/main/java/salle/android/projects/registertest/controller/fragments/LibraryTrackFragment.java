@@ -152,8 +152,11 @@ public class LibraryTrackFragment extends Fragment implements FragmentCallback, 
      **********************************************************************************************/
 
     @Override
-    public void onTrackSelected(Track track) {
-
+    public void onTrackSelected(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
     @Override
     public void onTrackSelected(int index) {

@@ -28,7 +28,7 @@ import salle.android.projects.registertest.controller.fragments.AddSongToPlaylis
 import salle.android.projects.registertest.controller.fragments.PlaylistFragment;
 import salle.android.projects.registertest.model.Track;
 
-public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.ViewHolder> implements FragmentCallback {
+public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.ViewHolder> {
 
     private static final String TAG = "TrackListAdapter";
     private ArrayList<Track> mTracks;
@@ -73,9 +73,9 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
         holder.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment myFragment = null;
-                myFragment = AddSongToPlaylistFragment.getInstance(mTracks.get(position));
-                onChangeFragment(myFragment);
+                Fragment fragment = null;
+                fragment = AddSongToPlaylistFragment.getInstance(mTracks.get(position));
+                mCallback.onTrackSelected(fragment);
             }
         });
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
@@ -123,21 +123,5 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
             likeButton = (LikeButton) itemView.findViewById(R.id.heart_button);
             imageButton = (ImageButton) itemView.findViewById(R.id.add_song_to_playlist);
         }
-    }
-
-    /**********************************************************************************************
-     *   *   *   *   *   *   *   *   FragmentCallback   *   *   *   *   *   *   *   *   *
-     **********************************************************************************************/
-
-    @Override
-    public void updateTrack(ArrayList<Track> mTracks, int index) {
-    }
-
-    @Override
-    public void onChangeFragment(Fragment fragment) {
-/*        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();*/
     }
 }

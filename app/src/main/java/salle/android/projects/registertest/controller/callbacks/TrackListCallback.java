@@ -1,9 +1,9 @@
 package salle.android.projects.registertest.controller.callbacks;
 
-import salle.android.projects.registertest.model.Track;
+import androidx.fragment.app.Fragment;
 
 public interface TrackListCallback {
-    void onTrackSelected(Track track);
+    void onTrackSelected(Fragment fragment);
     void onTrackSelected(int index);
     void onTrackLike(int index);
 }
