@@ -58,7 +58,7 @@ public class CreatePlaylistFragment extends Fragment implements PlaylistCallback
                 String name = edNamePlaylist.getText().toString();
                 String desc = edDescPlaylist.getText().toString();
                 PlaylistManager manager = new PlaylistManager(getActivity());
-                if  (!name.isEmpty() && !desc.isEmpty()) {
+                if  (!name.isEmpty()) {
                     Playlist playlist = new Playlist(name);
                     playlist.setDescription(desc);
                     manager.createPlaylist(playlist, CreatePlaylistFragment.this);
