@@ -24,12 +24,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.activity.MainActivity"/>
-        <activity android:name=".controller.activity.ListActivity"/>
-        <activity android:name=".controller.activity.AdvancedListActivity"/>
         <activity android:name=".controller.activity.RegisterActivity"/>
         <activity android:name=".controller.fragments.CreatePlaylistFragment"/>
         <activity android:name=".controller.activity.SongActivity"/>
-        <activity android:name=".controller.activity.MostrarTracksDePlaylistActivity"/>
         <activity android:name=".controller.fragments.CreateSongFragment"/>
         <service
             android:name="salle.android.projects.registertest.controller.music.MusicService"

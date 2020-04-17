@@ -5,11 +5,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -18,16 +22,20 @@ import com.like.LikeButton;
 import java.util.ArrayList;
 
 import salle.android.projects.registertest.R;
+import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
 import salle.android.projects.registertest.controller.callbacks.TrackListCallback;
+import salle.android.projects.registertest.controller.fragments.AddSongToPlaylistFragment;
+import salle.android.projects.registertest.controller.fragments.PlaylistFragment;
 import salle.android.projects.registertest.model.Track;
 
-public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.ViewHolder> {
+public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.ViewHolder> implements FragmentCallback {
 
     private static final String TAG = "TrackListAdapter";
     private ArrayList<Track> mTracks;
     private Context mContext;
     private TrackListCallback mCallback;
     private int NUM_VIEWHOLDERS = 0;
+
 
     public TrackListAdapter(TrackListCallback callback, Context context, ArrayList<Track> tracks ) {
         mTracks = tracks;
@@ -62,6 +70,14 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
             }
         });
 
+        holder.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment myFragment = null;
+                myFragment = AddSongToPlaylistFragment.getInstance(mTracks.get(position));
+                onChangeFragment(myFragment);
+            }
+        });
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,13 +105,14 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
 
+    public class ViewHolder extends RecyclerView.ViewHolder {
         LinearLayout mLayout;
         TextView tvTitle;
         TextView tvAuthor;
         ImageView ivPicture;
         LikeButton likeButton;
+        ImageButton imageButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -104,6 +121,23 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
             tvAuthor = (TextView) itemView.findViewById(R.id.track_author);
             ivPicture = (ImageView) itemView.findViewById(R.id.track_img);
             likeButton = (LikeButton) itemView.findViewById(R.id.heart_button);
+            imageButton = (ImageButton) itemView.findViewById(R.id.add_song_to_playlist);
         }
+    }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   FragmentCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void updateTrack(ArrayList<Track> mTracks, int index) {
+    }
+
+    @Override
+    public void onChangeFragment(Fragment fragment) {
+/*        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();*/
     }
 }
