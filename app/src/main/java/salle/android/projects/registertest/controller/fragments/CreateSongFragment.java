@@ -31,9 +31,9 @@ import salle.android.projects.registertest.model.Genre;
 import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.utils.Constants;
 
-public class AddSongFragment extends Fragment implements GenreCallback, TrackCallback {
+public class CreateSongFragment extends Fragment implements GenreCallback, TrackCallback {
 
-    public static final String TAG = AddSongFragment.class.getName();
+    public static final String TAG = CreateSongFragment.class.getName();
 
     private EditText etTitle;
     private Spinner mSpinner;
@@ -46,11 +46,11 @@ public class AddSongFragment extends Fragment implements GenreCallback, TrackCal
 
     private Context mContext;
 
-    public AddSongFragment() {
+    public CreateSongFragment() {
     }
 
-    public static AddSongFragment getInstance(){
-        return new AddSongFragment();
+    public static CreateSongFragment getInstance(){
+        return new CreateSongFragment();
     }
 
 

@@ -30,7 +30,7 @@
         <activity android:name=".controller.fragments.CreatePlaylistFragment"/>
         <activity android:name=".controller.activity.SongActivity"/>
         <activity android:name=".controller.activity.MostrarTracksDePlaylistActivity"/>
-        <activity android:name=".controller.fragments.AddSongFragment"/>
+        <activity android:name=".controller.fragments.CreateSongFragment"/>
         <service
             android:name="salle.android.projects.registertest.controller.music.MusicService"
             android:enabled="true"

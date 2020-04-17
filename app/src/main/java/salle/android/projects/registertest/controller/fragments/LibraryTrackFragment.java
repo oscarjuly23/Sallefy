@@ -72,7 +72,7 @@ public class LibraryTrackFragment extends Fragment implements FragmentCallback, 
             @Override
             public void onClick(View view) {
                 Fragment fragment = null;
-                fragment = AddSongFragment.getInstance();
+                fragment = CreateSongFragment.getInstance();
                 onChangeFragment(fragment);
             }
         });

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.activity.MainActivity2">
+    tools:context=".controller.activity.MainActivity">
 
 
     <FrameLayout
@@ -121,5 +121,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout"
         app:menu="@menu/nav_items" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
