@@ -59,7 +59,7 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
         Log.d(TAG, "onBindViewHolder: called. viewHolder hashcode: " + holder.hashCode());
 
         if (mTracks.get(position).isLiked()){
-            holder.likeButton.onClickAnimation(holder.itemView);
+            holder.likeButton.setLiked(true);
         }
 
         holder.likeButton.setOnClickListener(new View.OnClickListener() {
