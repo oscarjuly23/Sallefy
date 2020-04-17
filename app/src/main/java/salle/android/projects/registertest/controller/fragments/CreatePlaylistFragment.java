@@ -63,7 +63,7 @@ public class CreatePlaylistFragment extends Fragment implements PlaylistCallback
                     playlist.setDescription(desc);
                     manager.createPlaylist(playlist, CreatePlaylistFragment.this);
                 } else {
-                    Toast.makeText(getContext(), "Failed to create. Name and Description can't be NULL", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Failed to create. Name can't be NULL", Toast.LENGTH_LONG).show();
                 }
             }
         });
