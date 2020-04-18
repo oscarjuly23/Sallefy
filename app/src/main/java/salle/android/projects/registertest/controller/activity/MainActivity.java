@@ -227,14 +227,12 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
             updateSeekBar();
             btnPlayStop.setImageResource(R.drawable.ic_pause);
             btnPlayStop.setTag(STOP_VIEW);
-            Toast.makeText(getApplicationContext(), "Playing Audio", Toast.LENGTH_SHORT).show();
         }
 
         private void pauseAudio() {
             if (mBoundService.isPlaying()) { mBoundService.togglePlayer(); }
             btnPlayStop.setImageResource(R.drawable.ic_play);
             btnPlayStop.setTag(PLAY_VIEW);
-            Toast.makeText(getApplicationContext(), "Pausing Audio", Toast.LENGTH_SHORT).show();
         }
 
         public void updateSeekBar() {
