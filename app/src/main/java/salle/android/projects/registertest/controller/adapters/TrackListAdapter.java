@@ -34,13 +34,15 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
     private ArrayList<Track> mTracks;
     private Context mContext;
     private TrackListCallback mCallback;
+    private Fragment backfragment;
     private int NUM_VIEWHOLDERS = 0;
 
 
-    public TrackListAdapter(TrackListCallback callback, Context context, ArrayList<Track> tracks ) {
+    public TrackListAdapter(TrackListCallback callback, Context context, ArrayList<Track> tracks, Fragment fragment ) {
         mTracks = tracks;
         mContext = context;
         mCallback = callback;
+        backfragment = fragment;
     }
 
     @NonNull
@@ -74,7 +76,7 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
             @Override
             public void onClick(View v) {
                 Fragment fragment = null;
-                fragment = AddSongToPlaylistFragment.getInstance(mTracks.get(position));
+                fragment = AddSongToPlaylistFragment.getInstance(mTracks.get(position), backfragment);
                 mCallback.onTrackSelected(fragment);
             }
         });

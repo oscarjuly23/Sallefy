@@ -78,7 +78,7 @@ public class LibraryTrackFragment extends Fragment implements FragmentCallback, 
         });
         mRecyclerView = (RecyclerView) v.findViewById(R.id.dynamic_recyclerView_tracks);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), null);
+        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), null, this);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
     }
@@ -127,24 +127,20 @@ public class LibraryTrackFragment extends Fragment implements FragmentCallback, 
     @Override
     public void myTracksReceived(List<Track> tracks) {
         mTracks = (ArrayList) tracks;
-        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks);
+        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks, LibraryFragment.getInstance());
         mRecyclerView.setAdapter(adapter);
     }
     @Override
     public void tracksLikedReceived(List<Track> tracks) {
-
     }
     @Override
     public void noPlaylistsReceived(Throwable throwable) {
-
     }
     @Override
     public void noTracksReceived(Throwable throwable) {
-
     }
     @Override
     public void onFailure(Throwable throwable) {
-
     }
 
     /**********************************************************************************************

@@ -63,7 +63,7 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
     private void initViews(View v){
         mTracksView = (RecyclerView) v.findViewById(R.id.dynamic_recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        TrackListAdapter trackListAdapter = new TrackListAdapter( this, getActivity(), null);
+        TrackListAdapter trackListAdapter = new TrackListAdapter( this, getActivity(), null, null);
         mTracksView.setLayoutManager(manager);
         mTracksView.setAdapter(trackListAdapter);
 
@@ -87,7 +87,7 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
     @Override
     public void onTracksByGenre(ArrayList<Track> tracks) {
         mTracks = (ArrayList) tracks;
-        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks);
+        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks, this);
         mTracksView.setAdapter(adapter);
     }
     @Override

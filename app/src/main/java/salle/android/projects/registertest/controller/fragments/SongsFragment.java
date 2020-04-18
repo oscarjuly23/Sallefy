@@ -65,7 +65,7 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     private void initViews(View v) {
         mRecyclerView = (RecyclerView) v.findViewById(R.id.dynamic_recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), null);
+        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), null, null);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
     }
@@ -91,7 +91,7 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     @Override
     public void onTracksReceived(List<Track> tracks) {
         mTracks = (ArrayList) tracks;
-        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks);
+        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks, this);
         mRecyclerView.setAdapter(adapter);
     }
     @Override

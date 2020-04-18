@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,24 +27,28 @@ import salle.android.projects.registertest.restapi.callback.MeCallback;
 import salle.android.projects.registertest.restapi.callback.PlaylistCallback;
 import salle.android.projects.registertest.restapi.manager.MeManager;
 import salle.android.projects.registertest.restapi.manager.PlaylistManager;
-import salle.android.projects.registertest.restapi.manager.TrackManager;
 
-public class AddSongToPlaylistFragment extends Fragment implements PlaylistAdapterCallback, MeCallback {
+public class AddSongToPlaylistFragment extends Fragment implements PlaylistAdapterCallback, MeCallback, PlaylistCallback, FragmentCallback {
 
     public static final String TAG = AddSongToPlaylistFragment.class.getName();
 
     private RecyclerView mRecyclerView;
     private ArrayList<Playlist> mPlaylists;
+    private ArrayList<Track> mTracks;
+    private Playlist playlist;
+    private Fragment fragment;
     private int currentPlaylist = 0;
     private FragmentCallback callback;
     private Track track;
 
-    public AddSongToPlaylistFragment(Track track){
+
+    public AddSongToPlaylistFragment(Track track, Fragment fragment){
         this.track = track;
+        this.fragment = fragment;
     }
 
-    public static AddSongToPlaylistFragment getInstance(Track track) {
-        return new AddSongToPlaylistFragment(track);
+    public static AddSongToPlaylistFragment getInstance(Track track, Fragment fragment) {
+        return new AddSongToPlaylistFragment(track, fragment);
     }
 
     @Override
@@ -83,9 +88,10 @@ public class AddSongToPlaylistFragment extends Fragment implements PlaylistAdapt
         return currentPlaylist;
     }
 
-    public ArrayList<Playlist> getmPlaylists(){
-        return mPlaylists;
+    private void addTrackToPlaylist() {
+        PlaylistManager.getInstance(getContext()).addSong(playlist, this);
     }
+
 
     /**********************************************************************************************
      *   *   *   *   *   *   *   *   PlaylistAdapterCallback   *   *   *   *   *   *   *   *   *
@@ -93,9 +99,25 @@ public class AddSongToPlaylistFragment extends Fragment implements PlaylistAdapt
 
     @Override
     public void onPlaylistClick(Playlist playlist) {
-        Toast.makeText(getContext(), "OK " , Toast.LENGTH_LONG).show();
+        boolean existeix = false;
+        this.playlist = playlist;
+        mTracks = (ArrayList<Track>) playlist.getTracks();
+        for (int i = 0; i < playlist.getTracks().size(); i++) {
+            if (track.getId() == playlist.getTracks().get(i).getId()) {
+                existeix = true;
+                break;
+            }
+        }
+        if (!existeix) {
+            mTracks.add(track);
+            playlist.setTracks(mTracks);
+            addTrackToPlaylist();
+            Toast.makeText(getContext(), track.getName() + " added to " + playlist.getName() , Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getContext(), track.getName() + " already exists in " + playlist.getName() , Toast.LENGTH_LONG).show();
+        }
+        onChangeFragment(fragment);
     }
-
     @Override
     public void onPlaylistClick(int index) {
 
@@ -116,29 +138,71 @@ public class AddSongToPlaylistFragment extends Fragment implements PlaylistAdapt
     public void playlistsFollowingReceived(List<Playlist> playlists) {
 
     }
-
     @Override
     public void myTracksReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void tracksLikedReceived(List<Track> tracks) {
 
     }
-
     @Override
     public void noPlaylistsReceived(Throwable throwable) {
 
     }
-
     @Override
     public void noTracksReceived(Throwable throwable) {
 
     }
 
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   PlaylistCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
     @Override
     public void onFailure(Throwable throwable) {
+
+    }
+    @Override
+    public void onShowPlaylist(List<Playlist> playlists) {
+    }
+    @Override
+    public void onShowPlaylistFailure(Throwable throwable) {
+
+    }
+    @Override
+    public void onCreateSuccess(Playlist playlist) {
+    }
+    @Override
+    public void onCreateFailed(Throwable throwable) {
+
+    }
+    @Override
+    public void onUpdateSucces(Playlist playlist) {
+
+    }
+    @Override
+    public void onFollowSucces(Playlist playlist) {
+
+    }
+    @Override
+    public void getIsFollowed(Playlist playlist) {
+
+    }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   FragmentCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void onChangeFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+    @Override
+    public void updateTrack(ArrayList<Track> mTracks, int index) {
 
     }
 }

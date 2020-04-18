@@ -68,7 +68,7 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
     private void initViews(View v) {
         mRecyclerView = (RecyclerView) v.findViewById(R.id.dynamic_recyclerView_tracks);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), null);
+        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), null, null);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
     }
@@ -121,7 +121,7 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
     @Override
     public void tracksLikedReceived(List<Track> tracks) {
         mTracks = (ArrayList) tracks;
-        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks);
+        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks, PerfilFragment.getInstance());
         mRecyclerView.setAdapter(adapter);
     }
 

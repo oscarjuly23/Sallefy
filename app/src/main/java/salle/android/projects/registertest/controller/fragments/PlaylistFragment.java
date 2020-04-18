@@ -71,7 +71,7 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
     private void initViews(View v){
         mRecyclerView = v.findViewById(R.id.dynamic_recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), (ArrayList<Track>) playlist.getTracks());
+        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), (ArrayList<Track>) playlist.getTracks(), this);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
 
