@@ -2,7 +2,11 @@ package salle.android.projects.registertest.controller.fragments;
 
 import android.os.Bundle;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -14,8 +18,10 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.navigation.NavigationView;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
+import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +34,7 @@ import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.restapi.callback.TrackCallback;
 import salle.android.projects.registertest.restapi.manager.TrackManager;
 
-public class SongsFragment extends Fragment implements TrackListCallback, TrackCallback {
+public class SongsFragment extends Fragment implements TrackListCallback, TrackCallback, MaterialSearchBar.OnSearchActionListener {
 
     public static final String TAG = SongsFragment.class.getName();
 
@@ -36,7 +42,7 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     private ArrayList<Track> mTracks;
     private int currentTrack = 0;
     private FragmentCallback callback;
-
+    MaterialSearchBar searchBar;
 
     public static SongsFragment getInstance() {
         return new SongsFragment();
@@ -46,6 +52,7 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         this.callback = (FragmentCallback) getActivity();
+
     }
 
     @Nullable
@@ -63,6 +70,26 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     }
 
     private void initViews(View v) {
+        searchBar = v.findViewById(R.id.searchBar);
+        searchBar.setOnSearchActionListener(this);
+        Log.d("LOG_TAG", getClass().getSimpleName() + ": text " + searchBar.getText());
+        searchBar.setCardViewElevation(10);
+        searchBar.addTextChangeListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d("LOG_TAG", getClass().getSimpleName() + " text changed " + searchBar.getText());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         mRecyclerView = (RecyclerView) v.findViewById(R.id.dynamic_recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), null, null);
@@ -137,5 +164,29 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     @Override
     public void onTrackLike(int index) {
         TrackManager.getInstance(getContext()).likeTrack(mTracks.get(index).getId(),this);
+    }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   MaterialSearchBar.OnSearchActionListener   *   *   *   *   *
+     **********************************************************************************************/
+    @Override
+    public void onSearchStateChanged(boolean enabled) {
+
+    }
+
+    @Override
+    public void onSearchConfirmed(CharSequence text) {
+
+    }
+
+    @Override
+    public void onButtonClicked(int buttonCode) {
+        switch (buttonCode) {
+            case MaterialSearchBar.BUTTON_SPEECH:
+                break;
+            case MaterialSearchBar.BUTTON_BACK:
+                searchBar.closeSearch();
+                break;
+        }
     }
 }
