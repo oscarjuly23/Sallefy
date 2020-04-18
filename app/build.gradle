@@ -26,6 +26,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':likebutton')
+    implementation project(':library')
     implementation 'com.jakewharton:butterknife:8.8.1'
     implementation 'com.mikepenz:iconics-core:2.9.1@aar'
     testImplementation 'junit:junit:4.12'
@@ -54,8 +55,5 @@ dependencies {
 
     //MultiWaveHeader
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
-
-
-
 
 }

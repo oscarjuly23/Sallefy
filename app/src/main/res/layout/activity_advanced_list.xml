@@ -19,23 +19,25 @@
         app:mwhCloseColor="@color/colorSecondary"
         app:mwhStartColor="@color/colorPrimary" />
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/fragmentTitle"
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:id="@+id/searchBar"
+        style="@style/MaterialSearchBarLight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/fragment_songs"
-        android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="@+id/multiWaveHeader" />
+        android:layout_marginTop="50dp"
+        android:layout_margin="8dp"
+        app:mt_navIconEnabled="true"
+        app:mt_placeholder="Search"
+        app:layout_constraintTop_toTopOf="@+id/multiWaveHeader"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dynamic_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/searchBar"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 
