@@ -6,10 +6,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,34 +16,45 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.navigation.NavigationView;
-import com.like.LikeButton;
-import com.like.OnLikeListener;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import salle.android.projects.registertest.R;
+import salle.android.projects.registertest.controller.adapters.PlaylistListAdapter;
 import salle.android.projects.registertest.controller.adapters.TrackListAdapter;
+import salle.android.projects.registertest.controller.adapters.UserListAdapter;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
+import salle.android.projects.registertest.controller.callbacks.PlaylistAdapterCallback;
 import salle.android.projects.registertest.controller.callbacks.TrackListCallback;
+import salle.android.projects.registertest.model.Playlist;
+import salle.android.projects.registertest.model.Search;
 import salle.android.projects.registertest.model.Track;
+import salle.android.projects.registertest.model.User;
+import salle.android.projects.registertest.restapi.callback.SearchCallback;
 import salle.android.projects.registertest.restapi.callback.TrackCallback;
+import salle.android.projects.registertest.restapi.manager.SearchManager;
 import salle.android.projects.registertest.restapi.manager.TrackManager;
 
-public class SongsFragment extends Fragment implements TrackListCallback, TrackCallback, MaterialSearchBar.OnSearchActionListener {
+public class SearchFragment extends Fragment implements TrackListCallback, TrackCallback, MaterialSearchBar.OnSearchActionListener, PlaylistAdapterCallback, SearchCallback {
 
-    public static final String TAG = SongsFragment.class.getName();
+    public static final String TAG = SearchFragment.class.getName();
 
-    private RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerViewTracks;
+    private RecyclerView mRecyclerViewPlaylists;
+    private RecyclerView mRecyclerViewUsers;
     private ArrayList<Track> mTracks;
     private int currentTrack = 0;
     private FragmentCallback callback;
+    private ArrayList<Playlist> mPlaylists;
+    private ArrayList<User> mUsers;
+
     MaterialSearchBar searchBar;
 
-    public static SongsFragment getInstance() {
-        return new SongsFragment();
+
+    public static SearchFragment getInstance() {
+        return new SearchFragment();
     }
 
     @Override
@@ -58,9 +67,8 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.activity_advanced_list, container, false);
+        View v =inflater.inflate(R.layout.fragment_search, container, false);
         initViews(v);
-        getData();
         return v;
     }
 
@@ -90,16 +98,30 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
             }
         });
 
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.dynamic_recyclerView);
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), null, null);
-        mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.setAdapter(adapter);
+        mRecyclerViewTracks = (RecyclerView) v.findViewById(R.id.tracks_recyclerview);
+        LinearLayoutManager managerTracls = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+        TrackListAdapter adapterTracks = new TrackListAdapter(this, getActivity(), null, null);
+        mRecyclerViewTracks.setLayoutManager(managerTracls);
+        mRecyclerViewTracks.setAdapter(adapterTracks);
+
+        mRecyclerViewPlaylists = (RecyclerView) v.findViewById(R.id.playlist_recyclerview);
+        LinearLayoutManager managerPlaylist = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+        PlaylistListAdapter adapterPlaylist = new PlaylistListAdapter(null, getActivity(), this, R.layout.playlist_item);
+        mRecyclerViewPlaylists.setLayoutManager(managerPlaylist);
+        mRecyclerViewPlaylists.setAdapter(adapterPlaylist);
+
+        mRecyclerViewUsers = (RecyclerView) v.findViewById(R.id.usuarios_recyclerview);
+        LinearLayoutManager managerUser = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+        UserListAdapter adapterUser = new UserListAdapter(null, getActivity(),  R.layout.playlist_item);
+        mRecyclerViewUsers.setLayoutManager(managerUser);
+        mRecyclerViewUsers.setAdapter(adapterUser);
     }
 
-    private void getData() {
-        TrackManager.getInstance(getActivity()).getAllTracks(this);
+    private void getData(CharSequence text) {
+        SearchManager.getInstance(getContext()).getMySearch(text.toString(),this);
         mTracks = new ArrayList<>();
+        mPlaylists = new ArrayList<>();
+        mUsers = new ArrayList<>();
     }
 
     public int getIndex(){
@@ -117,9 +139,7 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
 
     @Override
     public void onTracksReceived(List<Track> tracks) {
-        mTracks = (ArrayList) tracks;
-        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks, this);
-        mRecyclerView.setAdapter(adapter);
+
     }
     @Override
     public void onNoTracks(Throwable throwable) {
@@ -176,7 +196,7 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
 
     @Override
     public void onSearchConfirmed(CharSequence text) {
-
+        getData(text);
     }
 
     @Override
@@ -188,5 +208,45 @@ public class SongsFragment extends Fragment implements TrackListCallback, TrackC
                 searchBar.closeSearch();
                 break;
         }
+    }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   PlaylistAdapterCallback   *   *   *   *   *    *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void onPlaylistClick(Playlist playlist) {
+
+    }
+
+    @Override
+    public void onPlaylistClick(int index) {
+
+    }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   SearchAdapterCallback   *   *   *   *   *    *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void getSearchs(Search search) {
+        mTracks = (ArrayList<Track>) search.getTracks();
+        mPlaylists = (ArrayList<Playlist>) search.getPlaylits();
+        mUsers = (ArrayList<User>) search.getUsers();
+
+        TrackListAdapter adapterTrack = new TrackListAdapter(this, getActivity(), mTracks, null);
+        mRecyclerViewTracks.setAdapter(adapterTrack);
+
+        PlaylistListAdapter playlistListAdapter = new PlaylistListAdapter(mPlaylists, getActivity(), this, R.layout.playlist_item);
+        mRecyclerViewPlaylists.setAdapter(playlistListAdapter);
+
+        UserListAdapter userListAdapter = new UserListAdapter(mUsers, getActivity(), R.layout.playlist_item);
+        mRecyclerViewUsers.setAdapter(userListAdapter);
+
+    }
+
+    @Override
+    public void getSearchsFailed(Throwable throwable) {
+
     }
 }

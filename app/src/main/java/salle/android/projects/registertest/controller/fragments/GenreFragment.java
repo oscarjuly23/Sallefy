@@ -54,7 +54,7 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.activity_advanced_list, container, false);
+        View v =inflater.inflate(R.layout.fragment_search, container, false);
         initViews(v);
         getData();
         return v;

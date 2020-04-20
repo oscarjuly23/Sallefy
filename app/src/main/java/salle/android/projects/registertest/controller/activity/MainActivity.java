@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -34,7 +33,7 @@ import salle.android.projects.registertest.controller.callbacks.FragmentCallback
 import salle.android.projects.registertest.controller.fragments.HomeFragment;
 import salle.android.projects.registertest.controller.fragments.LibraryFragment;
 import salle.android.projects.registertest.controller.fragments.PerfilFragment;
-import salle.android.projects.registertest.controller.fragments.SongsFragment;
+import salle.android.projects.registertest.controller.fragments.SearchFragment;
 import salle.android.projects.registertest.controller.music.MusicCallback;
 import salle.android.projects.registertest.controller.music.MusicService;
 import salle.android.projects.registertest.model.Track;
@@ -202,7 +201,7 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
                         fragment = HomeFragment.getInstance();
                         break;
                     case R.id.action_search:
-                        fragment = SongsFragment.getInstance();
+                        fragment = SearchFragment.getInstance();
                         break;
                     case R.id.action_library:
                         fragment = LibraryFragment.getInstance();
@@ -317,8 +316,8 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
         if (fragment instanceof HomeFragment) {
              TAG = HomeFragment.TAG;
         } else {
-            if (fragment instanceof SongsFragment) {
-                 TAG = SongsFragment.TAG;
+            if (fragment instanceof SearchFragment) {
+                 TAG = SearchFragment.TAG;
             } else {
                 if (fragment instanceof LibraryFragment) {
                     return LibraryFragment.TAG;

@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextWatcher;
+import android.text.method.KeyListener;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -1106,4 +1107,9 @@ public class MaterialSearchBar extends FrameLayout implements View.OnClickListen
             out.writeInt(maxSuggestions);
         }
     }
+
+    public void addKeyListener(KeyListener keyListener){
+        searchEdit.setKeyListener(keyListener);
+    }
+
 }

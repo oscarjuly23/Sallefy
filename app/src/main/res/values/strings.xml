@@ -88,4 +88,10 @@
 
     <string name="addSongToPlaylist">Añadir a Playlist</string>
 
+    <!-- FRAGMENT (SEARCH) -->
+    <string name="users">Usuarios</string>
+    <string name="playlists">Playlists</string>
+    <string name="tracks">Canciones</string>
+
+
 </resources>
