@@ -93,5 +93,8 @@
     <string name="playlists">Playlists</string>
     <string name="tracks">Canciones</string>
 
+    <!-- FRAGMENT (GENRE) -->
+    <string name="fragment_songs">Songs</string>
+
 
 </resources>

@@ -41,7 +41,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
         if (mUsers != null && mUsers.size() > 0) {
             holder.mLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -76,10 +76,10 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mLayout = itemView.findViewById(R.id.track_item_layout);
-            tvName = (TextView) itemView.findViewById(R.id.track_title);
-            tvLogin = (TextView) itemView.findViewById(R.id.track_author);
-            ivPicture = (ImageView) itemView.findViewById(R.id.track_img);
+            mLayout = itemView.findViewById(R.id.item_playlist_layout);
+            tvName = (TextView) itemView.findViewById(R.id.item_playlist_title);
+            tvLogin = (TextView) itemView.findViewById(R.id.item_playlist_author);
+            ivPicture = (ImageView) itemView.findViewById(R.id.item_playlist_photo);
         }
     }
 }

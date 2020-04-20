@@ -37,7 +37,7 @@ import salle.android.projects.registertest.restapi.callback.TrackCallback;
 import salle.android.projects.registertest.restapi.manager.SearchManager;
 import salle.android.projects.registertest.restapi.manager.TrackManager;
 
-public class SearchFragment extends Fragment implements TrackListCallback, TrackCallback, MaterialSearchBar.OnSearchActionListener, PlaylistAdapterCallback, SearchCallback {
+public class SearchFragment extends Fragment implements TrackListCallback, TrackCallback, MaterialSearchBar.OnSearchActionListener, PlaylistAdapterCallback, SearchCallback, FragmentCallback {
 
     public static final String TAG = SearchFragment.class.getName();
 
@@ -216,7 +216,9 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
 
     @Override
     public void onPlaylistClick(Playlist playlist) {
-
+        Fragment fragment = null;
+        fragment = PlaylistFragment.getInstance(playlist);
+        onChangeFragment(fragment);
     }
 
     @Override
@@ -247,6 +249,24 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
 
     @Override
     public void getSearchsFailed(Throwable throwable) {
+
+    }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   FragmentCallback   *   *   *   *   *    *   *   *   *
+     **********************************************************************************************/
+
+
+    @Override
+    public void onChangeFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void updateTrack(ArrayList<Track> mTracks, int index) {
 
     }
 }

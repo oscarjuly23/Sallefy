@@ -36,7 +36,8 @@
         android:layout_marginBottom="10dp"
         android:padding="10dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/searchBar">
+        app:layout_constraintTop_toBottomOf="@+id/searchBar"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,10 +48,8 @@
                 android:id="@+id/linearLayoutTracks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@id/linearLayoutPlaylist">
-
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
             <TextView
                     style="@style/settings_title"
@@ -70,10 +69,8 @@
                 android:id="@+id/linearLayoutPlaylist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutTracks"
-                app:layout_constraintBottom_toBottomOf="@id/linearLayoutUsers">
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
                 <TextView
                     style="@style/settings_title"
@@ -93,10 +90,8 @@
                 android:id="@+id/linearLayoutUsers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutPlaylist"
-                app:layout_constraintBottom_toBottomOf="parent">
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
                 <TextView
                     style="@style/settings_title"
@@ -111,7 +106,6 @@
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 
