@@ -44,12 +44,15 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/linearLayoutTracks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayoutPlaylist">
 
-                <TextView
+
+            <TextView
                     style="@style/settings_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -64,10 +67,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayoutPlaylist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutTracks"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayoutUsers">
 
                 <TextView
                     style="@style/settings_title"
@@ -84,10 +90,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayoutUsers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutPlaylist"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView
                     style="@style/settings_title"

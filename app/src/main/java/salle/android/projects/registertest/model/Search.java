@@ -10,8 +10,8 @@ public class Search implements Serializable {
 
     @SerializedName("tracks")
     private List<Track> tracks = null;
-    @SerializedName("playlits")
-    private List<Playlist> playlits = null;
+    @SerializedName("playlists")
+    private List<Playlist> playlists = null;
     @SerializedName("users")
     private List<User> users = null;
 
@@ -24,11 +24,11 @@ public class Search implements Serializable {
     }
 
     public List<Playlist> getPlaylits() {
-        return playlits;
+        return playlists;
     }
 
     public void setPlaylits(List<Playlist> playlits) {
-        this.playlits = playlits;
+        this.playlists = playlits;
     }
 
     public List<User> getUsers() {

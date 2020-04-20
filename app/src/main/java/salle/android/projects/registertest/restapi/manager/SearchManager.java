@@ -3,19 +3,15 @@ package salle.android.projects.registertest.restapi.manager;
 import android.content.Context;
 import android.util.Log;
 
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import salle.android.projects.registertest.model.Playlist;
 import salle.android.projects.registertest.model.Search;
 import salle.android.projects.registertest.model.UserToken;
-import salle.android.projects.registertest.restapi.callback.MeCallback;
 import salle.android.projects.registertest.restapi.callback.SearchCallback;
-import salle.android.projects.registertest.restapi.service.MeService;
 import salle.android.projects.registertest.restapi.service.SearchService;
 import salle.android.projects.registertest.utils.Constants;
 import salle.android.projects.registertest.utils.Session;
