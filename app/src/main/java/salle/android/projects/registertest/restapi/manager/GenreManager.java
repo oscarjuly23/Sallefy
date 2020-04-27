@@ -19,7 +19,7 @@ import salle.android.projects.registertest.model.UserToken;
 import salle.android.projects.registertest.utils.Constants;
 import salle.android.projects.registertest.utils.Session;
 
-public class GenreManager {
+public class GenreManager extends BaseManager{
 
     private static final String TAG = "genreManager";
     private static GenreManager sGenreManager;
@@ -35,20 +35,13 @@ public class GenreManager {
         return sGenreManager;
     }
 
-    private GenreManager(Context cntxt) {
-        mContext = cntxt;
-        mRetrofit = new Retrofit.Builder()
-                .baseUrl(Constants.NETWORK.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        mService = mRetrofit.create(GenreService.class);
+    private GenreManager(Context contxt) {
+        mContext = contxt;
+        mService = retrofit.create(GenreService.class);
     }
 
     public synchronized void getAllGenres(final GenreCallback genreCallback) {
-        UserToken userToken = Session.getInstance(mContext).getUserToken();
-
-        Call<List<Genre>> call = mService.getAllGenres("Bearer " + userToken.getIdToken());
+        Call<List<Genre>> call = mService.getAllGenres();
         call.enqueue(new Callback<List<Genre>>() {
             @Override
             public void onResponse(Call<List<Genre>> call, Response<List<Genre>> response) {
@@ -73,9 +66,8 @@ public class GenreManager {
     }
 
     public synchronized void getTracksByGenre(int genreId, final GenreCallback genreCallback) {
-        UserToken userToken = Session.getInstance(mContext).getUserToken();
 
-        Call<List<Track>> call = mService.getTracksByGenre( genreId, "Bearer " + userToken.getIdToken());
+        Call<List<Track>> call = mService.getTracksByGenre(genreId);
         call.enqueue(new Callback<List<Track>>() {
             @Override
             public void onResponse(Call<List<Track>> call, Response<List<Track>> response) {

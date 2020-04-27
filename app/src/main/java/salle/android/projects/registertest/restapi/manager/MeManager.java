@@ -18,7 +18,7 @@ import salle.android.projects.registertest.restapi.service.MeService;
 import salle.android.projects.registertest.utils.Constants;
 import salle.android.projects.registertest.utils.Session;
 
-public class MeManager {
+public class MeManager extends BaseManager{
     private static final String TAG = "MeManager";
     private Context mContext;
     private static MeManager sMeManager;
@@ -34,20 +34,12 @@ public class MeManager {
 
     public MeManager(Context context) {
         mContext = context;
-
-        mRetrofit = new Retrofit.Builder()
-                .baseUrl(Constants.NETWORK.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        mService = mRetrofit.create(MeService.class);
+        mService = retrofit.create(MeService.class);
     }
 
     /********************   SHOW MY PLAYLIST    ********************/
     public synchronized void getMyPlaylists(final MeCallback meCallback) {
-        UserToken userToken = Session.getInstance(mContext).getUserToken();
-
-        Call<List<Playlist>> call = mService.callMyPlaylists( "Bearer " + userToken.getIdToken());
+        Call<List<Playlist>> call = mService.callMyPlaylists();
         call.enqueue(new Callback<List<Playlist>>() {
             @Override
             public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
@@ -70,9 +62,7 @@ public class MeManager {
     /********************   SHOW MY PLAYLIST FOLLOWED    ********************/
 
     public synchronized void getMyPlaylistsFollowed(final MeCallback meCallback) {
-        UserToken userToken = Session.getInstance(mContext).getUserToken();
-
-        Call<List<Playlist>> call = mService.callPlaylistsFollowing( "Bearer " + userToken.getIdToken());
+        Call<List<Playlist>> call = mService.callPlaylistsFollowing();
         call.enqueue(new Callback<List<Playlist>>() {
             @Override
             public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
@@ -94,9 +84,7 @@ public class MeManager {
 
     /********************   SHOW MY TRACKS    ********************/
     public synchronized void getMyTracks(final MeCallback meCallback) {
-        UserToken userToken = Session.getInstance(mContext).getUserToken();
-
-        Call<List<Track>> call = mService.callMyTrakcs( "Bearer " + userToken.getIdToken());
+        Call<List<Track>> call = mService.callMyTrakcs();
         call.enqueue(new Callback<List<Track>>() {
             @Override
             public void onResponse(Call<List<Track>> call, Response<List<Track>> response) {
@@ -121,9 +109,7 @@ public class MeManager {
     /********************   SHOW MY TRACKS LIKED   ********************/
 
     public synchronized void getMyTracksLiked(final MeCallback meCallback) {
-        UserToken userToken = Session.getInstance(mContext).getUserToken();
-
-        Call<List<Track>> call = mService.callTracksLiked( "Bearer " + userToken.getIdToken());
+        Call<List<Track>> call = mService.callTracksLiked();
         call.enqueue(new Callback<List<Track>>() {
             @Override
             public void onResponse(Call<List<Track>> call, Response<List<Track>> response) {

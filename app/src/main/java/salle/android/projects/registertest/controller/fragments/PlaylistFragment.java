@@ -39,6 +39,7 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
 
     private ImageView imageView;
     private TextView tvName;
+    private TextView tvOwner;
     private Button btnFollow;
 
     private RecyclerView mRecyclerView;
@@ -82,6 +83,8 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
 
         tvName = v.findViewById(R.id.name_playlist);
         tvName.setText(playlist.getName());
+        tvOwner = v.findViewById(R.id.autor_playlist);
+        tvOwner.setText(playlist.getUser().getLogin());
 
         PlaylistManager.getInstance(getContext()).isFollowingPlaylist(playlist.getId(),this);
 

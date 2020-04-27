@@ -39,13 +39,8 @@ public class PerfilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         myFragment = inflater.inflate(R.layout.fragment_perfil, container, false);
-
-        //tvUser = myFragment.findViewById(R.id.textViewFragment);
-        //tvUser.setText("hola");
-
         viewPager = myFragment.findViewById(R.id.viewPager);
         tabLayout = myFragment.findViewById(R.id.tabLayout);
-
         return myFragment;
     }
 
@@ -81,7 +76,6 @@ public class PerfilFragment extends Fragment {
         CacnionesTitle.setSpan(new ForegroundColorSpan(Color.WHITE),0, CacnionesTitle.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         adapter.addFragment(new PerfilPlaylistFragment(), PlaylistsTitle);
         adapter.addFragment(new PerfilTrackFragment(), CacnionesTitle);
-
         viewPager.setAdapter(adapter);
     }
 }

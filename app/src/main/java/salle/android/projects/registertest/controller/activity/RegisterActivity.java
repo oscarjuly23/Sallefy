@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity implements UserCallback 
                 String login = etLogin.getText().toString();
                 String password = etPassword.getText().toString();
                 String email = etEmail.getText().toString();
-                Session.getInstance(getApplicationContext()).setUserRegister(new UserRegister(email, login, password));
+                Session.getInstance().setUserRegister(new UserRegister(email, login, password));
                 UserManager.getInstance(getApplicationContext()).registerAttempt(email, login, password, RegisterActivity.this);
             }
         });
@@ -58,21 +58,21 @@ public class RegisterActivity extends AppCompatActivity implements UserCallback 
 
     @Override
     public void onLoginSuccess(UserToken userToken) {
-        Session.getInstance(getApplicationContext())
+        Session.getInstance()
                 .setUserToken(userToken);
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent); }
     @Override
     public void onLoginFailure(Throwable throwable) {
-        Session.getInstance(getApplicationContext())
+        Session.getInstance()
                 .setUserRegister(null); }
     @Override
     public void onRegisterSuccess() {
-        UserRegister userData = Session.getInstance(getApplicationContext()).getUserRegister();
+        UserRegister userData = Session.getInstance().getUserRegister();
         doLogin(userData.getLogin(), userData.getPassword()); }
     @Override
     public void onRegisterFailure(Throwable throwable) {
-        Session.getInstance(getApplicationContext())
+        Session.getInstance()
                 .setUserRegister(null);
         Toast.makeText(getApplicationContext(), "Register failed " + throwable.getMessage(), Toast.LENGTH_LONG).show(); }
     @Override

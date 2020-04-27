@@ -23,7 +23,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/dynamic_recyclerView">
@@ -46,9 +46,18 @@
             android:gravity="center"
             android:text="Nombre"/>
 
+        <TextView
+            android:id="@+id/autor_playlist"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:text="Owner"/>
+
         <Button
             android:id="@+id/follow_playlist"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:background="@drawable/back_round_blue"

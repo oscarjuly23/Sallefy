@@ -284,7 +284,7 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
                             Manifest.permission.MODIFY_AUDIO_SETTINGS}, Constants.PERMISSIONS.MICROPHONE);
 
         } else {
-            Session.getInstance(this).setAudioEnabled(true);
+            Session.getInstance().setAudioEnabled(true);
         }
     }
 
@@ -337,7 +337,7 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
 
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Session.getInstance(this).setAudioEnabled(true);
+                Session.getInstance().setAudioEnabled(true);
             } else {
             }
             return;

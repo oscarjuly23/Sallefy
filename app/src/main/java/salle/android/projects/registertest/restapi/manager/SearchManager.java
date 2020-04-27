@@ -16,7 +16,7 @@ import salle.android.projects.registertest.restapi.service.SearchService;
 import salle.android.projects.registertest.utils.Constants;
 import salle.android.projects.registertest.utils.Session;
 
-public class SearchManager {
+public class SearchManager extends BaseManager{
 
     private static final String TAG = "SearchManager";
     private Context mContext;
@@ -33,20 +33,12 @@ public class SearchManager {
 
     public SearchManager(Context context) {
         mContext = context;
-
-        mRetrofit = new Retrofit.Builder()
-                .baseUrl(Constants.NETWORK.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        mService = mRetrofit.create(SearchService.class);
+        mService = retrofit.create(SearchService.class);
     }
 
     /********************   SHOW SEARCH    ********************/
     public synchronized void getMySearch(String keyword,final SearchCallback searchCallback) {
-        UserToken userToken = Session.getInstance(mContext).getUserToken();
-
-        Call<Search> call = mService.callSearch(keyword, "Bearer " + userToken.getIdToken());
+              Call<Search> call = mService.callSearch(keyword);
         call.enqueue(new Callback<Search>() {
             @Override
             public void onResponse(Call<Search> call, Response<Search> response) {

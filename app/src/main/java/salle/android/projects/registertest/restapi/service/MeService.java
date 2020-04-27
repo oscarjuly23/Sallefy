@@ -10,11 +10,11 @@ import salle.android.projects.registertest.model.Track;
 
 public interface MeService {
     @GET("me/playlists")
-    Call<List<Playlist>> callMyPlaylists(@Header("Authorization") String token);
+    Call<List<Playlist>> callMyPlaylists();
     @GET("me/playlists/following")
-    Call<List<Playlist>> callPlaylistsFollowing(@Header("Authorization") String token);
+    Call<List<Playlist>> callPlaylistsFollowing();
     @GET("me/tracks")
-    Call<List<Track>> callMyTrakcs(@Header("Authorization") String token);
+    Call<List<Track>> callMyTrakcs();
     @GET("me/tracks/liked")
-    Call<List<Track>> callTracksLiked(@Header("Authorization") String token);
+    Call<List<Track>> callTracksLiked();
 }

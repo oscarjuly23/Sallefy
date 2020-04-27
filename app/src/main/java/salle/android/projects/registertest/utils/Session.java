@@ -29,7 +29,7 @@ public class Session {
     private int mIndex;
     private boolean isPlaying;
 
-    public static Session getInstance(Context context) {
+    public static Session getInstance() {
         Session result = sSession;
         if (result == null) {
             synchronized (mutex) {

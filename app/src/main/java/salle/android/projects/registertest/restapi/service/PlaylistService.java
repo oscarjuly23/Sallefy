@@ -14,13 +14,13 @@ import salle.android.projects.registertest.model.Playlist;
 public interface PlaylistService {
     @GET("playlists")
     //@GET("me/playlists")
-    Call<List<Playlist>> callPlaylist(@Header("Authorization") String token);
+    Call<List<Playlist>> callPlaylist();
     @POST("playlists")
-    Call<Playlist> createPlaylist(@Body Playlist playlist, @Header("Authorization") String token);
+    Call<Playlist> createPlaylist(@Body Playlist playlist);
     @PUT("playlists")
-    Call<Playlist> addTrackToPlaylist(@Body Playlist playlist, @Header("Authorization") String token);
+    Call<Playlist> addTrackToPlaylist(@Body Playlist playlist);
     @GET("playlists/{id}/follow")
-    Call<Playlist> IsFollowed(@Path("id") Integer id, @Header("Authorization") String token);
+    Call<Playlist> IsFollowed(@Path("id") Integer id);
     @PUT("playlists/{id}/follow")
-    Call<Playlist> followPlaylist(@Path("id") Integer id, @Header("Authorization") String token);
+    Call<Playlist> followPlaylist(@Path("id") Integer id);
 }

@@ -14,13 +14,13 @@ import salle.android.projects.registertest.model.Track;
 
 public interface TrackService {
     @GET("tracks")
-    Call<List<Track>> getAllTracks(@Header("Authorization") String token);
+    Call<List<Track>> getAllTracks();
     @GET("me/tracks")
-     Call<List<Track>> getOwnTracks(@Header("Authorization") String token);
+     Call<List<Track>> getOwnTracks();
     @GET("users/{login}/tracks")
-    Call<List<Track>> getUserTracks(@Path("login") String login, @Header("Authorization") String token);
+    Call<List<Track>> getUserTracks(@Path("login") String login);
     @POST("tracks")
-    Call<ResponseBody> createTrack(@Body Track track, @Header("Authorization") String token);
+    Call<ResponseBody> createTrack(@Body Track track);
     @PUT("tracks/{id}/like")
-    Call<Track> setTrackLike(@Path("id") Integer trackId, @Header("Authorization") String token);
+    Call<Track> setTrackLike(@Path("id") Integer trackId);
 }

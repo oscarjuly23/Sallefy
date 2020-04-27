@@ -21,7 +21,7 @@ import salle.android.projects.registertest.restapi.service.UserTokenService;
 import salle.android.projects.registertest.utils.Constants;
 import salle.android.projects.registertest.utils.Session;
 
-public class UserManager {
+public class UserManager extends BaseManager{
 
     private static final String TAG = "UserManager";
 
@@ -40,15 +40,10 @@ public class UserManager {
         return sUserManager;
     }
 
-    private UserManager(Context cntxt) {
-        mContext = cntxt;
-        mRetrofit = new Retrofit.Builder()
-                .baseUrl(Constants.NETWORK.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        mService = mRetrofit.create(UserService.class);
-        mTokenService = mRetrofit.create(UserTokenService.class);
+    private UserManager(Context contxt) {
+        mContext = contxt;
+        mService = retrofit.create(UserService.class);
+        mTokenService = retrofit.create(UserTokenService.class);
     }
 
 
@@ -82,11 +77,9 @@ public class UserManager {
         });
     }
 
-
     /********************   USER INFO    ********************/
     public synchronized void getUserData (String login, final UserCallback userCallback) {
-        UserToken userToken = Session.getInstance(mContext).getUserToken();
-        Call<User> call = mService.getUserById(login, "Bearer " + userToken.getIdToken());
+        Call<User> call = mService.getUserById(login);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {

@@ -11,5 +11,5 @@ import salle.android.projects.registertest.model.Search;
 
 public interface SearchService {
     @GET("search")
-    Call<Search> callSearch(@Query("keyword") String keyword,@Header("Authorization") String token);
+    Call<Search> callSearch(@Query("keyword") String keyword);
 }
