@@ -69,6 +69,8 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
         return v;
     }
 
+
+
     private void initViews(View v){
         mRecyclerView = v.findViewById(R.id.dynamic_recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);

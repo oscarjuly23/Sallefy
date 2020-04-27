@@ -72,10 +72,6 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
         return v;
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
 
     private void initViews(View v) {
         searchBar = v.findViewById(R.id.searchBar);
@@ -236,7 +232,7 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
         mPlaylists = (ArrayList<Playlist>) search.getPlaylits();
         mUsers = (ArrayList<User>) search.getUsers();
 
-        TrackListAdapter adapterTrack = new TrackListAdapter(this, getActivity(), mTracks, null);
+        TrackListAdapter adapterTrack = new TrackListAdapter(this, getActivity(), mTracks, this);
         mRecyclerViewTracks.setAdapter(adapterTrack);
 
         PlaylistListAdapter playlistListAdapter = new PlaylistListAdapter(mPlaylists, getActivity(), this, R.layout.playlist_item);

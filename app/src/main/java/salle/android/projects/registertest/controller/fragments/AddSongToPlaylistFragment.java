@@ -118,6 +118,7 @@ public class AddSongToPlaylistFragment extends Fragment implements PlaylistAdapt
         }
         onChangeFragment(fragment);
     }
+
     @Override
     public void onPlaylistClick(int index) {
 
