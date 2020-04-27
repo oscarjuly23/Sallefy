@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import salle.android.projects.registertest.R;
@@ -111,6 +113,7 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
 
     @Override
     public void onShowPlaylist(List<Playlist> playlists) {
+        playlists.sort(Comparator.comparing(Playlist::getFollowers).reversed());
         mPlaylistAdapter = new PlaylistListAdapter(playlists, getContext(), this, R.layout.item_playlist_short);
         mPlaylistsView.setAdapter(mPlaylistAdapter);
     }

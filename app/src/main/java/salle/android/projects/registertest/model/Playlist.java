@@ -23,13 +23,14 @@ public class Playlist implements Serializable {
     private User user;
     @SerializedName("tracks")
     private List<Track> tracks = null;
+    private boolean followed;
+    @SerializedName("followers")
+    private int followers;
 
     public Playlist(String name) {
         this.name = name;
         this.publicAccessible = true;
     }
-
-    private boolean followed;
 
     public String getCover() {
         return cover;
@@ -76,12 +77,10 @@ public class Playlist implements Serializable {
     public String getUserLogin() {
         return user.getLogin();
     }
-
     public void setUserLogin(String userLogin) {
         if (user == null) { user = new User(); }
         user.setLogin(userLogin);
     }
-
     public List<Track> getTracks() {
         return tracks;
     }
@@ -93,5 +92,11 @@ public class Playlist implements Serializable {
     }
     public void setFollowed(boolean followed) {
         this.followed = followed;
+    }
+    public int getFollowers() {
+        return followers;
+    }
+    public void setFollowers(int followers) {
+        this.followers = followers;
     }
 }
