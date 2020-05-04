@@ -1,11 +1,15 @@
 package salle.android.projects.registertest.controller.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +59,30 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
 
     public static PlaylistFragment getInstance(Playlist p) {
         return new PlaylistFragment(p);
+    }
+
+    public void showPopup(View v, int style) {
+        Context wraper = new ContextThemeWrapper(getContext(),style);
+        PopupMenu popupMenu = new PopupMenu(wraper, v);
+        MenuInflater menuInflater = popupMenu.getMenuInflater();
+        menuInflater.inflate(R.menu.popup_menu, popupMenu.getMenu());
+
+        try {
+            Field[] fields = popupMenu.getClass().getDeclaredFields();
+            for (Field field : fields) {
+                if ("mPopup".equals(field.getName())) {
+                    field.setAccessible(true);
+                    Object menuPopupHelper = field.get(popupMenu);
+                    Class<?> classPopupHelper = Class.forName(menuPopupHelper.getClass().getName());
+                    Method setForceIcons = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
+                    setForceIcons.invoke(menuPopupHelper, true);
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        popupMenu.show();
     }
 
     @Override
@@ -121,11 +151,8 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
      **********************************************************************************************/
 
     @Override
-    public void onTrackSelected(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+    public void onTrackSelected(View v) {
+        showPopup(v, R.style.MenuPopup);
     }
     @Override
     public void onTrackSelected(int index) {

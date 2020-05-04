@@ -2,9 +2,11 @@ package salle.android.projects.registertest.controller.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,6 +45,13 @@ public class LibraryTrackFragment extends Fragment implements FragmentCallback, 
 
     public static LibraryTrackFragment getInstance() {
         return new LibraryTrackFragment();
+    }
+
+    public void showPopup(View v) {
+        PopupMenu popupMenu = new PopupMenu(getContext(), v);
+        MenuInflater menuInflater = popupMenu.getMenuInflater();
+        menuInflater.inflate(R.menu.popup_menu, popupMenu.getMenu());
+        popupMenu.show();
     }
 
     @Override
@@ -148,11 +157,8 @@ public class LibraryTrackFragment extends Fragment implements FragmentCallback, 
      **********************************************************************************************/
 
     @Override
-    public void onTrackSelected(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+    public void onTrackSelected(View v) {
+        showPopup(v);
     }
     @Override
     public void onTrackSelected(int index) {

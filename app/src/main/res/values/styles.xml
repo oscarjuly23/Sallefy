@@ -98,7 +98,14 @@
         <item name="android:fontFamily">@font/gotham_book</item>
     </style>
 
-
+    <style name="MenuPopup" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Used for the buttons -->
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <!-- Used for the background -->
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
 
 </resources>
 

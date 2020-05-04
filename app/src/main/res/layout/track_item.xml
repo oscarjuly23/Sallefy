@@ -62,6 +62,7 @@
             app:anim_scale_factor="7"
             android:layout_marginRight="60dp"
             app:icon_size="10dp"
+            android:paddingLeft="6dp"
             app:icon_type="heart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -89,8 +90,9 @@
             android:id="@+id/add_song_to_playlist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_playlist_add" />
+            android:src="@drawable/ic_dots" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -96,5 +96,9 @@
     <!-- FRAGMENT (GENRE) -->
     <string name="fragment_songs">Songs</string>
 
+    <!-- POPUP MENU -->
+    <string name="añadir_a_playlist">Añadir a playlist</string>
+    <string name="compartir">Compartir</string>
+
 
 </resources>

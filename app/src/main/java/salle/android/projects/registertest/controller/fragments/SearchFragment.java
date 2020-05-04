@@ -6,8 +6,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,7 +42,7 @@ import salle.android.projects.registertest.restapi.callback.TrackCallback;
 import salle.android.projects.registertest.restapi.manager.SearchManager;
 import salle.android.projects.registertest.restapi.manager.TrackManager;
 
-public class SearchFragment extends Fragment implements TrackListCallback, TrackCallback, MaterialSearchBar.OnSearchActionListener, PlaylistAdapterCallback, SearchCallback, FragmentCallback {
+public class SearchFragment extends Fragment implements TrackListCallback, TrackCallback, MaterialSearchBar.OnSearchActionListener, PlaylistAdapterCallback, SearchCallback, FragmentCallback, Toolbar.OnMenuItemClickListener {
 
     public static final String TAG = SearchFragment.class.getName();
 
@@ -61,7 +66,13 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         this.callback = (FragmentCallback) getActivity();
+    }
 
+    public void showPopup(View v) {
+        PopupMenu popupMenu = new PopupMenu(getContext(), v);
+        MenuInflater menuInflater = popupMenu.getMenuInflater();
+        menuInflater.inflate(R.menu.popup_menu, popupMenu.getMenu());
+        popupMenu.show();
     }
 
     @Nullable
@@ -167,11 +178,12 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
      **********************************************************************************************/
 
     @Override
-    public void onTrackSelected(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+    public void onTrackSelected(View v) {
+        /*FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
+        showPopup(v);
     }
     @Override
     public void onTrackSelected(int index) {
@@ -264,5 +276,26 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
     @Override
     public void updateTrack(ArrayList<Track> mTracks, int index) {
 
+    }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   OnMenuClickListener   *   *   *   *   *    *   *   *   *
+     **********************************************************************************************/
+
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_toPlaylist:
+                System.out.println("Añadir");
+                //Toast.makeText(getContext(), "Añadir" + Toast.LENGTH_SHORT);
+                return true;
+            case R.id.share:
+                System.out.println("Compartir");
+                //Toast.makeText(getContext(), "Compartir" + Toast.LENGTH_SHORT);
+                return true;
+            default:
+                return false;
+        }
     }
 }
