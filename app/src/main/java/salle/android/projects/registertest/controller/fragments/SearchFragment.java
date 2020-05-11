@@ -1,6 +1,7 @@
 package salle.android.projects.registertest.controller.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.text.Editable;
@@ -55,6 +56,7 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
     private RecyclerView mRecyclerViewUsers;
     private ArrayList<Track> mTracks;
     private int currentTrack = 0;
+    private int index = 0;
     private FragmentCallback callback;
     private ArrayList<Playlist> mPlaylists;
     private ArrayList<User> mUsers;
@@ -104,7 +106,11 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
                         fragmentTransaction.commit();
                         break;
                     case R.id.share:
-
+                        String url ="http://sallefy.eu-west-3.elasticbeanstalk.com/track/"+index;
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("tet/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, url);
+                        startActivity(Intent.createChooser(intent, "Share with: "));
                         break;
                 }
                 return true;
@@ -216,7 +222,8 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
      **********************************************************************************************/
 
     @Override
-    public void onTrackSelected(View v, Fragment fragment) {
+    public void onTrackSelected(View v, Fragment fragment, int idTrack) {
+        index = idTrack;
         showPopup(v, R.style.MenuPopup, fragment);
     }
     @Override

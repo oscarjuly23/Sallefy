@@ -1,6 +1,7 @@
 package salle.android.projects.registertest.controller.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -42,6 +43,7 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
     private RecyclerView mRecyclerView;
     private ArrayList<Track> mTracks;
     private int currentTrack = 0;
+    private int index = 0;
     private FragmentCallback callback;
 
     public PerfilTrackFragment() {
@@ -83,7 +85,11 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
                         fragmentTransaction.commit();
                         break;
                     case R.id.share:
-
+                        String url ="http://sallefy.eu-west-3.elasticbeanstalk.com/track/"+index;
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("tet/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, url);
+                        startActivity(Intent.createChooser(intent, "Share with: "));
                         break;
                 }
                 return true;
@@ -191,7 +197,8 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
      **********************************************************************************************/
 
     @Override
-    public void onTrackSelected(View v, Fragment fragment) {
+    public void onTrackSelected(View v, Fragment fragment, int idTrack) {
+        index = idTrack;
         showPopup(v, R.style.MenuPopup, fragment);
     }
     @Override

@@ -73,7 +73,7 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
             public void onClick(View v) {
                 Fragment fragment = null;
                 fragment = AddSongToPlaylistFragment.getInstance(mTracks.get(position), backfragment);
-                mCallback.onTrackSelected(v, fragment);
+                mCallback.onTrackSelected(v, fragment, mTracks.get(position).getId());
             }
         });
         holder.mLayout.setOnClickListener(new View.OnClickListener() {

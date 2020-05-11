@@ -1,6 +1,7 @@
 package salle.android.projects.registertest.controller.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -40,6 +41,9 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
     private TextView tvGenre;
     private RecyclerView mTracksView;
     private Genre genre;
+    private int currentTrack = 0;
+    private int index = 0;
+
 
     private ArrayList<Track> mTracks;
     private FragmentCallback callback;
@@ -84,7 +88,11 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
                         fragmentTransaction.commit();
                         break;
                     case R.id.share:
-
+                        String url ="http://sallefy.eu-west-3.elasticbeanstalk.com/track/"+index;
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("tet/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, url);
+                        startActivity(Intent.createChooser(intent, "Share with: "));
                         break;
                 }
                 return true;
@@ -124,6 +132,11 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
         mTracks = new ArrayList<>();
     }
 
+    public int getIndex(){
+        return currentTrack;
+    }
+
+
     /**********************************************************************************************
      *   *   *   *   *   *   *   *   GenreCallback   *   *   *   *   *   *   *   *   *
      **********************************************************************************************/
@@ -148,7 +161,8 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
      **********************************************************************************************/
 
     @Override
-    public void onTrackSelected(View v, Fragment fragment) {
+    public void onTrackSelected(View v, Fragment fragment, int idTrack) {
+        index = idTrack;
         showPopup(v, R.style.MenuPopup, fragment);
     }
     @Override
