@@ -104,7 +104,7 @@
         <!-- Used for the title and text -->
         <item name="android:textColorPrimary">@android:color/white</item>
         <!-- Used for the background -->
-        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/colorSecondary</item>
     </style>
 
 </resources>

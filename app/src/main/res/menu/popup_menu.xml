@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/add_toPlaylist"
+        android:icon="@drawable/ic_playlist_add"
+        android:title="@string/añadir_a_playlist" />
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/ic_share"
+        android:title="@string/compartir" />
+</menu>

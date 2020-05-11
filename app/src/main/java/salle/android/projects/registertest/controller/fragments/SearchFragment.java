@@ -1,10 +1,12 @@
 package salle.android.projects.registertest.controller.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,6 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,10 +72,44 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
         this.callback = (FragmentCallback) getActivity();
     }
 
-    public void showPopup(View v) {
-        PopupMenu popupMenu = new PopupMenu(getContext(), v);
+    public void showPopup(View v, int style, Fragment fragment) {
+        Context wraper = new ContextThemeWrapper(getContext(),style);
+        PopupMenu popupMenu = new PopupMenu(wraper, v);
         MenuInflater menuInflater = popupMenu.getMenuInflater();
         menuInflater.inflate(R.menu.popup_menu, popupMenu.getMenu());
+
+        try {
+            Field[] fields = popupMenu.getClass().getDeclaredFields();
+            for (Field field : fields) {
+                if ("mPopup".equals(field.getName())) {
+                    field.setAccessible(true);
+                    Object menuPopupHelper = field.get(popupMenu);
+                    Class<?> classPopupHelper = Class.forName(menuPopupHelper.getClass().getName());
+                    Method setForceIcons = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
+                    setForceIcons.invoke(menuPopupHelper, true);
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.add_toPlaylist:
+                        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, fragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                        break;
+                    case R.id.share:
+
+                        break;
+                }
+                return true;
+            }
+        });
         popupMenu.show();
     }
 
@@ -178,12 +216,8 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
      **********************************************************************************************/
 
     @Override
-    public void onTrackSelected(View v) {
-        /*FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();*/
-        showPopup(v);
+    public void onTrackSelected(View v, Fragment fragment) {
+        showPopup(v, R.style.MenuPopup, fragment);
     }
     @Override
     public void onTrackSelected(int index) {

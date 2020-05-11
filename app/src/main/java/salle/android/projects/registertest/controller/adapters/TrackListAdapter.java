@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.callbacks.TrackListCallback;
+import salle.android.projects.registertest.controller.fragments.AddSongToPlaylistFragment;
 import salle.android.projects.registertest.model.Track;
 
 public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.ViewHolder> {
@@ -70,7 +71,9 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
         holder.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCallback.onTrackSelected(v);
+                Fragment fragment = null;
+                fragment = AddSongToPlaylistFragment.getInstance(mTracks.get(position), backfragment);
+                mCallback.onTrackSelected(v, fragment);
             }
         });
         holder.mLayout.setOnClickListener(new View.OnClickListener() {

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -61,7 +62,7 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
         return new PlaylistFragment(p);
     }
 
-    public void showPopup(View v, int style) {
+    public void showPopup(View v, int style, Fragment fragment) {
         Context wraper = new ContextThemeWrapper(getContext(),style);
         PopupMenu popupMenu = new PopupMenu(wraper, v);
         MenuInflater menuInflater = popupMenu.getMenuInflater();
@@ -82,6 +83,23 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
         } catch (Exception e) {
             e.printStackTrace();
         }
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.add_toPlaylist:
+                        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, fragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                        break;
+                    case R.id.share:
+
+                        break;
+                }
+                return true;
+            }
+        });
         popupMenu.show();
     }
 
@@ -151,8 +169,8 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
      **********************************************************************************************/
 
     @Override
-    public void onTrackSelected(View v) {
-        showPopup(v, R.style.MenuPopup);
+    public void onTrackSelected(View v, Fragment fragment) {
+        showPopup(v, R.style.MenuPopup, fragment);
     }
     @Override
     public void onTrackSelected(int index) {
