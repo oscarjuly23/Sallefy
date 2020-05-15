@@ -226,10 +226,12 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
         index = idTrack;
         showPopup(v, R.style.MenuPopup, fragment);
     }
+
     @Override
     public void onTrackSelected(int index) {
         callback.updateTrack(mTracks, index);
     }
+
     @Override
     public void onTrackLike(int index) {
         TrackManager.getInstance(getContext()).likeTrack(mTracks.get(index).getId(),this);

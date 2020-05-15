@@ -1,4 +1,4 @@
 package salle.android.projects.registertest.controller.fragments;
 
-public class ViewTrackFragment {
+public class TrackFragment {
 }

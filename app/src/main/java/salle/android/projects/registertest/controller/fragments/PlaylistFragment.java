@@ -2,6 +2,7 @@ package salle.android.projects.registertest.controller.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -49,6 +51,7 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
     private TextView tvName;
     private TextView tvOwner;
     private Button btnFollow;
+    private ImageButton btnShare;
     private int currentTrack = 0;
     private int index = 0;
 
@@ -162,6 +165,17 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
             }
         }
     });
+        btnShare = v.findViewById(R.id.sharePlaylist);
+        btnShare.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                String url ="http://sallefy.eu-west-3.elasticbeanstalk.com/playlist/"+playlist.getId();
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("tet/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, url);
+                startActivity(Intent.createChooser(intent, "Share with: "));
+            }
+        });
     }
 
     private void followPlaylist() {

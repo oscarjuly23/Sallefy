@@ -18,14 +18,25 @@
         app:mwhCloseColor="@color/colorSecondary"
         app:mwhStartColor="@color/colorPrimary" />
 
+
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/dynamic_recyclerView">
+
+        <ImageButton
+            android:id="@+id/sharePlaylist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:paddingRight="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_share" />
 
         <ImageView
             android:id="@+id/playlist_photo"
