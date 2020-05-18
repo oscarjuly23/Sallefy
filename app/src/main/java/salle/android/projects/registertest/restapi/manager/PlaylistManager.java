@@ -166,7 +166,6 @@ public class PlaylistManager extends BaseManager {
     public synchronized void getPlaylist (int playlistID, final PlaylistCallback playlistCallback) {
         Call<Playlist> call = mService.getPlaylistFromID(playlistID);
         call.enqueue(new Callback<Playlist>() {
-
             @Override
             public void onResponse(Call<Playlist> call, Response<Playlist> response) {
                 if (response.isSuccessful()) {
@@ -179,7 +178,6 @@ public class PlaylistManager extends BaseManager {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<Playlist> call, Throwable t) {
                 playlistCallback.onFailure(t);

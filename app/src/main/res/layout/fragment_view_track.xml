@@ -45,7 +45,7 @@
             android:text="Nombre"/>
 
         <TextView
-            android:id="@+id/autor_playlist"
+            android:id="@+id/track_artist"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
