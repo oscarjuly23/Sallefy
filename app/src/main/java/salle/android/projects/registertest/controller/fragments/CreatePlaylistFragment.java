@@ -105,6 +105,11 @@ public class CreatePlaylistFragment extends Fragment implements PlaylistCallback
     }
 
     @Override
+    public void getPlaylist(Playlist playlist) {
+
+    }
+
+    @Override
     public void onFailure (Throwable throwable) {
         Toast.makeText(getContext(), "Failure", Toast.LENGTH_LONG);
     }

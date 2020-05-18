@@ -23,4 +23,7 @@ public interface PlaylistService {
     Call<Playlist> IsFollowed(@Path("id") Integer id);
     @PUT("playlists/{id}/follow")
     Call<Playlist> followPlaylist(@Path("id") Integer id);
+    @GET("playlists/{id}")
+    Call<Playlist> getPlaylistFromID(@Path("id") Integer id);
+
 }

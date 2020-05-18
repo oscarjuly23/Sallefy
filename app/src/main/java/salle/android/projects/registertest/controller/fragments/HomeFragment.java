@@ -141,6 +141,12 @@ public class HomeFragment extends Fragment implements PlaylistCallback, Playlist
     public void getIsFollowed(Playlist playlist) {
 
     }
+
+    @Override
+    public void getPlaylist(Playlist playlist) {
+
+    }
+
     @Override
     public void onFailure(Throwable throwable) {
         Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();

@@ -243,6 +243,12 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
             btnFollow.setText(UNFOLLOW_VIEW);
         }
     }
+
+    @Override
+    public void getPlaylist(Playlist playlist) {
+
+    }
+
     @Override
     public void onFailure(Throwable throwable) {
 

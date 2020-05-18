@@ -12,4 +12,5 @@ public interface PlaylistCallback extends FailureCallback {
     void onUpdateSucces(Playlist playlist);
     void onFollowSucces(Playlist playlist);
     void getIsFollowed(Playlist playlist);
+    void getPlaylist(Playlist playlist);
 }

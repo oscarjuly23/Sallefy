@@ -191,6 +191,11 @@ public class AddSongToPlaylistFragment extends Fragment implements PlaylistAdapt
 
     }
 
+    @Override
+    public void getPlaylist(Playlist playlist) {
+
+    }
+
     /**********************************************************************************************
      *   *   *   *   *   *   *   *   FragmentCallback   *   *   *   *   *   *   *   *   *
      **********************************************************************************************/

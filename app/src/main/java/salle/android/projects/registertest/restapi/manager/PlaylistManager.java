@@ -161,4 +161,29 @@ public class PlaylistManager extends BaseManager {
             }
         });
     }
+
+    /********************   GET PLAYLIST   ********************/
+    public synchronized void getPlaylist (int playlistID, final PlaylistCallback playlistCallback) {
+        Call<Playlist> call = mService.getPlaylistFromID(playlistID);
+        call.enqueue(new Callback<Playlist>() {
+
+            @Override
+            public void onResponse(Call<Playlist> call, Response<Playlist> response) {
+                if (response.isSuccessful()) {
+                    playlistCallback.getPlaylist(response.body());
+                } else {
+                    try {
+                        playlistCallback.onFailure(new Throwable(response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Playlist> call, Throwable t) {
+                playlistCallback.onFailure(t);
+            }
+        });
+    }
 }

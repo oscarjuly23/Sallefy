@@ -27,20 +27,25 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
 import salle.android.projects.registertest.controller.fragments.HomeFragment;
 import salle.android.projects.registertest.controller.fragments.LibraryFragment;
 import salle.android.projects.registertest.controller.fragments.PerfilFragment;
+import salle.android.projects.registertest.controller.fragments.PlaylistFragment;
 import salle.android.projects.registertest.controller.fragments.SearchFragment;
 import salle.android.projects.registertest.controller.music.MusicCallback;
 import salle.android.projects.registertest.controller.music.MusicService;
+import salle.android.projects.registertest.model.Playlist;
 import salle.android.projects.registertest.model.Track;
+import salle.android.projects.registertest.restapi.callback.PlaylistCallback;
+import salle.android.projects.registertest.restapi.manager.PlaylistManager;
 import salle.android.projects.registertest.utils.Constants;
 import salle.android.projects.registertest.utils.Session;
 
-public class MainActivity extends FragmentActivity implements FragmentCallback, MusicCallback {
+public class MainActivity extends FragmentActivity implements FragmentCallback, MusicCallback, PlaylistCallback {
 
     private FragmentManager mFragmentManager;
     private FragmentTransaction mTransaction;
@@ -68,6 +73,8 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
 
     private ArrayList<Track> mTracks;
     private int currentTrack = 0;
+
+    private Playlist playlistShare;
 
     private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
@@ -102,7 +109,11 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
             if (Session.getInstance().getPath().equals("track")){
 
             } else if(Session.getInstance().getPath().equals("playlist")){
-                
+                PlaylistManager.getInstance(getApplicationContext()).getPlaylist(Session.getInstance().getNum(),this);
+                Fragment fragment = null;
+                System.out.println(playlistShare);
+                fragment = PlaylistFragment.getInstance(playlistShare);
+                onChangeFragment(fragment);
             }
             Session.getInstance().setPath(null);
             Session.getInstance().setNum(-1);
@@ -384,5 +395,55 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
     public void updateTrack(ArrayList<Track> mTracks, int index) {
         this.mTracks = mTracks;
         updateSong(index);
+    }
+
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   PlaylistCallback   *   *   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void onShowPlaylist(List<Playlist> playlists) {
+
+    }
+
+    @Override
+    public void onShowPlaylistFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onCreateSuccess(Playlist playlist) {
+
+    }
+
+    @Override
+    public void onCreateFailed(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onUpdateSucces(Playlist playlist) {
+
+    }
+
+    @Override
+    public void onFollowSucces(Playlist playlist) {
+
+    }
+
+    @Override
+    public void getIsFollowed(Playlist playlist) {
+
+    }
+
+    @Override
+    public void getPlaylist(Playlist playlist) {
+         this.playlistShare = playlist;
+    }
+
+    @Override
+    public void onFailure(Throwable throwable) {
+
     }
 }
