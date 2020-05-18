@@ -91,8 +91,24 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
         setContentView(R.layout.activity_main);
         startStreamingService();
         initViews();
-        setInitialFragment();
+        if (!checkShare()){
+            setInitialFragment();
+        }
         requestPermissions();
+    }
+
+    public boolean checkShare(){
+        if (Session.getInstance().getPath() != null){
+            if (Session.getInstance().getPath().equals("track")){
+
+            } else if(Session.getInstance().getPath().equals("playlist")){
+                
+            }
+            Session.getInstance().setPath(null);
+            Session.getInstance().setNum(-1);
+            return true;
+        }
+        return false;
     }
 
     @Override

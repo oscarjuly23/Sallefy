@@ -56,4 +56,9 @@ dependencies {
     //MultiWaveHeader
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
 
+    //CHROMECAST
+    implementation 'androidx.mediarouter:mediarouter:1.0.0'
+    implementation 'com.google.android.gms:play-services-cast-framework:17.0.0'
+    implementation 'com.android.volley:volley:1.1.1'
+
 }

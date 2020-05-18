@@ -28,6 +28,9 @@ public class Session {
     private ArrayList<Track> mTracks;
     private int mIndex;
     private boolean isPlaying;
+    private String path;
+    private int num;
+
 
     public static Session getInstance() {
         Session result = sSession;
@@ -120,5 +123,21 @@ public class Session {
     }
     public void setPlaying(boolean playing) {
         isPlaying = playing;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 }

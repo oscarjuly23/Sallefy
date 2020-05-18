@@ -100,5 +100,9 @@
     <string name="añadir_a_playlist">Añadir a playlist</string>
     <string name="compartir">Compartir</string>
 
+    <!-- COMPARTIR -->
+    <string name="app_id">4F8B3483</string>
+    <string name="media_route_menu_title">Enviar a</string>
+
 
 </resources>
