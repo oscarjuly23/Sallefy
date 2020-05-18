@@ -145,12 +145,14 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
     public void onGenresReceive(ArrayList<Genre> genres) {
 
     }
+
     @Override
     public void onTracksByGenre(ArrayList<Track> tracks) {
         mTracks = (ArrayList) tracks;
         TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks, this);
         mTracksView.setAdapter(adapter);
     }
+
     @Override
     public void onFailure(Throwable throwable) {
 
@@ -165,10 +167,12 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
         index = idTrack;
         showPopup(v, R.style.MenuPopup, fragment);
     }
+
     @Override
     public void onTrackSelected(int index) {
         callback.updateTrack(mTracks, index);
     }
+
     @Override
     public void onTrackLike(int index) {
         TrackManager.getInstance(getContext()).likeTrack(mTracks.get(index).getId(), this);
@@ -182,24 +186,34 @@ public class GenreFragment extends Fragment implements GenreCallback, TrackListC
     public void onTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onNoTracks(Throwable throwable) {
 
     }
+
     @Override
     public void onPersonalTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onUserTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onCreateTrack() {
 
     }
+
     @Override
     public void onLikeSuccess(Track track) {
+
+    }
+
+    @Override
+    public void getTrack(Track track) {
 
     }
 }

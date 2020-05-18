@@ -31,21 +31,25 @@ import java.util.List;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
+import salle.android.projects.registertest.controller.callbacks.TrackListCallback;
 import salle.android.projects.registertest.controller.fragments.HomeFragment;
 import salle.android.projects.registertest.controller.fragments.LibraryFragment;
 import salle.android.projects.registertest.controller.fragments.PerfilFragment;
 import salle.android.projects.registertest.controller.fragments.PlaylistFragment;
 import salle.android.projects.registertest.controller.fragments.SearchFragment;
+import salle.android.projects.registertest.controller.fragments.TrackFragment;
 import salle.android.projects.registertest.controller.music.MusicCallback;
 import salle.android.projects.registertest.controller.music.MusicService;
 import salle.android.projects.registertest.model.Playlist;
 import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.restapi.callback.PlaylistCallback;
+import salle.android.projects.registertest.restapi.callback.TrackCallback;
 import salle.android.projects.registertest.restapi.manager.PlaylistManager;
+import salle.android.projects.registertest.restapi.manager.TrackManager;
 import salle.android.projects.registertest.utils.Constants;
 import salle.android.projects.registertest.utils.Session;
 
-public class MainActivity extends FragmentActivity implements FragmentCallback, MusicCallback, PlaylistCallback {
+public class MainActivity extends FragmentActivity implements FragmentCallback, MusicCallback, PlaylistCallback, TrackCallback {
 
     private FragmentManager mFragmentManager;
     private FragmentTransaction mTransaction;
@@ -75,6 +79,7 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
     private int currentTrack = 0;
 
     private Playlist playlistShare;
+    private Track trackShare;
 
     private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
@@ -106,17 +111,18 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
 
     public boolean checkShare(){
         if (Session.getInstance().getPath() != null){
+            Fragment fragment = null;
             if (Session.getInstance().getPath().equals("track")){
-
+                //FALTA LLAMAR AL MANAGER PARA COGER LA TRACK POR ID
+                TrackManager.getInstance(getApplicationContext()).getTrack(Session.getInstance().getNum(),this);
+                fragment = TrackFragment.getInstance(trackShare);
             } else if(Session.getInstance().getPath().equals("playlist")){
                 PlaylistManager.getInstance(getApplicationContext()).getPlaylist(Session.getInstance().getNum(),this);
-                Fragment fragment = null;
-                System.out.println(playlistShare);
                 fragment = PlaylistFragment.getInstance(playlistShare);
-                onChangeFragment(fragment);
             }
             Session.getInstance().setPath(null);
             Session.getInstance().setNum(-1);
+            onChangeFragment(fragment);
             return true;
         }
         return false;
@@ -391,6 +397,7 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
     public void onChangeFragment(Fragment fragment) {
         replaceFragment(fragment);
     }
+
     @Override
     public void updateTrack(ArrayList<Track> mTracks, int index) {
         this.mTracks = mTracks;
@@ -445,5 +452,44 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
     @Override
     public void onFailure(Throwable throwable) {
 
+    }
+
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   TrackCallback   *   *   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+
+    @Override
+    public void onTracksReceived(List<Track> tracks) {
+
+    }
+
+    @Override
+    public void onNoTracks(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onPersonalTracksReceived(List<Track> tracks) {
+
+    }
+
+    @Override
+    public void onUserTracksReceived(List<Track> tracks) {
+
+    }
+
+    @Override
+    public void onCreateTrack() {
+
+    }
+
+    @Override
+    public void onLikeSuccess(Track track) {
+
+    }
+
+    @Override
+    public void getTrack(Track track) {
+        this.trackShare = track;
     }
 }

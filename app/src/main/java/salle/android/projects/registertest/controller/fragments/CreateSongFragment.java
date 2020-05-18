@@ -139,10 +139,12 @@ public class CreateSongFragment extends Fragment implements GenreCallback, Track
             mFilename.setText(mFileUri.toString());
         }
     }
+
     @Override
     public void onPause() {
         super.onPause();
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -159,10 +161,12 @@ public class CreateSongFragment extends Fragment implements GenreCallback, Track
         ArrayAdapter<String> adapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, mGenres);
         mSpinner.setAdapter(adapter);
     }
+
     @Override
     public void onTracksByGenre(ArrayList<Track> tracks) {
 
     }
+
     @Override
     public void onFailure(Throwable throwable) {
 
@@ -176,18 +180,22 @@ public class CreateSongFragment extends Fragment implements GenreCallback, Track
     public void onTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onNoTracks(Throwable throwable) {
 
     }
+
     @Override
     public void onPersonalTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onUserTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onCreateTrack() {
         StateDialog.getInstance(getContext()).showStateDialog(true);
@@ -205,6 +213,11 @@ public class CreateSongFragment extends Fragment implements GenreCallback, Track
     }
     @Override
     public void onLikeSuccess(Track track) {
+
+    }
+
+    @Override
+    public void getTrack(Track track) {
 
     }
 }

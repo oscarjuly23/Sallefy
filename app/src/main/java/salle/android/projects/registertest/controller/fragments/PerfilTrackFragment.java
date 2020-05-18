@@ -151,6 +151,7 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
+
     @Override
     public void updateTrack(ArrayList<Track> mTracks, int index) {
         
@@ -164,14 +165,17 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
     public void myPlaylistsReceived(List<Playlist> playlists) {
 
     }
+
     @Override
     public void playlistsFollowingReceived(List<Playlist> playlists) {
 
     }
+
     @Override
     public void myTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void tracksLikedReceived(List<Track> tracks) {
         mTracks = (ArrayList) tracks;
@@ -183,10 +187,12 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
     public void noPlaylistsReceived(Throwable throwable) {
 
     }
+
     @Override
     public void noTracksReceived(Throwable throwable) {
 
     }
+
     @Override
     public void onFailure(Throwable throwable) {
 
@@ -201,10 +207,12 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
         index = idTrack;
         showPopup(v, R.style.MenuPopup, fragment);
     }
+
     @Override
     public void onTrackSelected(int index) {
         callback.updateTrack(mTracks, index);
     }
+
     @Override
     public void onTrackLike(int index) {
         TrackManager.getInstance(getContext()).likeTrack(mTracks.get(index).getId(),this);
@@ -218,24 +226,34 @@ public class PerfilTrackFragment extends Fragment implements FragmentCallback, M
     public void onTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onNoTracks(Throwable throwable) {
 
     }
+
     @Override
     public void onPersonalTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onUserTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onCreateTrack() {
 
     }
+
     @Override
     public void onLikeSuccess(Track track) {
+
+    }
+
+    @Override
+    public void getTrack(Track track) {
 
     }
 }

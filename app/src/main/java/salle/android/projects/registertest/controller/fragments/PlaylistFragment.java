@@ -195,11 +195,13 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
         index = idTrack;
         showPopup(v, R.style.MenuPopup, fragment);
     }
+
     @Override
     public void onTrackSelected(int index) {
         currentTrack = index;
         callback.updateTrack((ArrayList<Track>) playlist.getTracks(), index);
     }
+
     @Override
     public void onTrackLike(int index) {
         TrackManager.getInstance(getContext()).likeTrack(playlist.getTracks().get(index).getId(), this);
@@ -213,26 +215,32 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
     public void onShowPlaylist(List<Playlist> playlists) {
 
     }
+
     @Override
     public void onShowPlaylistFailure(Throwable throwable) {
 
     }
+
     @Override
     public void onCreateSuccess(Playlist playlist) {
 
     }
+
     @Override
     public void onCreateFailed(Throwable throwable) {
 
     }
+
     @Override
     public void onUpdateSucces(Playlist playlist) {
 
     }
+
     @Override
     public void onFollowSucces(Playlist playlist) {
 
     }
+
     @Override
     public void getIsFollowed(Playlist playlist) {
         if (playlist.isFollowed()) {
@@ -262,24 +270,34 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
     public void onTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onNoTracks(Throwable throwable) {
 
     }
+
     @Override
     public void onPersonalTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onUserTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onCreateTrack() {
 
     }
+
     @Override
     public void onLikeSuccess(Track track) {
+
+    }
+
+    @Override
+    public void getTrack(Track track) {
 
     }
 }

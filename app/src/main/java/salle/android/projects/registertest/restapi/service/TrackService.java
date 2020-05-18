@@ -23,4 +23,6 @@ public interface TrackService {
     Call<ResponseBody> createTrack(@Body Track track);
     @PUT("tracks/{id}/like")
     Call<Track> setTrackLike(@Path("id") Integer trackId);
+    @GET("tracks/{id}")
+    Call<Track> getTracksFromId(@Path("id") Integer trackId);
 }

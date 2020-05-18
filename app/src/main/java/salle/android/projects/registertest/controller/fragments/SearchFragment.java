@@ -192,26 +192,37 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
     public void onTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onNoTracks(Throwable throwable) {
 
     }
+
     @Override
     public void onPersonalTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onUserTracksReceived(List<Track> tracks) {
 
     }
+
     @Override
     public void onCreateTrack() {
 
     }
+
     @Override
     public void onLikeSuccess(Track track) {
 
     }
+
+    @Override
+    public void getTrack(Track track) {
+
+    }
+
     @Override
     public void onFailure(Throwable throwable) {
 
@@ -324,7 +335,6 @@ public class SearchFragment extends Fragment implements TrackListCallback, Track
     /**********************************************************************************************
      *   *   *   *   *   *   *   *   OnMenuClickListener   *   *   *   *   *    *   *   *   *
      **********************************************************************************************/
-
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {

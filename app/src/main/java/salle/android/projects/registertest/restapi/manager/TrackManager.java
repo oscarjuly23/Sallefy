@@ -67,7 +67,7 @@ public class TrackManager extends BaseManager {
     }
 
     public synchronized void getAllTracks(final TrackCallback trackCallback) {
-            Call<List<Track>> call = mTrackService.getAllTracks();
+        Call<List<Track>> call = mTrackService.getAllTracks();
         call.enqueue(new Callback<List<Track>>() {
             @Override
             public void onResponse(Call<List<Track>> call, Response<List<Track>> response) {
@@ -135,6 +135,7 @@ public class TrackManager extends BaseManager {
         });
     }
 
+    /********************   LIKE TRACK   ********************/
     public synchronized void likeTrack (int trackID, final TrackCallback trackCallback) {
         Call<Track> call = mTrackService.setTrackLike(trackID);
         call.enqueue(new Callback<Track>() {
@@ -143,6 +144,29 @@ public class TrackManager extends BaseManager {
             public void onResponse(Call<Track> call, Response<Track> response) {
                 if (response.isSuccessful()) {
                     trackCallback.onLikeSuccess(response.body());
+                } else {
+                    try {
+                        trackCallback.onFailure(new Throwable(response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<Track> call, Throwable t) {
+                trackCallback.onFailure(t);
+            }
+        });
+    }
+
+    /********************   GET TRACK   ********************/
+    public synchronized void getTrack (int trackID, final TrackCallback trackCallback) {
+        Call<Track> call = mTrackService.getTracksFromId(trackID);
+        call.enqueue(new Callback<Track>() {
+            @Override
+            public void onResponse(Call<Track> call, Response<Track> response) {
+                if (response.isSuccessful()) {
+                    trackCallback.getTrack(response.body());
                 } else {
                     try {
                         trackCallback.onFailure(new Throwable(response.errorBody().string()));
