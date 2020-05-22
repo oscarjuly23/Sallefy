@@ -25,12 +25,13 @@ import salle.android.projects.registertest.model.Track;
 import salle.android.projects.registertest.restapi.callback.TrackCallback;
 import salle.android.projects.registertest.restapi.manager.TrackManager;
 
-public class TrackFragment extends Fragment {
+public class TrackFragment extends Fragment implements TrackCallback{
     public static final String TAG = TrackFragment.class.getName();
 
     private ImageView imageView;
     private TextView tvName;
     private TextView tvArtist;
+    private LikeButton likeButton;
 
     private Track track;
     private FragmentCallback callback;
@@ -58,6 +59,18 @@ public class TrackFragment extends Fragment {
     }
 
     private void initViews(View v) {
+        likeButton = (LikeButton) v.findViewById(R.id.heart_button);
+        if (track.isLiked()){
+            likeButton.setLiked(true);
+        }
+        likeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                like();
+                likeButton.onClickAnimation(v);
+            }
+        });
+
         imageView = v.findViewById(R.id.track_photo);
         if (track.getThumbnail() != null) {
             Glide.with(this).load(track.getThumbnail()).into(imageView);
@@ -74,4 +87,49 @@ public class TrackFragment extends Fragment {
         callback.updateTrack(mTracks, 0);
     }
 
+    private void like() {
+        TrackManager.getInstance(getContext()).likeTrack(track.getId(),this);
+    }
+    /**********************************************************************************************
+     *   *   *   *   *   *   *   *   TrackCallback   *   *   *   *   *   *   *   *   *
+     **********************************************************************************************/
+    @Override
+    public void onTracksReceived(List<Track> tracks) {
+
+    }
+
+    @Override
+    public void onNoTracks(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onPersonalTracksReceived(List<Track> tracks) {
+
+    }
+
+    @Override
+    public void onUserTracksReceived(List<Track> tracks) {
+
+    }
+
+    @Override
+    public void onCreateTrack() {
+
+    }
+
+    @Override
+    public void onLikeSuccess(Track track) {
+
+    }
+
+    @Override
+    public void getTrack(Track track) {
+
+    }
+
+    @Override
+    public void onFailure(Throwable throwable) {
+
+    }
 }

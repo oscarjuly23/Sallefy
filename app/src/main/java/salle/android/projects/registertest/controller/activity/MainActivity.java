@@ -358,6 +358,7 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
                 if (fragment instanceof LibraryFragment) {
                     return LibraryFragment.TAG;
                 } else {
+                    if (fragment instanceof PerfilFragment)
                     return PerfilFragment.TAG;
                 }
             }
