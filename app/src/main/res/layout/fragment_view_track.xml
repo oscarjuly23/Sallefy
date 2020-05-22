@@ -22,15 +22,25 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
+
+        <com.like.LikeButton
+            android:id="@+id/hearth_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:paddingRight="10dp"
+            app:icon_size="10dp"
+            app:icon_type="heart" />
 
         <ImageView
             android:id="@+id/track_photo"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:scaleType="centerCrop"
+            android:layout_marginTop="50dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/colorWhite"/>
 
@@ -53,42 +63,5 @@
             android:gravity="center"
             android:text="Owner"/>
     </LinearLayout>
-    <com.like.LikeButton
-        android:id="@+id/heart_button"
-        android:layout_width="50dp"
-        android:gravity="center"
-        android:layout_height="match_parent"
-        app:anim_scale_factor="7"
-        android:layout_marginRight="60dp"
-        app:icon_size="10dp"
-        android:paddingLeft="6dp"
-        app:icon_type="heart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout4"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:gravity="center"
-        android:id="@+id/linearLayout5"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        app:layout_constraintRight_toRightOf="@+id/linearLayout4"
-        app:layout_constraintStart_toEndOf="@+id/track_img"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <ImageButton
-            android:id="@+id/add_song_to_playlist"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_dots" />
-    </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

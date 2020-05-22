@@ -11,16 +11,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.like.LikeButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import salle.android.projects.registertest.R;
 import salle.android.projects.registertest.controller.callbacks.FragmentCallback;
+import salle.android.projects.registertest.controller.callbacks.TrackListCallback;
 import salle.android.projects.registertest.model.Track;
+import salle.android.projects.registertest.restapi.callback.TrackCallback;
+import salle.android.projects.registertest.restapi.manager.TrackManager;
 
 public class TrackFragment extends Fragment {
     public static final String TAG = TrackFragment.class.getName();
@@ -70,4 +73,5 @@ public class TrackFragment extends Fragment {
         mTracks.add(track);
         callback.updateTrack(mTracks, 0);
     }
+
 }

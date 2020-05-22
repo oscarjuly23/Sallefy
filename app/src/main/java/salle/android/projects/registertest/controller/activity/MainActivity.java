@@ -78,6 +78,8 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
     private ArrayList<Track> mTracks;
     private int currentTrack = 0;
 
+    private boolean shareAction = false;
+
     private Playlist playlistShare;
     private Track trackShare;
 
@@ -103,26 +105,27 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
         setContentView(R.layout.activity_main);
         startStreamingService();
         initViews();
-        if (!checkShare()){
+        if (!checkShare()) {
             setInitialFragment();
         }
         requestPermissions();
     }
 
+    public boolean doActionCheck(Fragment fragment) {
+        Session.getInstance().setPath(null);
+        Session.getInstance().setNum(-1);
+        onChangeFragment(fragment);
+        return true;
+    }
+
     public boolean checkShare(){
         if (Session.getInstance().getPath() != null){
-            Fragment fragment = null;
+            shareAction = true;
             if (Session.getInstance().getPath().equals("track")){
-                //FALTA LLAMAR AL MANAGER PARA COGER LA TRACK POR ID
-                TrackManager.getInstance(getApplicationContext()).getTrack(Session.getInstance().getNum(),this);
-                fragment = TrackFragment.getInstance(trackShare);
+                TrackManager.getInstance(this).getTrack(Session.getInstance().getNum(),this);
             } else if(Session.getInstance().getPath().equals("playlist")){
-                PlaylistManager.getInstance(getApplicationContext()).getPlaylist(Session.getInstance().getNum(),this);
-                fragment = PlaylistFragment.getInstance(playlistShare);
+                PlaylistManager.getInstance(this).getPlaylist(Session.getInstance().getNum(),this);
             }
-            Session.getInstance().setPath(null);
-            Session.getInstance().setNum(-1);
-            onChangeFragment(fragment);
             return true;
         }
         return false;
@@ -447,6 +450,12 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
     @Override
     public void getPlaylist(Playlist playlist) {
          this.playlistShare = playlist;
+         if (shareAction) {
+             Fragment fragment = PlaylistFragment.getInstance(playlistShare);
+             doActionCheck(fragment);
+             shareAction = false;
+         }
+
     }
 
     @Override
@@ -491,5 +500,10 @@ public class MainActivity extends FragmentActivity implements FragmentCallback, 
     @Override
     public void getTrack(Track track) {
         this.trackShare = track;
+        if (shareAction) {
+            Fragment fragment = TrackFragment.getInstance(trackShare);
+            doActionCheck(fragment);
+            shareAction = false;
+        }
     }
 }
