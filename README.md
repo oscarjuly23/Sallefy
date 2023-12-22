@@ -1,4 +1,4 @@
-# Sallefy - Aplicación Android para Streaming de Música
+![image](https://github.com/oscarjuly23/Sallefy/assets/39187459/45cfa18e-25d1-4bf1-ba2f-691554abd71f)# Sallefy
 
 Sallefy es una aplicación para dispositivos Android que proporciona acceso a la plataforma de música en línea Sallefy. Esta aplicación se centra en mejorar la experiencia del usuario al ofrecer una variedad de características y funcionalidades relacionadas con la música.
 
@@ -23,3 +23,6 @@ El proyecto Sallefy se ha desarrollado aplicando principios sólidos de diseño 
 
 @authors: Victor Valles - Oscar Julian - Carles Torrubiano  
 @date: 17 de Abril 2020 
+
+![Captura](https://github.com/oscarjuly23/Sallefy/assets/39187459/9f7b7ba7-f4af-4019-b295-0730b07fb992)
+![Captura](https://github.com/oscarjuly23/Sallefy/assets/39187459/c17b8c2d-7ccf-4dd1-8d34-f49c3b3cbf17)
