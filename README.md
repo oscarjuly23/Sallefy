@@ -24,5 +24,8 @@ El proyecto Sallefy se ha desarrollado aplicando principios sólidos de diseño 
 @authors: Victor Valles - Oscar Julian - Carles Torrubiano  
 @date: 17 de Abril 2020 
 
-![Captura](https://github.com/oscarjuly23/Sallefy/assets/39187459/9f7b7ba7-f4af-4019-b295-0730b07fb992)
-![Captura](https://github.com/oscarjuly23/Sallefy/assets/39187459/c17b8c2d-7ccf-4dd1-8d34-f49c3b3cbf17)
+##
+<p align="center">
+  <img src="https://github.com/oscarjuly23/Sallefy/assets/39187459/9f7b7ba7-f4af-4019-b295-0730b07fb992">
+  <img src="https://github.com/oscarjuly23/Sallefy/assets/39187459/c17b8c2d-7ccf-4dd1-8d34-f49c3b3cbf17">
+</p>
